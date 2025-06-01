@@ -1,0 +1,311 @@
+/* HeroSection.css */
+
+/* Импорт шрифтов, убедись, что Inter включает нужные начертания */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
+
+/* ========================================================= */
+/* ============= Глобальные переменные (для удобства) ============= */
+/* ========================================================= */
+:root {
+    --clr-bg-dark:          #000;              /* Основной тёмный фон */
+    --clr-text-light:       #fff;              /* Светлый текст */
+    --clr-text-muted:       #ddd;              /* Приглушенный текст */
+    --clr-accent-blue:      #00d2ff;           /* Голубой акцент */
+    --clr-accent-blue-dark: #00a0e6;           /* Тёмный голубой для ховера */
+    --clr-accent-purple:    #a020f0;           /* Дополнительный фиолетовый акцент */
+    --clr-whatsapp-green:   #25D366;           /* Основной зелёный WhatsApp */
+    --clr-whatsapp-green-dark: #1DA851;        /* Тёмный зелёный WhatsApp для ховера */
+    --shadow-light:         0 0 15px rgba(0, 210, 255, 0.4); /* Мягкое свечение */
+    --shadow-strong:        0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3); /* Сильное свечение */
+    --transition-fast:      0.3s ease-out;      /* Быстрый переход */
+    --transition-medium:    0.5s ease-out;      /* Средний переход */
+    --border-radius-btn:    10px;              /* Скругление кнопок */
+    --padding-btn-x:        45px;              /* Горизонтальный padding кнопок */
+    --padding-btn-y:        20px;              /* Вертикальный padding кнопок */
+}
+
+/* ========================================================= */
+/* ===================== Главная Hero секция ===================== */
+/* ========================================================= */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Центрирует контент по горизонтали */
+    padding: 0 1.5rem;
+    background: var(--clr-bg-dark);
+    overflow: hidden;
+    text-align: center; /* Центрирует строчный контент */
+}
+
+/* ========================================================= */
+/* ==================== Фоновый градиент Hero ==================== */
+/* ========================================================= */
+.hero-bg-overlay {
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 210, 255, 0.05),
+        rgba(255, 0, 200, 0.03),
+        transparent 65%
+    );
+    animation: bgPulse 12s ease-in-out infinite alternate,
+               bgRotate 40s linear infinite;
+    z-index: 0;
+    will-change: transform, opacity;
+}
+
+@keyframes bgPulse {
+    0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+    100% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+}
+
+@keyframes bgRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================================= */
+/* ==================== Кредит (Автор) Hero ==================== */
+/* ========================================================= */
+/* Перемещаем .hero-credit в HTML под основной текст */
+.hero-credit {
+    margin-top: 1.5rem; /* Отступ под основным контентом */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem; /* Чуть больше */
+    color: rgba(255, 255, 255, 0.7); /* Чуть ярче */
+    z-index: 2;
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* Более выраженная тень для читаемости */
+    transition: color var(--transition-fast);
+    /* Заметка: Центрирование произойдет за счет align-items: center на .hero */
+}
+
+.hero-credit:hover {
+    color: var(--clr-accent-blue);
+}
+
+/* ========================================================= */
+/* ===================== Заголовок Hero ===================== */
+/* ========================================================= */
+.hero-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    text-transform: uppercase;
+    color: var(--clr-text-light);
+    line-height: 1.1;
+    z-index: 2;
+    text-shadow: var(--shadow-strong);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* ========================================================= */
+/* ================== Интерактивные слова Hero ================== */
+/* ========================================================= */
+.hero-block {
+    display: inline-block;
+    cursor: default;
+}
+
+.hero-word {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--clr-text-light);
+    position: relative;
+    overflow: hidden;
+    transition: color var(--transition-fast);
+}
+
+.hero-word:hover {
+    color: var(--clr-accent-blue);
+    text-shadow: 0 0 10px var(--clr-accent-blue), 0 0 20px rgba(0, 210, 255, 0.5);
+    animation: wordFloat 0.8s ease-out forwards;
+}
+
+@keyframes wordFloat {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(-8px); opacity: 0.9; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ========================================================= */
+/* ==================== Подзаголовок Hero ==================== */
+/* ========================================================= */
+.hero-subtitle {
+    margin-top: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--clr-text-muted);
+    line-height: 1.6;
+    max-width: 800px;
+    z-index: 2;
+    text-align: center;
+}
+
+/* ========================================================= */
+/* ======================= Улучшенные кнопки Hero ======================= */
+/* ========================================================= */
+.hero-buttons {
+    margin-top: 3.5rem;
+    display: flex;
+    gap: 1.5rem;
+    z-index: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: var(--padding-btn-y) var(--padding-btn-x);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    border-radius: var(--border-radius-btn);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.05em;
+    text-decoration: none; /* Убираем подчеркивание */
+    outline: none;
+    z-index: 1; /* Чтобы эффекты были поверх */
+}
+
+/* Основная кнопка (синяя) */
+.btn-primary {
+    background: var(--clr-accent-blue);
+    color: var(--clr-bg-dark);
+    box-shadow: 0 5px 25px rgba(0, 210, 255, 0.6), 0 0 25px rgba(0, 210, 255, 0.4) inset;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: var(--clr-accent-blue-dark);
+    box-shadow: 0 8px 40px rgba(0, 210, 255, 0.8), 0 0 35px rgba(0, 210, 255, 0.6) inset;
+}
+
+/* Кнопка с контурной обводкой (синяя) */
+.btn-outline {
+    background: transparent;
+    color: var(--clr-accent-blue);
+    border: 3px solid var(--clr-accent-blue);
+    box-shadow: 0 5px 25px rgba(0, 210, 255, 0.4);
+}
+
+.btn-outline:hover {
+    background: var(--clr-accent-blue);
+    color: var(--clr-bg-dark);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 40px rgba(0, 210, 255, 0.8);
+}
+
+/* НОВАЯ КНОПКА WHATSAPP (ТЕПЕРЬ С ОБВОДКОЙ) */
+.btn-whatsapp {
+    background: transparent; /* Прозрачный фон */
+    color: var(--clr-whatsapp-green); /* Зелёный текст */
+    border: 3px solid var(--clr-whatsapp-green); /* Зелёная обводка */
+    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4); /* Мягкое зелёное свечение */
+}
+
+.btn-whatsapp:hover {
+    background: var(--clr-whatsapp-green); /* Заполняется зелёным при наведении */
+    color: var(--clr-text-light); /* Текст становится белым */
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8); /* Более сильное зелёное свечение */
+}
+
+
+/* Общий эффект для всех кнопок: неоновое свечение при нажатии */
+.btn:active {
+  /* Используем акцентные цвета для общего эффекта нажатия, чтобы было более универсально */
+  box-shadow: 0 0 50px var(--clr-accent-blue), 0 0 80px var(--clr-accent-purple);
+  transform: translateY(-1px);
+  transition: box-shadow 0.1s ease-out;
+}
+
+/* Эффект "пульсирующего блика" при наведении на кнопки */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.4s ease-out;
+  z-index: 1;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* ========================================================= */
+/* ======================= Адаптивность Hero ======================= */
+/* ========================================================= */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        padding: 0 1rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 9vw, 4rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-word {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        margin: 0 0.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        margin-top: 1.5rem;
+        max-width: 90%;
+    }
+
+    .hero-credit {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2.5rem;
+    }
+
+    .btn, .btn-outline, .btn-whatsapp { /* Добавлена новая кнопка в адаптивность */
+        width: 100%;
+        max-width: 320px;
+        padding: 0.9rem 1.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+    .hero-subtitle {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+    }
+}

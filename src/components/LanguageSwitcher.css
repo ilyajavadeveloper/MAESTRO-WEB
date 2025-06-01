@@ -1,0 +1,28 @@
+/* src/components/LanguageSwitcher.css */
+.lang-switcher {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .lang-switcher button {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .lang-switcher button:hover {
+    background: #fff;
+    color: #000;
+  }
+  
+  .lang-switcher button.active {
+    background: #fff;
+    color: #000;
+  }
+  

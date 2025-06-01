@@ -1,0 +1,38 @@
+.contact {
+    background: #000;
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .contact-title {
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.1);
+  }
+  
+  .contact p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #ccc;
+  }
+  
+  .contact-btn {
+    margin-top: 30px;
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 12px 28px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  
+  .contact-btn:hover {
+    background: #ddd;
+  }
+  

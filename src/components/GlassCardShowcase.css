@@ -1,0 +1,193 @@
+/* GlassCardShowcase.css */
+
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&display=swap');
+
+/* ========================================================= */
+/* ============= Глобальные переменные (для удобства) ============= */
+/* ========================================================= */
+:root {
+  --clr-bg-dark:          #000;              /* Основной тёмный фон */
+  --clr-text-light:       #fff;              /* Светлый текст */
+  --clr-text-muted:       #bbb;             /* Приглушенный текст */
+  --clr-glass-bg:         rgba(255, 255, 255, 0.05); /* Фон "стекла" */
+  --clr-glass-border:     rgba(255, 255, 255, 0.2);  /* Граница "стекла" */
+  --clr-accent-blue:      #00d2ff;           /* Яркий голубой акцент */
+  --clr-accent-purple:    #a020f0;           /* Дополнительный фиолетовый акцент */
+  --shadow-sm:            0 5px 15px rgba(0, 0, 0, 0.3); /* Малая тень */
+  --shadow-md:            0 10px 30px rgba(0, 0, 0, 0.5); /* Средняя тень */
+  --shadow-lg:            0 20px 60px rgba(0, 0, 0, 0.7); /* Большая тень */
+  --transition-fast:      0.2s ease-out;      /* Быстрый переход */
+  --transition-medium:    0.4s ease-out;      /* Средний переход */
+  --border-radius-card:   16px;              /* Скругление углов карточки */
+  --padding-section:      120px 20px;        /* padding для секции */
+}
+
+/* ========================================================= */
+/* ================== Основная секция "стекла" ================== */
+/* ========================================================= */
+.glass-section {
+  background: var(--clr-bg-dark);
+  color: var(--clr-text-light);
+  padding: var(--padding-section);
+  text-align: center;
+  overflow: hidden; /* Важно для скрытия частей анимированных границ */
+  position: relative; /* Для позиционирования эффектов, если понадобятся */
+}
+
+/* ========================================================= */
+/* ======================= Заголовок секции ======================= */
+/* ========================================================= */
+.glass-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3rem, 7vw, 4.5rem); /* Адаптивный размер шрифта */
+  margin-bottom: 3.5rem; /* Отступ */
+  color: var(--clr-text-light);
+  text-shadow: 0 0 15px var(--clr-accent-blue), /* Мягкое голубое свечение */
+               0 0 30px var(--clr-accent-purple); /* Мягкое фиолетовое свечение */
+  animation: titleGlow 4s ease-in-out infinite alternate; /* Новая, более плавная анимация */
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow: 0 0 10px var(--clr-accent-blue), 0 0 20px var(--clr-accent-purple);
+  }
+  50% {
+    text-shadow: 0 0 25px var(--clr-accent-blue), 0 0 50px var(--clr-accent-purple), 0 0 80px rgba(0, 210, 255, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 10px var(--clr-accent-blue), 0 0 20px var(--clr-accent-purple);
+  }
+}
+
+/* ========================================================= */
+/* ======================= Сетка для карточек ======================= */
+/* ========================================================= */
+.glass-grid {
+  display: grid; /* Используем Grid для лучшего контроля над раскладкой */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Отзывчивые колонки */
+  justify-content: center; /* Центрируем карточки */
+  gap: 2.5rem; /* Больший отступ между карточками */
+  max-width: 1200px; /* Ограничиваем ширину сетки */
+  margin: 0 auto; /* Центрируем сетку */
+}
+
+/* ========================================================= */
+/* ======================== Стеклянная карточка ======================== */
+/* ========================================================= */
+.glass-card {
+  position: relative; /* Для псевдоэлемента границы */
+  isolation: isolate; /* Создает новый стек контекста для backdrop-filter */
+  backdrop-filter: blur(15px); /* Увеличено размытие для большего эффекта */
+  background: var(--clr-glass-bg); /* Фон из переменной */
+  border: 1px solid var(--clr-glass-border); /* Граница из переменной */
+  border-radius: var(--border-radius-card); /* Скругление из переменной */
+  padding: 2.5rem; /* Унифицированный padding */
+  text-align: center;
+  box-shadow: var(--shadow-sm); /* Мягкая тень */
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  cursor: pointer;
+  overflow: hidden; /* Скрывает выступающие части анимированной рамки */
+}
+
+/* Эффект при наведении на карточку */
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.02); /* Легкий подъем и увеличение */
+  box-shadow: var(--shadow-md), 0 0 30px var(--clr-accent-blue), 0 0 60px var(--clr-accent-purple); /* Более выраженная тень и свечение */
+}
+
+/* Анимированная градиентная рамка при наведении */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -200%;
+  left: -200%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 40%,
+    var(--clr-accent-blue) 50%,
+    var(--clr-accent-purple) 60%,
+    transparent 70%,
+    transparent 100%
+  );
+  transform: rotate(0deg);
+  animation: rotateBorder 4s linear infinite; /* Анимация вращения */
+  z-index: -1; /* Под основным содержимым карточки */
+  opacity: 0; /* Скрыто по умолчанию */
+  transition: opacity var(--transition-medium);
+}
+
+.glass-card:hover::before {
+  opacity: 1; /* Показываем рамку при наведении */
+}
+
+@keyframes rotateBorder {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================================= */
+/* ===================== Иконка внутри карточки ===================== */
+/* ========================================================= */
+.icon-box {
+  font-size: clamp(2.5rem, 5vw, 3rem); /* Адаптивный размер иконки */
+  margin-bottom: 1rem;
+  color: var(--clr-accent-blue); /* Цвет иконки акцентный */
+  text-shadow: 0 0 10px var(--clr-accent-blue); /* Легкое свечение иконки */
+}
+
+/* ========================================================= */
+/* ======================== Заголовок карточки ======================== */
+/* ========================================================= */
+.glass-card h3 {
+  font-size: clamp(1.3rem, 3vw, 1.6rem); /* Адаптивный размер шрифта */
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  color: var(--clr-text-light);
+  letter-spacing: 0.5px;
+}
+
+/* ========================================================= */
+/* ======================== Параграф карточки ======================== */
+/* ========================================================= */
+.glass-card p {
+  font-family: 'Inter', sans-serif; /* Более читабельный шрифт для параграфа */
+  font-size: clamp(0.9rem, 2vw, 1rem); /* Адаптивный размер шрифта */
+  color: var(--clr-text-muted);
+  line-height: 1.7; /* Увеличенный интерлиньяж для читабельности */
+}
+
+/* ========================================================= */
+/* ================== Адаптивность для мобильных устройств ================== */
+/* ========================================================= */
+@media (max-width: 768px) {
+  .glass-section {
+    padding: 80px 15px; /* Меньший padding на мобильных */
+  }
+
+  .glass-title {
+    margin-bottom: 40px;
+    font-size: clamp(2.5rem, 8vw, 3.5rem); /* Корректировка размера заголовка */
+  }
+
+  .glass-grid {
+    gap: 1.5rem; /* Меньший gap на мобильных */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Чуть меньше мин. ширина */
+  }
+
+  .glass-card {
+    padding: 2rem; /* Меньший padding карточек */
+    max-width: 100%; /* Занимаем всю ширину */
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-grid {
+    grid-template-columns: 1fr; /* Одна колонка на очень маленьких экранах */
+  }
+}

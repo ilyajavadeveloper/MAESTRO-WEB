@@ -1,0 +1,134 @@
+/* Services.css */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap'); /* Добавлен Inter */
+
+/* Глобальные переменные для консистентности (можно вынести в отдельный файл, если есть общий) */
+:root {
+    --clr-bg-dark:          #000;
+    --clr-text-light:       #fff;
+    --clr-text-muted:       #ddd;
+    --clr-accent-blue:      #00d2ff;
+    --clr-accent-blue-dark: #00a0e6;
+    --clr-accent-purple:    #a020f0;
+    --shadow-light-blue:    0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-card-default:  0 0 20px rgba(0, 210, 255, 0.08); /* Мягкое свечение карточки */
+    --shadow-card-hover:    0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2); /* Неоновое свечение при ховере */
+    --transition-fast:      0.3s ease-out;
+}
+
+.services {
+    background: var(--clr-bg-dark);
+    padding: 140px 20px;
+    color: var(--clr-text-light);
+    text-align: center;
+}
+
+.services-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 56px;
+    margin-bottom: 60px;
+    color: var(--clr-text-light);
+    text-shadow: var(--shadow-strong-blue); /* Добавлен неоновый эффект */
+    animation: titlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%,100% { transform: scale(1); opacity: 1; text-shadow: var(--shadow-strong-blue); }
+    50%      { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 50px rgba(0, 210, 255, 0.5); } /* Усилено свечение */
+}
+
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.service-card {
+    background: rgba(0,0,0,0.4); /* Чуть темнее, чтобы свечение было заметнее */
+    backdrop-filter: blur(15px); /* Усилен блюр */
+    border: 1px solid rgba(0, 210, 255, 0.2); /* Голубоватая обводка */
+    border-radius: 20px;
+    padding: 32px;
+    width: 280px;
+    box-shadow: var(--shadow-card-default); /* Использование переменной */
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    will-change: transform, box-shadow;
+    cursor: pointer;
+    position: relative; /* Для эффектов наложения */
+    overflow: hidden; /* Обрезка содержимого для свечения */
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.05); /* Более выраженный подъем */
+    box-shadow: var(--shadow-card-hover); /* Неоновое свечение */
+    background: rgba(0, 210, 255, 0.05); /* Немного голубого фона при ховере */
+}
+
+.service-icon {
+    font-size: 48px; /* Увеличен размер иконки */
+    margin-bottom: 20px; /* Увеличен отступ */
+    color: var(--clr-accent-blue); /* Цвет акцента */
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8); /* Свечение для иконки */
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.service-card:hover .service-icon {
+    color: var(--clr-text-light); /* Белый при ховере */
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.6); /* Более сильное белое свечение */
+}
+
+.service-card h3 {
+    font-size: 22px; /* Чуть больше */
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 16px; /* Чуть больше отступ */
+    color: var(--clr-text-light); /* Белый текст */
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6); /* Мягкое свечение для заголовка */
+}
+
+.service-card p {
+    font-family: 'Inter', sans-serif; /* Использование Inter */
+    font-size: 15px; /* Чуть больше */
+    color: var(--clr-text-muted); /* Приглушенный текст */
+    line-height: 1.7; /* Улучшенная читаемость */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .services-title {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+    .services-grid {
+        gap: 30px;
+    }
+    .service-card {
+        width: 100%;
+        max-width: 300px;
+        padding: 24px;
+    }
+    .service-icon {
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+    .service-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .service-card p {
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .services {
+        padding: 100px 15px;
+    }
+    .services-title {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .service-card {
+        padding: 20px;
+    }
+}

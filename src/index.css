@@ -1,0 +1,98 @@
+/* В твоем main.css, index.css, или global.css */
+
+/* === АДАПТАЦИЯ ШРИФТОВ ДЛЯ RTL (ИВРИТ) - УВЕЛИЧЕНИЕ РАЗМЕРА === */
+
+/* Общий размер текста для всего тела сайта на иврите */
+[dir="rtl"] body {
+  font-family: 'Rubik', 'Assistant', sans-serif; /* Убедись, что эти шрифты импортированы */
+  font-size: 1.15rem; /* Увеличь базовый размер шрифта, например, на 15% */
+  line-height: 1.8; /* Возможно, увеличить межстрочный интервал для лучшей читаемости */
+}
+
+/* Заголовки на иврите: Hero Section, Services, About Us, FAQ, Contact, Footer, Glitch Text */
+/* Используем clamp() для адаптивного размера, но с большим базовым значением */
+[dir="rtl"] .hero-title,
+[dir="rtl"] .services-title,
+[dir="rtl"] .about-title,
+[dir="rtl"] .faq-title,
+[dir="rtl"] .contact-title {
+  font-size: clamp(3rem, 7.5vw, 5.5rem); /* Увеличил базовые значения для более крупного заголовка */
+  letter-spacing: 0.03em; /* Может быть, чуть уменьшить межбуквенный интервал, если кажется слишком растянутым */
+}
+
+/* Для Glitch Text, который уже большой, возможно, ему тоже нужно немного увеличить */
+[dir="rtl"] .glitch-text {
+  font-size: clamp(4rem, 9vw, 6rem); /* Сделал его еще больше */
+  letter-spacing: 0.1em; /* Сохраняем характер глитча */
+}
+
+/* Подзаголовки (например, glitch-sub, descr, service-card desc) */
+[dir="rtl"] .hero-subtitle,
+[dir="rtl"] .glitch-sub,
+[dir="rtl"] .service-selling-site-desc, /* и другие desc в services */
+[dir="rtl"] .about-card p,
+[dir="rtl"] .faq-answer p,
+[dir="rtl"] .contact-container p,
+[dir="rtl"] .footer-col p,
+[dir="rtl"] .footer-col ul li a {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem); /* Увеличил базовый размер */
+  line-height: 1.7; /* Увеличить, если нужно */
+}
+
+/* Текст в кнопках */
+[dir="rtl"] .glitch-btn,
+[dir="rtl"] .hero-btn, /* Если у тебя есть классы для кнопок в HeroSection */
+[dir="rtl"] .contact-btn {
+  font-size: 1.2rem; /* Увеличить размер текста в кнопках */
+  padding: 1.2rem 3rem; /* Возможно, потребуется увеличить padding кнопок */
+}
+
+/* Заголовки колонок в футере */
+[dir="rtl"] .footer-col h4 {
+  font-size: 28px; /* Увеличить размер заголовков футера */
+}
+
+/* Текст в футере (copywright) */
+[dir="rtl"] .footer-bottom {
+  font-size: 15px; /* Увеличить размер текста копирайта */
+}
+
+/* Текст в AccessibilityButton (если там есть текст) */
+[dir="rtl"] .accessibility-button-text { /* Замени на актуальный класс, если есть */
+  font-size: 1.1rem;
+}
+
+/* === Важно: ===
+ * Пройдись по всем текстовым элементам в твоем CSS и добавь для них [dir="rtl"] переопределения.
+ * Например, если у тебя есть `.some-component h3`, то добавь `[dir="rtl"] .some-component h3 { font-size: ...; }`
+ * Используй `clamp()` для адаптивности, но с большим базовым значением.
+ * Начни с увеличения `font-size` для `body` и затем для основных заголовков.
+ * Смотри на результат в браузере и корректируй значения по необходимости.
+ */
+
+/* Пример для FAQ-вопросов (если они недостаточно большие) */
+[dir="rtl"] .faq-question {
+  font-size: clamp(1.1rem, 2.8vw, 1.35rem); /* Увеличил размер вопроса */
+}
+
+/* Пример для названий сервисов */
+[dir="rtl"] .service-selling-site-title, /* и другие service-X-title */
+[dir="rtl"] .service-portfolio-title,
+[dir="rtl"] .service-qr-price-title,
+[dir="rtl"] .service-business-card-title,
+[dir="rtl"] .service-visual-style-title,
+[dir="rtl"] .service-feedback-title {
+    font-size: clamp(1.3rem, 3vw, 1.6rem); /* Увеличил размер заголовков сервисов */
+}/* Добавь это в тот же CSS файл */
+@media (max-width: 768px) { /* Или твоя мобильная точка останова */
+  .userway_widget { /* Замени на точный класс/ID UserWay */
+      top: 80px !important; /* Пример: сдвинуть вниз, если бургер сверху */
+      right: 20px !important; /* Или left: 20px !important; right: auto !important; если хочешь переместить налево */
+      /* Можешь поиграться с top/bottom/left/right и значениями */
+      z-index: 999999999 !important; /* Убедись, что он все еще поверх большинства элементов, но ниже бургера, если нужно */
+  }
+  .navbar-burger-icon { /* Замени на реальный класс иконки бургера */
+      z-index: 1000000000; /* Должен быть выше, чем z-index UserWay, если они конфликтуют */
+      position: relative; /* Обязательно для работы z-index */
+  }
+}

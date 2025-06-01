@@ -1,0 +1,205 @@
+/* ContactSection.css */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
+
+/* Глобальные переменные для консистентности */
+:root {
+    --clr-bg-dark:          #000;
+    --clr-text-light:       #fff;
+    --clr-text-muted:       #ddd;
+    --clr-accent-blue:      #00d2ff;
+    --clr-accent-blue-dark: #00a0e6;
+    --clr-accent-purple:    #a020f0;
+    --clr-whatsapp-green:   #25D366;
+    --clr-whatsapp-green-dark: #1DA851;
+    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-text-light:    0 0 8px rgba(255, 255, 255, 0.5);
+    --transition-fast:      0.3s ease-out;
+    --border-glow:          1px solid rgba(0, 210, 255, 0.3);
+    --border-radius-btn:    10px;
+}
+
+.contact {
+    background: var(--clr-bg-dark); /* Тёмный фон */
+    padding: 140px 20px; /* Больший padding */
+    color: var(--clr-text-light); /* Светлый текст */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Для фоновых эффектов */
+}
+
+/* Фоновый градиент для секции контактов */
+.contact::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(
+        circle at top right,
+        rgba(0, 210, 255, 0.04),
+        rgba(255, 0, 200, 0.02),
+        transparent 60%
+    );
+    animation: contactBgPulse 18s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+@keyframes contactBgPulse {
+    0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    100% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+}
+
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative; /* Чтобы контент был над фоновым эффектом */
+    z-index: 1;
+    padding: 40px 20px; /* Внутренний padding для контейнера */
+    background: rgba(255, 255, 255, 0.03); /* Полупрозрачный фон для контейнера */
+    backdrop-filter: blur(10px); /* Эффект размытия */
+    border: 1px solid rgba(0, 210, 255, 0.2); /* Неоновая обводка */
+    border-radius: 15px; /* Скругленные углы */
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); /* Мягкое неоновое свечение */
+}
+
+.contact-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(32px, 5vw, 56px); /* Адаптивный размер */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 40px; /* Увеличенный отступ */
+    color: var(--clr-accent-blue); /* Акцентный цвет */
+    text-shadow: var(--shadow-strong-blue); /* Сильное неоновое свечение */
+    transition: text-shadow var(--transition-fast);
+}
+
+.contact-title:hover {
+    text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 50px rgba(0, 210, 255, 0.5); /* Более сильное свечение при ховере */
+}
+
+.contact-container p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px; /* Чуть больше */
+    color: var(--clr-text-muted); /* Приглушенный текст */
+    margin-bottom: 15px; /* Увеличенный отступ */
+    line-height: 1.6;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* Легкое свечение */
+}
+
+/* Стиль для кнопки WhatsApp */
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px; /* Отступ сверху */
+    padding: 18px 45px; /* Увеличенный padding */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem; /* Больший размер шрифта */
+    font-weight: 700; /* Более жирный */
+    text-transform: uppercase;
+    border: 3px solid var(--clr-whatsapp-green); /* Зеленая обводка */
+    border-radius: var(--border-radius-btn);
+    background: transparent; /* Прозрачный фон */
+    color: var(--clr-whatsapp-green); /* Зеленый текст */
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); /* Мягкое зеленое свечение */
+    transition: all var(--transition-fast);
+    letter-spacing: 0.05em;
+}
+
+.contact-btn:hover {
+    background: var(--clr-whatsapp-green); /* Заливка зеленым */
+    color: var(--clr-text-light); /* Белый текст */
+    box-shadow: 0 0 35px rgba(37, 211, 102, 0.8), 0 0 50px rgba(37, 211, 102, 0.4); /* Сильное зеленое свечение */
+    transform: translateY(-5px) scale(1.03); /* Подъем и увеличение */
+}
+
+.contact-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: all 0.4s ease-out;
+    z-index: 1;
+}
+
+.contact-btn:hover::after {
+    left: 100%;
+}
+
+/* Стиль для карты (если ты будешь её использовать) */
+.map {
+    width: 100%;
+    height: 400px; /* Большая высота для карты */
+    margin-top: 40px; /* Отступ */
+    border: 2px solid var(--clr-accent-blue); /* Неоновая рамка */
+    border-radius: 10px; /* Скругленные углы */
+    overflow: hidden; /* Убедимся, что карта внутри рамки */
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); /* Свечение карты */
+    transition: box-shadow var(--transition-fast);
+}
+
+.map:hover {
+    box-shadow: 0 0 40px rgba(0, 210, 255, 0.8), 0 0 60px rgba(160, 32, 240, 0.4); /* Усиленное свечение при ховере */
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .contact {
+        padding: 100px 15px;
+    }
+    .contact-container {
+        padding: 30px 15px;
+    }
+    .contact-title {
+        font-size: clamp(28px, 6vw, 48px);
+        margin-bottom: 30px;
+    }
+    .contact-container p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .contact-btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+    .map {
+        height: 300px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-title {
+        font-size: clamp(24px, 7vw, 40px);
+    }
+    .contact-container p {
+        font-size: 15px;
+    }
+    .contact-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    .map {
+        height: 250px;
+        margin-top: 25px;
+    }
+}

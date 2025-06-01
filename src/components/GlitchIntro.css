@@ -1,0 +1,273 @@
+/* GlitchSection.css */
+
+/* Импортируем более разнообразные шрифты для контраста */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Electrolize&family=Montserrat:wght@400;600;700&display=swap');
+
+/* ========================================================= */
+/* ============= Глобальные переменные (для удобства) ============= */
+/* ========================================================= */
+:root {
+  --clr-bg-dark:          #000;              /* Основной тёмный фон */
+  --clr-text-light:       #fff;              /* Светлый текст */
+  --clr-text-muted:       #aaa;              /* Приглушенный текст */
+  --clr-glitch-cyan:      #00fff0;           /* Бирюзовый для глитча */
+  --clr-glitch-magenta:   #ff00c8;           /* Пурпурный для глитча */
+  --clr-button-primary:   #00d2ff;           /* Основной цвет кнопки */
+  --clr-button-secondary: #ff00c8;           /* Дополнительный цвет кнопки */
+  --shadow-glitch:        0 0 15px rgba(0, 255, 240, 0.6), 0 0 30px rgba(255, 0, 200, 0.6); /* Тень глитча */
+  --transition-speed-fast: 0.2s ease-out;    /* Быстрый переход */
+  --transition-speed-medium: 0.4s ease-out;  /* Средний переход */
+  --padding-section:      140px 20px 100px; /* Padding для секции */
+}
+
+/* ========================================================= */
+/* ======================== Секция Глитча ======================== */
+/* ========================================================= */
+.glitch-section {
+  background: var(--clr-bg-dark);
+  color: var(--clr-text-light);
+  padding: var(--padding-section);
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Важно для фоновых эффектов и глитча */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Минимальная высота для централизации контента */
+}
+
+/* Эффект фонового шума/помех */
+.glitch-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5orgv/MjAwMC9zdmciIHdpZHRoPSIxNzUiIGhlaWdodD0iMTc1Ij4NCiAgPHJlY3Qgd2lkdGg9IjE3NSIgaGVpZ2h0PSIxNzUiIGZpbGw9IiMwMDAiLz4NCiAgPGNpcmNsZSBjeD0iMTIuNSIgY3k9IjEyLjUiIHJsYWJlbD0iMjUiIGZpbGw9IiM0NDQiLz4NCiAgPGNpcmNsZSBjeD0iNjIuNSIgY3k9IjYyLjUiIHJsYWJlbD0iMjUiIGZpbGw9IiM0NDQiLz4NCiAgPGNpcmNsZSBjeD0iMTIuNSIgY3k9IjEyNS41IiBybGFsYz0iMjUiIGZpbGw9IiM0NDQiLz4NCiAgPGNpcmNsZSBjeD0iNjIuNSIgY3k9IjEyLjUiIHJsYWJlbD0iMjUiIGZpbGw9IiM0NDQiLz4NCiAgPGNpcmNsZSBjeD0iMTYyLjUiIGN5PSIxMjUuNSIgcmxhYmVsPSIyNSIgZmlsbD0iIzQ0NCIvPg0KPC9zdmc+');
+  background-size: 50px 50px; /* Размер паттерна */
+  opacity: 0.05; /* Едва заметный */
+  z-index: 0;
+  animation: backgroundScroll 60s linear infinite; /* Медленный скролл фона */
+}
+
+@keyframes backgroundScroll {
+  from { background-position: 0 0; }
+  to { background-position: -5000px -5000px; }
+}
+
+.glitch-wrapper {
+  position: relative; /* Важно для наложения глитча */
+  z-index: 1; /* Выше фонового шума */
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ========================================================= */
+/* ======================= Текст Глитча ======================= */
+/* ========================================================= */
+.glitch-text {
+  position: relative;
+  font-size: clamp(3.5rem, 8vw, 5rem); /* Адаптивный размер */
+  font-family: 'Anton', sans-serif;
+  color: var(--clr-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.15em; /* Процентные отступы для адаптивности */
+  text-shadow: var(--shadow-glitch); /* Добавляем тень для выразительности */
+  white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text); /* Берёт текст из атрибута data-text */
+  position: absolute;
+  left: 0;
+  top: 0; /* Обеспечиваем точное наложение */
+  width: 100%;
+  height: 100%; /* Занимаем всю высоту для clip */
+  overflow: hidden;
+  clip: rect(0, 9999px, 0, 0); /* Начальное состояние - скрыто */
+  text-shadow: none; /* Убираем тень с копий для чистоты глитча */
+}
+
+.glitch-text::before {
+  animation: glitchTop 4s infinite linear alternate-reverse; /* Более длинная и плавная анимация */
+  color: var(--clr-glitch-magenta); /* Пурпурный цвет */
+  z-index: 2; /* Над основным текстом */
+}
+
+.glitch-text::after {
+  animation: glitchBottom 4s infinite linear alternate-reverse; /* Более длинная и плавная анимация */
+  color: var(--clr-glitch-cyan); /* Бирюзовый цвет */
+  z-index: 3; /* Еще выше, для наложения */
+}
+
+/* Новые, более тонкие и непредсказуемые анимации глитча */
+@keyframes glitchTop {
+  0%, 100% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); }
+  5% { clip: rect(10px, 9999px, 20px, 0px); transform: translateX(-5px); }
+  10% { clip: rect(40px, 9999px, 50px, 0px); transform: translateX(5px); }
+  15% { clip: rect(20px, 9999px, 30px, 0px); transform: translateX(-3px); }
+  20% { clip: rect(70px, 9999px, 80px, 0px); transform: translateX(7px); }
+  25% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); } /* Возврат */
+  75% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); } /* Долгая пауза */
+  80% { clip: rect(5px, 9999px, 15px, 0px); transform: translateX(4px); }
+  85% { clip: rect(60px, 9999px, 70px, 0px); transform: translateX(-6px); }
+  90% { clip: rect(30px, 9999px, 40px, 0px); transform: translateX(2px); }
+}
+
+@keyframes glitchBottom {
+  0%, 100% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); }
+  5% { clip: rect(60px, 9999px, 70px, 0px); transform: translateX(5px); }
+  10% { clip: rect(10px, 9999px, 20px, 0px); transform: translateX(-5px); }
+  15% { clip: rect(80px, 9999px, 90px, 0px); transform: translateX(3px); }
+  20% { clip: rect(30px, 9999px, 40px, 0px); transform: translateX(-7px); }
+  25% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); } /* Возврат */
+  75% { clip: rect(0px, 9999px, 0px, 0px); transform: translateX(0); } /* Долгая пауза */
+  80% { clip: rect(20px, 9999px, 30px, 0px); transform: translateX(-4px); }
+  85% { clip: rect(5px, 9999px, 15px, 0px); transform: translateX(6px); }
+  90% { clip: rect(70px, 9999px, 80px, 0px); transform: translateX(-2px); }
+}
+
+/* ========================================================= */
+/* ===================== Подзаголовок Глитча ===================== */
+/* ========================================================= */
+.glitch-sub {
+  margin-top: 2rem; /* Увеличенный отступ */
+  font-size: clamp(1rem, 2.5vw, 1.25rem); /* Адаптивный размер */
+  color: var(--clr-text-muted);
+  letter-spacing: 0.05em; /* Чуть больший межбуквенный интервал */
+  font-family: 'Montserrat', sans-serif; /* Более современный шрифт */
+  line-height: 1.6;
+  max-width: 700px; /* Ограничиваем ширину */
+}
+
+/* ========================================================= */
+/* ===================== Кнопки в секции Глитча ===================== */
+/* ========================================================= */
+.glitch-buttons {
+  margin-top: 3rem; /* Отступ от текста */
+  display: flex;
+  gap: 1.5rem; /* Отступ между кнопками */
+  flex-wrap: wrap; /* Для адаптивности на маленьких экранах */
+  justify-content: center;
+  align-items: center;
+}
+
+.glitch-btn {
+  padding: 1rem 2.5rem; /* Увеличенный padding */
+  font-family: 'Electrolize', sans-serif; /* Футуристический шрифт для кнопок */
+  font-size: 1rem; /* Размер шрифта */
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px; /* Скругление */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; /* Для эффектов */
+  transition: all var(--transition-speed-medium);
+  letter-spacing: 0.08em;
+  text-decoration: none; /* Убираем подчеркивание с кнопок (если это <a>) */
+  outline: none; /* Убираем дефолтное обведение при фокусе */
+}
+
+/* Основная кнопка */
+.glitch-btn-primary {
+  background: var(--clr-button-primary);
+  color: var(--clr-bg-dark);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.6); /* Свечение */
+}
+
+.glitch-btn-primary:hover {
+  transform: translateY(-5px) scale(1.03); /* Подъем и легкое увеличение */
+  background: var(--clr-button-primary); /* Убираем потемнение, сохраняем яркость */
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.4); /* Усиленное свечение */
+}
+
+/* Кнопка с контурной обводкой */
+.glitch-btn-outline {
+  background: transparent;
+  color: var(--clr-button-secondary); /* Цвет акцента */
+  border: 2px solid var(--clr-button-secondary); /* Обводка */
+  box-shadow: 0 0 10px rgba(255, 0, 200, 0.4); /* Мягкое свечение */
+}
+
+.glitch-btn-outline:hover {
+  background: var(--clr-button-secondary); /* Заливка цветом при наведении */
+  color: var(--clr-text-light); /* Белый текст */
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 0, 200, 0.7), 0 0 35px rgba(255, 0, 200, 0.3); /* Усиленное свечение */
+}
+
+/* Общий эффект для кнопок: пульсирующее свечение при наведении */
+.glitch-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2); /* Легкий белый блик */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  z-index: 0;
+}
+
+.glitch-btn:hover::before {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+}
+
+
+/* ========================================================= */
+/* ======================= Адаптивность ======================= */
+/* ========================================================= */
+@media (max-width: 768px) {
+  .glitch-section {
+    padding: 100px 15px 80px;
+    min-height: 70vh;
+  }
+
+  .glitch-text {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    letter-spacing: 0.1em;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    /* Корректировка смещения для мобильных, если необходимо */
+    top: -1px; 
+    left: -1px;
+  }
+
+  .glitch-sub {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    margin-top: 1.5rem;
+  }
+
+  .glitch-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .glitch-btn {
+    width: 100%;
+    max-width: 300px; /* Ограничиваем ширину кнопки на мобильных */
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glitch-text {
+    letter-spacing: 0.08em;
+  }
+}

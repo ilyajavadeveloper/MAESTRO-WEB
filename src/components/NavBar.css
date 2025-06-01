@@ -1,0 +1,202 @@
+/* src/components/NavBar.css (или твой файл для Navbar) */
+
+/* --- */
+
+/* ========= Глобальные переменные (тёмная тема) ========= */
+:root {
+  --clr-bg-dark:          #000;          /* Чисто чёрный фон */
+  --clr-text-light:       #fff;          /* Белый текст */
+  --clr-accent:           #00d2ff;       /* Голубой акцент */
+  --clr-accent-dark:      #00a0e6;       /* Более тёмный голубой для ховера */
+  --radius-sm:            4px;           /* Малое скругление */
+  --radius-md:            8px;           /* Среднее скругление */
+  --gap-sm:               1rem;          /* Малый отступ (16px) */
+  --gap-md:               1.5rem;        /* Средний отступ (24px) */
+  --gap-lg:               2.5rem;        /* Большой отступ (40px) */
+  --transition-speed:     0.3s;          /* Базовая скорость перехода */
+  --shadow-dark:          0 4px 15px rgba(0, 0, 0, 0.4); /* Тень для навбара */
+  --shadow-accent:        0 0 15px rgba(0, 210, 255, 0.6); /* Свечение акцента */
+}
+
+/* --- */
+
+/* Основной контейнер Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* Увеличена высота для лучшего вида */
+  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Эффект "стекла" */
+  color: var(--clr-text-light);
+  z-index: 1000;
+  box-shadow: var(--shadow-dark); /* Более выраженная тень */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Чуть более заметная нижняя граница */
+  display: flex; /* Flexbox для центрирования содержимого */
+  align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+.navbar-container {
+  max-width: 1200px;
+  width: 100%; /* Убедимся, что занимает всю доступную ширину */
+  margin: 0 auto;
+  padding: 0 var(--gap-md); /* Горизонтальный padding из переменной */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- */
+
+/* Логотип */
+.logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem; /* Чуть крупнее */
+  letter-spacing: 2.5px; /* Увеличенный межбуквенный интервал */
+  color: var(--clr-text-light);
+  text-decoration: none; /* Убираем подчеркивание */
+  white-space: nowrap; /* Не переносить на новую строку */
+  cursor: pointer;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Мягкое белое свечение */
+  transition: text-shadow var(--transition-speed) ease-out, color var(--transition-speed) ease-out;
+}
+
+.logo:hover {
+  color: var(--clr-accent); /* Голубое свечение при наведении */
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.8), 0 0 25px rgba(0, 210, 255, 0.4);
+}
+
+/* --- */
+
+/* Навигационные ссылки */
+.nav-links {
+  display: flex;
+  gap: var(--gap-lg); /* Отступы между ссылками из переменной */
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; /* Чуть крупнее и читабельнее */
+  text-transform: uppercase;
+  color: var(--clr-text-light);
+  text-decoration: none;
+  letter-spacing: 0.8px; /* Немного уменьшил, чтобы не выглядело слишком растянуто */
+  position: relative; /* Для эффекта подчеркивания */
+  padding: 0.5rem 0; /* Небольшой вертикальный padding */
+  transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.nav-links a:hover {
+  color: var(--clr-accent); /* Цвет акцента при наведении */
+  opacity: 1; /* Убираем затемнение, делаем ярче */
+}
+
+/* Эффект подчеркивания при наведении (более динамичный) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* Толщина подчеркивания */
+  background-color: var(--clr-accent);
+  transition: width var(--transition-speed) ease-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%; /* Расширяется при наведении */
+}
+
+/* --- */
+
+/* Бургер-иконка */
+.burger {
+  display: none; /* Скрыт по умолчанию на десктопе */
+  flex-direction: column;
+  justify-content: space-between; /* Распределяем линии равномерно */
+  width: 30px; /* Шире бургер */
+  height: 22px; /* Выше бургер */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative; /* Для анимации */
+  z-index: 1001; /* Поверх меню */
+}
+
+.line {
+  width: 100%;
+  height: 3px; /* Толще линии */
+  background: var(--clr-text-light);
+  border-radius: 2px; /* Мягкие концы */
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+/* Анимация бургера (открыто) */
+.burger.open .line:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.burger.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open .line:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* --- */
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px; /* Чуть меньше высота на мобильных */
+  }
+
+  .navbar-container {
+    padding: 0 var(--gap-sm); /* Меньший padding на мобильных */
+  }
+
+  .nav-links {
+    position: fixed; /* Используем fixed для полного перекрытия */
+    top: 60px; /* Смещаем вниз на высоту навбара */
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 60px); /* Занимает оставшуюся высоту */
+    background: rgba(0, 0, 0, 0.95); /* Почти черный, полупрозрачный */
+    padding: var(--gap-lg) 0; /* Увеличенный вертикальный padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex; /* Всегда flex для мобильного меню */
+    text-align: center;
+    transform: translateX(-100%); /* Скрываем за экраном */
+    transition: transform var(--transition-speed) ease-in-out; /* Плавный выезд */
+    overflow-y: auto; /* Для скролла, если меню длинное */
+  }
+
+  .nav-links.open {
+    transform: translateX(0); /* Показываем меню */
+  }
+
+  .nav-links a {
+    font-size: 1.2rem; /* Крупнее для мобильного меню */
+    padding: 0.8rem 0; /* Увеличенный padding для кнопок */
+    font-weight: 500;
+    color: var(--clr-text-light);
+    /* Убираем нижнее подчеркивание в мобильном меню, если оно есть */
+    &::after {
+      display: none; 
+    }
+    /* Добавляем лёгкое фоновое изменение при наведении в мобильном меню */
+    &:hover {
+      background-color: rgba(0, 210, 255, 0.1); /* Легкое голубое свечение фона */
+      color: var(--clr-accent);
+      border-radius: var(--radius-sm); /* Скругление углов при наведении */
+    }
+  }
+
+  .burger {
+    display: flex; /* Показываем бургер на мобильных */
+  }
+}

@@ -1,0 +1,129 @@
+/* AboutUs.css */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap'); /* Добавлен Inter */
+
+/* Глобальные переменные для консистентности */
+:root {
+    --clr-bg-dark:          #000;
+    --clr-text-light:       #fff;
+    --clr-text-muted:       #ddd;
+    --clr-accent-blue:      #00d2ff;
+    --clr-accent-blue-dark: #00a0e6;
+    --clr-accent-purple:    #a020f0;
+    --shadow-light-blue:    0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-card-default:  0 0 20px rgba(0, 210, 255, 0.08);
+    --shadow-card-hover:    0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2);
+    --transition-fast:      0.3s ease-out;
+}
+
+.aboutus {
+    background: var(--clr-bg-dark);
+    padding: 140px 20px;
+    color: var(--clr-text-light);
+    text-align: center;
+}
+
+.about-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 56px;
+    margin-bottom: 60px;
+    color: var(--clr-text-light);
+    text-shadow: var(--shadow-strong-blue); /* Добавлен неоновый эффект */
+    animation: titlePulse 2.5s ease-in-out infinite;
+}
+
+/* @keyframes titlePulse берем из HeroSection.css или Services.css, т.к. это общее */
+
+.about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.about-card {
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    width: 300px;
+    box-shadow: var(--shadow-card-default);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-card-hover);
+    background: rgba(0, 210, 255, 0.05);
+}
+
+.about-icon {
+    font-size: 48px; /* Увеличен размер иконки */
+    margin-bottom: 20px;
+    color: var(--clr-accent-blue);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.about-card:hover .about-icon {
+    color: var(--clr-text-light);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.6);
+}
+
+.about-card h3 {
+    font-size: 24px; /* Чуть больше */
+    font-family: 'Anton', sans-serif;
+    margin-bottom: 16px;
+    color: var(--clr-text-light);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+}
+
+.about-card p {
+    font-family: 'Inter', sans-serif; /* Использование Inter */
+    font-size: 16px; /* Чуть больше */
+    color: var(--clr-text-muted);
+    line-height: 1.7;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+    .about-grid {
+        gap: 30px;
+    }
+    .about-card {
+        width: 100%;
+        max-width: 300px;
+        padding: 24px;
+    }
+    .about-icon {
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+    .about-card h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .about-card p {
+        font-size: 15px;
+    }
+}
+@media (max-width: 480px) {
+    .aboutus {
+        padding: 100px 15px;
+    }
+    .about-title {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .about-card {
+        padding: 20px;
+    }
+}
