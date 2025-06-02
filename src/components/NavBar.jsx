@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
-import "./Navbar.css";
+import "./Navbar.css"
 import LanguageSwitcher from "./LanguageSwitcher"; // Убедись, что путь к LanguageSwitcher правильный
 import { useTranslation } from "react-i18next"; // ОБЯЗАТЕЛЬНО ИМПОРТИРУЙ useTranslation
 
