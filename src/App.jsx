@@ -36,7 +36,7 @@ function App() {
       <FAQ />
       <ContactSection />
       <Footer />
-      <AccessibilityButton /> {/* Ты импортировал его, но не использовал в JSX */}
+ {/* Ты импортировал его, но не использовал в JSX */}
     </>
   );
 }

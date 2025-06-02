@@ -1,19 +1,19 @@
 /* AboutUs.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap'); /* Добавлен Inter */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
 
 /* Глобальные переменные для консистентности */
 :root {
-    --clr-bg-dark:          #000;
-    --clr-text-light:       #fff;
-    --clr-text-muted:       #ddd;
-    --clr-accent-blue:      #00d2ff;
+    --clr-bg-dark: #000;
+    --clr-text-light: #fff;
+    --clr-text-muted: #ddd;
+    --clr-accent-blue: #00d2ff;
     --clr-accent-blue-dark: #00a0e6;
-    --clr-accent-purple:    #a020f0;
-    --shadow-light-blue:    0 0 15px rgba(0, 210, 255, 0.4);
-    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
-    --shadow-card-default:  0 0 20px rgba(0, 210, 255, 0.08);
-    --shadow-card-hover:    0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2);
-    --transition-fast:      0.3s ease-out;
+    --clr-accent-purple: #a020f0;
+    --shadow-light-blue: 0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong-blue: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-card-default: 0 0 20px rgba(0, 210, 255, 0.08);
+    --shadow-card-hover: 0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2);
+    --transition-fast: 0.3s ease-out;
 }
 
 .aboutus {
@@ -28,11 +28,9 @@
     font-size: 56px;
     margin-bottom: 60px;
     color: var(--clr-text-light);
-    text-shadow: var(--shadow-strong-blue); /* Добавлен неоновый эффект */
+    text-shadow: var(--shadow-strong-blue);
     animation: titlePulse 2.5s ease-in-out infinite;
 }
-
-/* @keyframes titlePulse берем из HeroSection.css или Services.css, т.к. это общее */
 
 .about-grid {
     display: flex;
@@ -42,27 +40,60 @@
 }
 
 .about-card {
+    /* Сама карточка будет просто контейнером с заданными размерами и скруглениями */
+    position: relative; /* Для позиционирования внутреннего фона */
+    width: 300px;
+    border-radius: 20px;
+    overflow: hidden; /* Важно, чтобы обрезать фон по границе */
+    cursor: pointer;
+    box-shadow: var(--shadow-card-default); /* Тень на контейнере */
+    transition: box-shadow var(--transition-fast); /* Только тень на ховер */
+}
+
+/* НОВЫЙ ЭЛЕМЕНТ для "стеклянного" фона */
+.about-card .card-glass-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(0, 210, 255, 0.2);
-    border-radius: 20px;
-    padding: 32px;
-    width: 300px;
-    box-shadow: var(--shadow-card-default);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px; /* Чтобы блюр соответствовал радиусу контейнера */
+    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    z-index: 1; /* Фон под контентом */
+}
+
+/* НОВЫЙ ЭЛЕМЕНТ для контента - над фоном */
+.about-card .card-content {
+    position: relative; /* Чтобы контент был над фоном */
+    z-index: 2;
+    padding: 32px; /* Весь padding переносим сюда */
+    text-align: center; /* Центрируем содержимое */
+    /* Transition для свойств контента, которые могут меняться при наведении */
+    transition: transform var(--transition-fast); /* Для эффекта легкого подъема контента */
 }
 
 .about-card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: var(--shadow-card-hover);
-    background: rgba(0, 210, 255, 0.05);
+    box-shadow: var(--shadow-card-hover); /* Только тень на ховер */
 }
 
+/* Масштабируем и меняем фон только для стеклянного слоя */
+.about-card:hover .card-glass-background {
+    transform: scale(1.05); /* Масштабируем фон, а не всю карточку */
+    background: rgba(0, 210, 255, 0.05);
+    border-color: rgba(0, 210, 255, 0.4); /* Чуть ярче обводка */
+}
+
+/* Контент может слегка подняться */
+.about-card:hover .card-content {
+    transform: translateY(-10px); /* Только контент поднимается */
+}
+
+
 .about-icon {
-    font-size: 48px; /* Увеличен размер иконки */
+    font-size: 48px;
     margin-bottom: 20px;
     color: var(--clr-accent-blue);
     text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
@@ -75,18 +106,29 @@
 }
 
 .about-card h3 {
-    font-size: 24px; /* Чуть больше */
+    font-size: 24px;
     font-family: 'Anton', sans-serif;
     margin-bottom: 16px;
     color: var(--clr-text-light);
     text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+    /* Здесь filter: blur(0) уже не нужен, так как текст находится над backdrop-filter */
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
 }
 
 .about-card p {
-    font-family: 'Inter', sans-serif; /* Использование Inter */
-    font-size: 16px; /* Чуть больше */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
     color: var(--clr-text-muted);
     line-height: 1.7;
+    /* Здесь filter: blur(0) уже не нужен */
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+/* Улучшение: Делаем текст ярче при наведении, но не нужно отменять блюр, так как его нет */
+.about-card:hover h3,
+.about-card:hover p {
+    color: var(--clr-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 /* Адаптивность */
@@ -101,6 +143,9 @@
     .about-card {
         width: 100%;
         max-width: 300px;
+        /* Padding теперь на .card-content */
+    }
+    .about-card .card-content {
         padding: 24px;
     }
     .about-icon {
@@ -123,7 +168,7 @@
         font-size: 40px;
         margin-bottom: 30px;
     }
-    .about-card {
+    .about-card .card-content {
         padding: 20px;
     }
 }

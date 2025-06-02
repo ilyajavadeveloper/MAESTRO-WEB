@@ -4,17 +4,17 @@
 
 /* Глобальные переменные для консистентности */
 :root {
-    --clr-bg-dark:          #000;
-    --clr-text-light:       #fff;
-    --clr-text-muted:       #ddd;
-    --clr-accent-blue:      #00d2ff;
+    --clr-bg-dark: #000;
+    --clr-text-light: #fff;
+    --clr-text-muted: #ddd;
+    --clr-accent-blue: #00d2ff;
     --clr-accent-blue-dark: #00a0e6;
-    --clr-accent-purple:    #a020f0;
-    --shadow-light-blue:    0 0 15px rgba(0, 210, 255, 0.4);
-    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
-    --shadow-item-default:  0 0 15px rgba(0, 210, 255, 0.05); /* Мягкое свечение элемента FAQ */
-    --shadow-item-hover:    0 0 30px rgba(0, 210, 255, 0.3), 0 0 50px rgba(160, 32, 240, 0.1); /* Неоновое свечение при ховере */
-    --transition-fast:      0.3s ease-out;
+    --clr-accent-purple: #a020f0;
+    --shadow-light-blue: 0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong-blue: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-item-default: 0 0 15px rgba(0, 210, 255, 0.05); /* Мягкое свечение элемента FAQ */
+    --shadow-item-hover: 0 0 30px rgba(0, 210, 255, 0.3), 0 0 50px rgba(160, 32, 240, 0.1); /* Неоновое свечение при ховере */
+    --transition-fast: 0.3s ease-out;
 }
 
 .faq-section {
@@ -29,11 +29,9 @@
     font-size: 56px;
     margin-bottom: 60px;
     color: var(--clr-text-light);
-    text-shadow: var(--shadow-strong-blue); /* Добавлен неоновый эффект */
-    animation: titlePulse 2.5s ease-in-out infinite;
+    text-shadow: var(--shadow-strong-blue);
+    animation: titlePulse 2.5s ease-in-out infinite; /* Убедись, что @keyframes titlePulse определен (например, в Services.css) */
 }
-
-/* @keyframes titlePulse берем из HeroSection.css или Services.css, т.к. это общее */
 
 .faq-list {
     max-width: 800px;
@@ -41,22 +39,22 @@
 }
 
 .faq-item {
-    background: rgba(0,0,0,0.3); /* Чуть темнее */
-    backdrop-filter: blur(10px); /* Усилен блюр */
-    border: 1px solid rgba(0, 210, 255, 0.15); /* Голубоватая обводка */
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 210, 255, 0.15);
     border-radius: 12px;
     margin-bottom: 20px;
     padding: 20px 24px;
     cursor: pointer;
     transition: box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
     box-shadow: var(--shadow-item-default);
-    text-align: left; /* Текст внутри должен быть слева */
+    text-align: left;
 }
 
 .faq-item:hover {
     box-shadow: var(--shadow-item-hover);
-    background: rgba(0, 210, 255, 0.03); /* Небольшой голубой фон при ховере */
-    border-color: rgba(0, 210, 255, 0.4); /* Обводка становится ярче */
+    background: rgba(0, 210, 255, 0.03);
+    border-color: rgba(0, 210, 255, 0.4);
 }
 
 .faq-question {
@@ -65,51 +63,49 @@
     align-items: center;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 19px; /* Чуть больше */
-    color: var(--clr-text-light); /* Белый текст */
-    text-shadow: 0 0 5px rgba(0, 210, 255, 0.4); /* Мягкое свечение */
+    font-size: 19px;
+    color: var(--clr-text-light);
+    text-shadow: 0 0 5px rgba(0, 210, 255, 0.4);
     transition: color var(--transition-fast), text-shadow var(--transition-fast);
 }
 
 .faq-item:hover .faq-question {
-    color: var(--clr-accent-blue); /* Синий текст при ховере */
-    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8); /* Более яркое свечение */
+    color: var(--clr-accent-blue);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
 }
 
-/* Стилизация иконки (если используется) */
 .faq-question svg, .faq-question i {
-    font-size: 24px; /* Размер иконки */
-    margin-left: 15px; /* Отступ слева */
-    color: var(--clr-accent-blue); /* Цвет иконки */
+    font-size: 24px;
+    margin-left: 15px;
+    color: var(--clr-accent-blue);
     transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
-/* Вращение иконки при открытии (предполагая класс 'open') */
 .faq-item.open .faq-question svg,
 .faq-item.open .faq-question i {
     transform: rotate(180deg);
-    color: var(--clr-accent-purple); /* Другой цвет при открытии */
+    color: var(--clr-accent-purple);
 }
 
 .faq-answer {
     overflow: hidden;
-    margin-top: 15px; /* Чуть больше отступ */
-    max-height: 0; /* Для анимации свертывания/развертывания */
-    transition: max-height 0.4s ease-out, opacity 0.4s ease-out; /* Плавное открытие/закрытие */
-    opacity: 0; /* Скрыто по умолчанию */
+    margin-top: 15px;
+    max-height: 0;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
 }
 
 .faq-item.open .faq-answer {
-    max-height: 200px; /* Достаточно большое значение для контента */
+    max-height: 200px;
     opacity: 1;
 }
 
 .faq-answer p {
     font-family: 'Inter', sans-serif;
-    font-size: 16px; /* Чуть больше */
+    font-size: 16px;
     color: var(--clr-text-muted);
     line-height: 1.7;
-    padding-right: 20px; /* Отступ справа для адаптации */
+    padding-right: 20px;
 }
 
 /* Адаптивность */

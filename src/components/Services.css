@@ -1,19 +1,19 @@
 /* Services.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap'); /* Добавлен Inter */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
 
-/* Глобальные переменные для консистентности (можно вынести в отдельный файл, если есть общий) */
+/* Глобальные переменные для консистентности */
 :root {
-    --clr-bg-dark:          #000;
-    --clr-text-light:       #fff;
-    --clr-text-muted:       #ddd;
-    --clr-accent-blue:      #00d2ff;
+    --clr-bg-dark: #000;
+    --clr-text-light: #fff;
+    --clr-text-muted: #ddd;
+    --clr-accent-blue: #00d2ff;
     --clr-accent-blue-dark: #00a0e6;
-    --clr-accent-purple:    #a020f0;
-    --shadow-light-blue:    0 0 15px rgba(0, 210, 255, 0.4);
-    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
-    --shadow-card-default:  0 0 20px rgba(0, 210, 255, 0.08); /* Мягкое свечение карточки */
-    --shadow-card-hover:    0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2); /* Неоновое свечение при ховере */
-    --transition-fast:      0.3s ease-out;
+    --clr-accent-purple: #a020f0;
+    --shadow-light-blue: 0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong-blue: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --shadow-card-default: 0 0 20px rgba(0, 210, 255, 0.08);
+    --shadow-card-hover: 0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2);
+    --transition-fast: 0.3s ease-out;
 }
 
 .services {
@@ -28,13 +28,13 @@
     font-size: 56px;
     margin-bottom: 60px;
     color: var(--clr-text-light);
-    text-shadow: var(--shadow-strong-blue); /* Добавлен неоновый эффект */
+    text-shadow: var(--shadow-strong-blue);
     animation: titlePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes titlePulse {
     0%,100% { transform: scale(1); opacity: 1; text-shadow: var(--shadow-strong-blue); }
-    50%      { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 50px rgba(0, 210, 255, 0.5); } /* Усилено свечение */
+    50% { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 50px rgba(0, 210, 255, 0.5); }
 }
 
 .services-grid {
@@ -45,53 +45,95 @@
 }
 
 .service-card {
-    background: rgba(0,0,0,0.4); /* Чуть темнее, чтобы свечение было заметнее */
-    backdrop-filter: blur(15px); /* Усилен блюр */
-    border: 1px solid rgba(0, 210, 255, 0.2); /* Голубоватая обводка */
-    border-radius: 20px;
-    padding: 32px;
+    /* Сама карточка будет просто контейнером с заданными размерами и скруглениями */
+    position: relative;
     width: 280px;
-    box-shadow: var(--shadow-card-default); /* Использование переменной */
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-    will-change: transform, box-shadow;
+    border-radius: 20px;
+    overflow: hidden;
     cursor: pointer;
-    position: relative; /* Для эффектов наложения */
-    overflow: hidden; /* Обрезка содержимого для свечения */
+    box-shadow: var(--shadow-card-default);
+    transition: box-shadow var(--transition-fast);
+}
+
+/* НОВЫЙ ЭЛЕМЕНТ для "стеклянного" фона */
+.service-card .card-glass-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 20px;
+    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    z-index: 1;
+}
+
+/* НОВЫЙ ЭЛЕМЕНТ для контента - над фоном */
+.service-card .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 32px;
+    text-align: center;
+    transition: transform var(--transition-fast);
 }
 
 .service-card:hover {
-    transform: translateY(-10px) scale(1.05); /* Более выраженный подъем */
-    box-shadow: var(--shadow-card-hover); /* Неоновое свечение */
-    background: rgba(0, 210, 255, 0.05); /* Немного голубого фона при ховере */
+    box-shadow: var(--shadow-card-hover);
 }
 
+/* Масштабируем и меняем фон только для стеклянного слоя */
+.service-card:hover .card-glass-background {
+    transform: scale(1.05); /* Масштабируем фон, а не всю карточку */
+    background: rgba(0, 210, 255, 0.05);
+    border-color: rgba(0, 210, 255, 0.4);
+}
+
+/* Контент может слегка подняться */
+.service-card:hover .card-content {
+    transform: translateY(-10px); /* Только контент поднимается */
+}
+
+
 .service-icon {
-    font-size: 48px; /* Увеличен размер иконки */
-    margin-bottom: 20px; /* Увеличен отступ */
-    color: var(--clr-accent-blue); /* Цвет акцента */
-    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8); /* Свечение для иконки */
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--clr-accent-blue);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
     transition: color var(--transition-fast), text-shadow var(--transition-fast);
 }
 
 .service-card:hover .service-icon {
-    color: var(--clr-text-light); /* Белый при ховере */
-    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.6); /* Более сильное белое свечение */
+    color: var(--clr-text-light);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.6);
 }
 
 .service-card h3 {
-    font-size: 22px; /* Чуть больше */
+    font-size: 22px;
     font-family: 'Anton', sans-serif;
     text-transform: uppercase;
-    margin-bottom: 16px; /* Чуть больше отступ */
-    color: var(--clr-text-light); /* Белый текст */
-    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6); /* Мягкое свечение для заголовка */
+    margin-bottom: 16px;
+    color: var(--clr-text-light);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+    /* filter: blur(0) не нужен */
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
 }
 
 .service-card p {
-    font-family: 'Inter', sans-serif; /* Использование Inter */
-    font-size: 15px; /* Чуть больше */
-    color: var(--clr-text-muted); /* Приглушенный текст */
-    line-height: 1.7; /* Улучшенная читаемость */
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--clr-text-muted);
+    line-height: 1.7;
+    /* filter: blur(0) не нужен */
+    transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+/* Улучшение: Делаем текст ярче при наведении, но не нужно отменять блюр */
+.service-card:hover h3,
+.service-card:hover p {
+    color: var(--clr-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 /* Адаптивность */
@@ -106,6 +148,9 @@
     .service-card {
         width: 100%;
         max-width: 300px;
+        /* Padding теперь на .card-content */
+    }
+    .service-card .card-content {
         padding: 24px;
     }
     .service-icon {
@@ -128,7 +173,7 @@
         font-size: 40px;
         margin-bottom: 30px;
     }
-    .service-card {
+    .service-card .card-content {
         padding: 20px;
     }
 }

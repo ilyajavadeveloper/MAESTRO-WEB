@@ -7,21 +7,21 @@
 /* ============= Глобальные переменные (для удобства) ============= */
 /* ========================================================= */
 :root {
-    --clr-bg-dark:          #000;              /* Основной тёмный фон */
-    --clr-text-light:       #fff;              /* Светлый текст */
-    --clr-text-muted:       #ddd;              /* Приглушенный текст */
-    --clr-accent-blue:      #00d2ff;           /* Голубой акцент */
-    --clr-accent-blue-dark: #00a0e6;           /* Тёмный голубой для ховера */
-    --clr-accent-purple:    #a020f0;           /* Дополнительный фиолетовый акцент */
-    --clr-whatsapp-green:   #25D366;           /* Основной зелёный WhatsApp */
-    --clr-whatsapp-green-dark: #1DA851;        /* Тёмный зелёный WhatsApp для ховера */
-    --shadow-light:         0 0 15px rgba(0, 210, 255, 0.4); /* Мягкое свечение */
-    --shadow-strong:        0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3); /* Сильное свечение */
-    --transition-fast:      0.3s ease-out;      /* Быстрый переход */
-    --transition-medium:    0.5s ease-out;      /* Средний переход */
-    --border-radius-btn:    10px;              /* Скругление кнопок */
-    --padding-btn-x:        45px;              /* Горизонтальный padding кнопок */
-    --padding-btn-y:        20px;              /* Вертикальный padding кнопок */
+    --clr-bg-dark: #000;
+    --clr-text-light: #fff;
+    --clr-text-muted: #ddd;
+    --clr-accent-blue: #00d2ff;
+    --clr-accent-blue-dark: #00a0e6;
+    --clr-accent-purple: #a020f0;
+    --clr-whatsapp-green: #25D366;
+    --clr-whatsapp-green-dark: #1DA851;
+    --shadow-light: 0 0 15px rgba(0, 210, 255, 0.4);
+    --shadow-strong: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
+    --transition-fast: 0.3s ease-out;
+    --transition-medium: 0.5s ease-out;
+    --border-radius-btn: 10px;
+    --padding-btn-x: 45px;
+    --padding-btn-y: 20px;
 }
 
 /* ========================================================= */
@@ -34,11 +34,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Центрирует контент по горизонтали */
+    align-items: center;
     padding: 0 1.5rem;
     background: var(--clr-bg-dark);
     overflow: hidden;
-    text-align: center; /* Центрирует строчный контент */
+    text-align: center;
 }
 
 /* ========================================================= */
@@ -56,15 +56,17 @@
         rgba(255, 0, 200, 0.03),
         transparent 65%
     );
-    animation: bgPulse 12s ease-in-out infinite alternate,
-               bgRotate 40s linear infinite;
+    /* УЛУЧШЕНИЕ: Изменены параметры анимации для более выраженного эффекта */
+    animation: bgPulse 15s ease-in-out infinite alternate,
+               bgRotate 60s linear infinite;
     z-index: 0;
     will-change: transform, opacity;
 }
 
 @keyframes bgPulse {
-    0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-    100% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+    /* УЛУЧШЕНИЕ: Увеличен диапазон scale и opacity */
+    0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    100% { transform: scale(1.2) rotate(20deg); opacity: 1; }
 }
 
 @keyframes bgRotate {
@@ -75,17 +77,15 @@
 /* ========================================================= */
 /* ==================== Кредит (Автор) Hero ==================== */
 /* ========================================================= */
-/* Перемещаем .hero-credit в HTML под основной текст */
 .hero-credit {
-    margin-top: 1.5rem; /* Отступ под основным контентом */
+    margin-top: 1.5rem;
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem; /* Чуть больше */
-    color: rgba(255, 255, 255, 0.7); /* Чуть ярче */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
     z-index: 2;
     white-space: nowrap;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* Более выраженная тень для читаемости */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
     transition: color var(--transition-fast);
-    /* Заметка: Центрирование произойдет за счет align-items: center на .hero */
 }
 
 .hero-credit:hover {
@@ -102,10 +102,24 @@
     color: var(--clr-text-light);
     line-height: 1.1;
     z-index: 2;
-    text-shadow: var(--shadow-strong);
+    /* УЛУЧШЕНИЕ: Усилен эффект неонового свечения */
+    text-shadow:
+        0 0 30px var(--clr-accent-blue),
+        0 0 60px var(--clr-accent-purple),
+        0 0 90px rgba(255, 255, 255, 0.1);
+    /* УЛУЧШЕНИЕ: Новая анимация для заголовка */
+    animation: titleNeonPulse 3s ease-in-out infinite alternate;
     margin-bottom: 1.5rem;
     text-align: center;
 }
+
+/* УЛУЧШЕНИЕ: Новая анимация для пульсирующего неонового эффекта заголовка */
+@keyframes titleNeonPulse {
+    0% { text-shadow: 0 0 25px var(--clr-accent-blue), 0 0 40px rgba(160, 32, 240, 0.3), 0 0 60px rgba(255, 255, 255, 0.05); }
+    50% { text-shadow: 0 0 40px var(--clr-accent-blue-dark), 0 0 70px var(--clr-accent-purple), 0 0 100px rgba(255, 255, 255, 0.15); }
+    100% { text-shadow: 0 0 25px var(--clr-accent-blue), 0 0 40px rgba(160, 32, 240, 0.3), 0 0 60px rgba(255, 255, 255, 0.05); }
+}
+
 
 /* ========================================================= */
 /* ================== Интерактивные слова Hero ================== */
@@ -125,18 +139,23 @@
     position: relative;
     overflow: hidden;
     transition: color var(--transition-fast);
+    /* УЛУЧШЕНИЕ: Легкая тень по умолчанию */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .hero-word:hover {
-    color: var(--clr-accent-blue);
-    text-shadow: 0 0 10px var(--clr-accent-blue), 0 0 20px rgba(0, 210, 255, 0.5);
-    animation: wordFloat 0.8s ease-out forwards;
+    color: var(--clr-text-light); /* Теперь слово становится ярко-белым */
+    /* УЛУЧШЕНИЕ: Более сильный неоновый глоу */
+    text-shadow: 0 0 15px var(--clr-accent-blue), 0 0 30px var(--clr-accent-purple);
+    /* УЛУЧШЕНИЕ: Новая анимация для подсветки слова */
+    animation: wordHighlight 0.6s ease-out forwards;
 }
 
-@keyframes wordFloat {
-    0% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(-8px); opacity: 0.9; }
-    100% { transform: translateY(0); opacity: 1; }
+/* УЛУЧШЕНИЕ: Новая анимация для выделения слова */
+@keyframes wordHighlight {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-5px) scale(1.05); opacity: 0.95; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 /* ========================================================= */
@@ -178,9 +197,9 @@
     overflow: hidden;
     transition: all var(--transition-fast);
     letter-spacing: 0.05em;
-    text-decoration: none; /* Убираем подчеркивание */
+    text-decoration: none;
     outline: none;
-    z-index: 1; /* Чтобы эффекты были поверх */
+    z-index: 1;
 }
 
 /* Основная кнопка (синяя) */
@@ -213,48 +232,46 @@
 
 /* НОВАЯ КНОПКА WHATSAPP (ТЕПЕРЬ С ОБВОДКОЙ) */
 .btn-whatsapp {
-    background: transparent; /* Прозрачный фон */
-    color: var(--clr-whatsapp-green); /* Зелёный текст */
-    border: 3px solid var(--clr-whatsapp-green); /* Зелёная обводка */
-    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4); /* Мягкое зелёное свечение */
+    background: transparent;
+    color: var(--clr-whatsapp-green);
+    border: 3px solid var(--clr-whatsapp-green);
+    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
 }
 
 .btn-whatsapp:hover {
-    background: var(--clr-whatsapp-green); /* Заполняется зелёным при наведении */
-    color: var(--clr-text-light); /* Текст становится белым */
+    background: var(--clr-whatsapp-green);
+    color: var(--clr-text-light);
     transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8); /* Более сильное зелёное свечение */
+    box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8);
 }
-
 
 /* Общий эффект для всех кнопок: неоновое свечение при нажатии */
 .btn:active {
-  /* Используем акцентные цвета для общего эффекта нажатия, чтобы было более универсально */
-  box-shadow: 0 0 50px var(--clr-accent-blue), 0 0 80px var(--clr-accent-purple);
-  transform: translateY(-1px);
-  transition: box-shadow 0.1s ease-out;
+    box-shadow: 0 0 50px var(--clr-accent-blue), 0 0 80px var(--clr-accent-purple);
+    transform: translateY(-1px);
+    transition: box-shadow 0.1s ease-out;
 }
 
 /* Эффект "пульсирующего блика" при наведении на кнопки */
 .btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: all 0.4s ease-out;
-  z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: all 0.4s ease-out;
+    z-index: 1;
 }
 
 .btn:hover::after {
-  left: 100%;
+    left: 100%;
 }
 
 /* ========================================================= */
@@ -293,7 +310,7 @@
         margin-top: 2.5rem;
     }
 
-    .btn, .btn-outline, .btn-whatsapp { /* Добавлена новая кнопка в адаптивность */
+    .btn, .btn-outline, .btn-whatsapp {
         width: 100%;
         max-width: 320px;
         padding: 0.9rem 1.8rem;
