@@ -1,132 +1,148 @@
-/* ContactSection.css */
+/* ========================= */
+/* ==== Обновлённый ContactSection.css ==== */
+/* ========================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
 
-/* Глобальные переменные для консистентности */
+/* Глобальные переменные */
 :root {
     --clr-bg-dark:          #000;
     --clr-text-light:       #fff;
-    --clr-text-muted:       #ddd;
+    --clr-text-muted:       #ccc;
     --clr-accent-blue:      #00d2ff;
-    --clr-accent-blue-dark: #00a0e6;
-    --clr-accent-purple:    #a020f0;
     --clr-whatsapp-green:   #25D366;
-    --clr-whatsapp-green-dark: #1DA851;
-    --shadow-strong-blue:   0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
-    --shadow-text-light:    0 0 8px rgba(255, 255, 255, 0.5);
+    --shadow-primary:       0 0 45px rgba(0, 210, 255, 0.9), 0 0 70px rgba(0, 210, 255, 0.5);
+    --shadow-card:          0 0 30px rgba(0, 210, 255, 0.2);
     --transition-fast:      0.3s ease-out;
-    --border-glow:          1px solid rgba(0, 210, 255, 0.3);
-    --border-radius-btn:    10px;
 }
 
+/* Секция контактов */
 .contact {
-    background: var(--clr-bg-dark); /* Тёмный фон */
-    padding: 140px 20px; /* Больший padding */
-    color: var(--clr-text-light); /* Светлый текст */
+    background: var(--clr-bg-dark);
+    padding: 180px 20px;
+    color: var(--clr-text-light);
     text-align: center;
     position: relative;
-    overflow: hidden; /* Для фоновых эффектов */
+    overflow: hidden;
 }
 
-/* Фоновый градиент для секции контактов */
 .contact::before {
     content: '';
     position: absolute;
-    top: -20%;
-    right: -20%;
-    width: 140%;
-    height: 140%;
+    top: -15%;
+    right: -15%;
+    width: 130%;
+    height: 130%;
     background: radial-gradient(
         circle at top right,
-        rgba(0, 210, 255, 0.04),
-        rgba(255, 0, 200, 0.02),
+        rgba(0, 210, 255, 0.05),
+        rgba(160, 32, 240, 0.03),
         transparent 60%
     );
-    animation: contactBgPulse 18s ease-in-out infinite alternate;
+    animation: contactBgPulse 20s ease-in-out infinite alternate;
     z-index: 0;
 }
 
 @keyframes contactBgPulse {
-    0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-    100% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.1) rotate(12deg);
+        opacity: 1;
+    }
 }
 
-
+/* Контейнер */
 .contact-container {
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
-    text-align: center;
-    position: relative; /* Чтобы контент был над фоновым эффектом */
+    position: relative;
     z-index: 1;
-    padding: 40px 20px; /* Внутренний padding для контейнера */
-    background: rgba(255, 255, 255, 0.03); /* Полупрозрачный фон для контейнера */
-    backdrop-filter: blur(10px); /* Эффект размытия */
-    border: 1px solid rgba(0, 210, 255, 0.2); /* Неоновая обводка */
-    border-radius: 15px; /* Скругленные углы */
-    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); /* Мягкое неоновое свечение */
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(0, 210, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: var(--shadow-card), 0 0 20px rgba(0, 0, 0, 0.8);
+    padding: 60px 30px;
+    text-align: center;
 }
 
+/* Заголовок */
 .contact-title {
     font-family: 'Anton', sans-serif;
-    font-size: clamp(32px, 5vw, 56px); /* Адаптивный размер */
-    font-weight: bold;
+    font-size: clamp(36px, 6vw, 64px);
+    margin-bottom: 50px;
+    color: var(--clr-accent-blue);
     text-transform: uppercase;
-    margin-bottom: 40px; /* Увеличенный отступ */
-    color: var(--clr-accent-blue); /* Акцентный цвет */
-    text-shadow: var(--shadow-strong-blue); /* Сильное неоновое свечение */
+    text-shadow: var(--shadow-primary);
     transition: text-shadow var(--transition-fast);
 }
 
 .contact-title:hover {
-    text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 50px rgba(0, 210, 255, 0.5); /* Более сильное свечение при ховере */
+    text-shadow: 0 0 55px rgba(0, 210, 255, 1), 0 0 75px rgba(0, 210, 255, 0.6);
 }
 
+/* Описание */
 .contact-container p {
     font-family: 'Inter', sans-serif;
-    font-size: 18px; /* Чуть больше */
-    color: var(--clr-text-muted); /* Приглушенный текст */
-    margin-bottom: 15px; /* Увеличенный отступ */
-    line-height: 1.6;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* Легкое свечение */
+    font-size: 18px;
+    color: var(--clr-text-muted);
+    margin-bottom: 25px;
+    line-height: 1.7;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
 }
 
-/* Стиль для кнопки WhatsApp */
+/* Кнопка WhatsApp (пилюля с иконкой) */
 .contact-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
-    margin-top: 30px; /* Отступ сверху */
-    padding: 18px 45px; /* Увеличенный padding */
+    margin-top: 35px;
+    padding: 16px 28px;               /* Вертикальный и горизонтальный padding */
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem; /* Больший размер шрифта */
-    font-weight: 700; /* Более жирный */
+    font-size: 1rem;
+    font-weight: 700;
     text-transform: uppercase;
-    border: 3px solid var(--clr-whatsapp-green); /* Зеленая обводка */
-    border-radius: var(--border-radius-btn);
-    background: transparent; /* Прозрачный фон */
-    color: var(--clr-whatsapp-green); /* Зеленый текст */
+    border: 2px solid var(--clr-whatsapp-green);
+    border-radius: 50px;             /* Полностью округлые края */
+    background: transparent;
+    color: var(--clr-whatsapp-green);
     cursor: pointer;
-    text-decoration: none;
-    outline: none;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); /* Мягкое зеленое свечение */
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
     transition: all var(--transition-fast);
-    letter-spacing: 0.05em;
+    text-decoration: none;
 }
 
+/* Стилизация иконки внутри кнопки */
+.contact-btn .whatsapp-icon {
+    font-size: 1.4rem;                /* Размер иконки */
+    color: var(--clr-whatsapp-green);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* При наведении на кнопку */
 .contact-btn:hover {
-    background: var(--clr-whatsapp-green); /* Заливка зеленым */
-    color: var(--clr-text-light); /* Белый текст */
-    box-shadow: 0 0 35px rgba(37, 211, 102, 0.8), 0 0 50px rgba(37, 211, 102, 0.4); /* Сильное зеленое свечение */
-    transform: translateY(-5px) scale(1.03); /* Подъем и увеличение */
+    background: var(--clr-whatsapp-green);
+    color: var(--clr-text-light);
+    box-shadow: 0 0 45px rgba(37, 211, 102, 0.8), 0 0 60px rgba(37, 211, 102, 0.4);
+    transform: translateY(-4px) scale(1.03);
 }
 
+/* При наведении на иконку */
+.contact-btn:hover .whatsapp-icon {
+    color: var(--clr-text-light);
+    transform: scale(1.1);
+}
+
+/* «Световой» слайд-эффект */
 .contact-btn::after {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -120%;
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -135,71 +151,78 @@
         rgba(255, 255, 255, 0.2),
         transparent
     );
-    transition: all 0.4s ease-out;
+    transition: all 0.5s ease-out;
     z-index: 1;
 }
 
 .contact-btn:hover::after {
-    left: 100%;
+    left: 120%;
 }
 
-/* Стиль для карты (если ты будешь её использовать) */
+/* Карта */
 .map {
     width: 100%;
-    height: 400px; /* Большая высота для карты */
-    margin-top: 40px; /* Отступ */
-    border: 2px solid var(--clr-accent-blue); /* Неоновая рамка */
-    border-radius: 10px; /* Скругленные углы */
-    overflow: hidden; /* Убедимся, что карта внутри рамки */
-    box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); /* Свечение карты */
+    height: 420px;
+    margin-top: 45px;
+    border: 2px solid var(--clr-accent-blue);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.6);
     transition: box-shadow var(--transition-fast);
 }
 
 .map:hover {
-    box-shadow: 0 0 40px rgba(0, 210, 255, 0.8), 0 0 60px rgba(160, 32, 240, 0.4); /* Усиленное свечение при ховере */
+    box-shadow: 0 0 50px rgba(0, 210, 255, 0.8), 0 0 70px rgba(160, 32, 240, 0.4);
 }
 
-
-/* Адаптивность */
+/* Адаптив */
 @media (max-width: 768px) {
     .contact {
-        padding: 100px 15px;
+        padding: 120px 15px;
     }
     .contact-container {
-        padding: 30px 15px;
+        padding: 50px 20px;
     }
     .contact-title {
-        font-size: clamp(28px, 6vw, 48px);
+        font-size: clamp(32px, 7vw, 54px);
         margin-bottom: 30px;
     }
     .contact-container p {
         font-size: 16px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .contact-btn {
-        padding: 15px 30px;
-        font-size: 1rem;
-        margin-top: 20px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        margin-top: 25px;
+    }
+    .contact-btn .whatsapp-icon {
+        font-size: 1.2rem;
     }
     .map {
-        height: 300px;
+        height: 320px;
         margin-top: 30px;
     }
 }
 
 @media (max-width: 480px) {
     .contact-title {
-        font-size: clamp(24px, 7vw, 40px);
+        font-size: clamp(28px, 8vw, 46px);
     }
     .contact-container p {
         font-size: 15px;
+        margin-bottom: 15px;
     }
     .contact-btn {
-        padding: 12px 25px;
+        padding: 12px 20px;
         font-size: 0.9rem;
+        margin-top: 20px;
+    }
+    .contact-btn .whatsapp-icon {
+        font-size: 1.1rem;
     }
     .map {
-        height: 250px;
+        height: 270px;
         margin-top: 25px;
     }
 }

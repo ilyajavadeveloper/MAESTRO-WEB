@@ -1,174 +1,177 @@
-/* AboutUs.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700&display=swap');
-
-/* Глобальные переменные для консистентности */
 :root {
     --clr-bg-dark: #000;
     --clr-text-light: #fff;
     --clr-text-muted: #ddd;
     --clr-accent-blue: #00d2ff;
-    --clr-accent-blue-dark: #00a0e6;
-    --clr-accent-purple: #a020f0;
-    --shadow-light-blue: 0 0 15px rgba(0, 210, 255, 0.4);
-    --shadow-strong-blue: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 40px rgba(0, 210, 255, 0.3);
-    --shadow-card-default: 0 0 20px rgba(0, 210, 255, 0.08);
-    --shadow-card-hover: 0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(160, 32, 240, 0.2);
+    --shadow-light-blue: 0 0 30px rgba(0, 210, 255, 0.7);
+    --shadow-strong-blue: 0 0 45px rgba(0, 210, 255, 0.9), 0 0 60px rgba(0, 210, 255, 0.5);
+    --shadow-card-default: 0 0 30px rgba(0, 210, 255, 0.15);
+    --shadow-card-hover:   0 0 70px rgba(0, 210, 255, 0.6), 0 0 90px rgba(160, 32, 240, 0.4);
     --transition-fast: 0.3s ease-out;
 }
 
 .aboutus {
     background: var(--clr-bg-dark);
-    padding: 140px 20px;
+    padding: 180px 20px;
     color: var(--clr-text-light);
     text-align: center;
 }
 
 .about-title {
     font-family: 'Anton', sans-serif;
-    font-size: 56px;
-    margin-bottom: 60px;
+    font-size: 64px;
+    margin-bottom: 100px;
     color: var(--clr-text-light);
     text-shadow: var(--shadow-strong-blue);
     animation: titlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%,100% {
+        transform: scale(1);
+        opacity: 1;
+        text-shadow: var(--shadow-strong-blue);
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+        text-shadow: 0 0 50px rgba(0, 210, 255, 1), 0 0 70px rgba(0, 210, 255, 0.6);
+    }
 }
 
 .about-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 56px;
 }
 
 .about-card {
-    /* Сама карточка будет просто контейнером с заданными размерами и скруглениями */
-    position: relative; /* Для позиционирования внутреннего фона */
-    width: 300px;
-    border-radius: 20px;
-    overflow: hidden; /* Важно, чтобы обрезать фон по границе */
+    position: relative;
+    width: 380px;
+    border-radius: 32px;
+    overflow: hidden;
     cursor: pointer;
-    box-shadow: var(--shadow-card-default); /* Тень на контейнере */
-    transition: box-shadow var(--transition-fast); /* Только тень на ховер */
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: var(--shadow-card-default), 0 0 15px rgba(0, 0, 0, 0.8);
+    transition: box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
 }
 
-/* НОВЫЙ ЭЛЕМЕНТ для "стеклянного" фона */
 .about-card .card-glass-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 210, 255, 0.2);
-    border-radius: 20px; /* Чтобы блюр соответствовал радиусу контейнера */
-    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
-    z-index: 1; /* Фон под контентом */
+    display: none;
 }
 
-/* НОВЫЙ ЭЛЕМЕНТ для контента - над фоном */
 .about-card .card-content {
-    position: relative; /* Чтобы контент был над фоном */
+    position: relative;
     z-index: 2;
-    padding: 32px; /* Весь padding переносим сюда */
-    text-align: center; /* Центрируем содержимое */
-    /* Transition для свойств контента, которые могут меняться при наведении */
-    transition: transform var(--transition-fast); /* Для эффекта легкого подъема контента */
+    /* Увеличен padding сверху, чтобы иконка не упиралась в рамку */
+    padding: 76px 36px 56px 36px;
+    text-align: center;
+    transition: transform var(--transition-fast);
 }
 
 .about-card:hover {
-    box-shadow: var(--shadow-card-hover); /* Только тень на ховер */
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-card-hover), 0 0 25px rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 1);
 }
 
-/* Масштабируем и меняем фон только для стеклянного слоя */
-.about-card:hover .card-glass-background {
-    transform: scale(1.05); /* Масштабируем фон, а не всю карточку */
-    background: rgba(0, 210, 255, 0.05);
-    border-color: rgba(0, 210, 255, 0.4); /* Чуть ярче обводка */
-}
-
-/* Контент может слегка подняться */
 .about-card:hover .card-content {
-    transform: translateY(-10px); /* Только контент поднимается */
+    transform: translateY(-10px);
 }
-
 
 .about-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
+    font-size: 72px;
+    /* Добавлен отступ сверху, чтобы иконка не упиралась */
+    margin: 24px 0 32px 0;
     color: var(--clr-accent-blue);
-    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
-    transition: color var(--transition-fast), text-shadow var(--transition-fast);
+    text-shadow: 0 0 30px rgba(0, 210, 255, 0.8), 0 0 50px rgba(0, 210, 255, 0.5);
+    transition: color var(--transition-fast), text-shadow var(--transition-fast), transform var(--transition-fast);
 }
 
 .about-card:hover .about-icon {
     color: var(--clr-text-light);
-    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 210, 255, 0.6);
+    text-shadow: 0 0 45px rgba(255, 255, 255, 1), 0 0 70px rgba(0, 210, 255, 0.7);
+    transform: translateY(-6px) scale(1.04);
 }
 
 .about-card h3 {
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'Anton', sans-serif;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     color: var(--clr-text-light);
-    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
-    /* Здесь filter: blur(0) уже не нужен, так как текст находится над backdrop-filter */
+    text-shadow: 0 0 18px rgba(0, 210, 255, 0.7);
     transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.about-card:hover h3 {
+    color: var(--clr-accent-blue);
+    text-shadow: 0 0 28px rgba(0, 210, 255, 1), 0 0 45px rgba(160, 32, 240, 0.6);
 }
 
 .about-card p {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: var(--clr-text-muted);
-    line-height: 1.7;
-    /* Здесь filter: blur(0) уже не нужен */
+    line-height: 1.8;
     transition: color var(--transition-fast), text-shadow var(--transition-fast);
 }
 
-/* Улучшение: Делаем текст ярче при наведении, но не нужно отменять блюр, так как его нет */
-.about-card:hover h3,
 .about-card:hover p {
     color: var(--clr-text-light);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
-/* Адаптивность */
+/* Адаптив */
+
 @media (max-width: 768px) {
     .about-title {
-        font-size: 48px;
-        margin-bottom: 40px;
+        font-size: 52px;
+        margin-bottom: 80px;
     }
     .about-grid {
-        gap: 30px;
+        gap: 40px;
     }
     .about-card {
         width: 100%;
-        max-width: 300px;
-        /* Padding теперь на .card-content */
+        max-width: 360px;
     }
     .about-card .card-content {
-        padding: 24px;
+        padding: 76px 28px 48px 28px;
     }
     .about-icon {
-        font-size: 40px;
-        margin-bottom: 12px;
+        font-size: 64px;
+        margin: 20px 0 24px 0;
     }
     .about-card h3 {
-        font-size: 22px;
-        margin-bottom: 10px;
+        font-size: 26px;
+        margin-bottom: 16px;
     }
     .about-card p {
         font-size: 15px;
     }
 }
+
 @media (max-width: 480px) {
     .aboutus {
-        padding: 100px 15px;
+        padding: 140px 15px;
     }
     .about-title {
-        font-size: 40px;
-        margin-bottom: 30px;
+        font-size: 44px;
+        margin-bottom: 60px;
     }
     .about-card .card-content {
-        padding: 20px;
+        padding: 76px 24px 40px 24px;
+    }
+    .about-icon {
+        font-size: 56px;
+        margin: 20px 0 20px 0;
+    }
+    .about-card h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .about-card p {
+        font-size: 14px;
     }
 }
