@@ -48,15 +48,16 @@ const HeroSection = () => {
       </motion.div>
 
       <motion.p
-        className="hero-subtitle"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
-      >
-        {t("hero_subtitle_part1")} <b>{t("hero_subtitle_part2_1")}</b>{" "}
-        {t("hero_subtitle_part2_2")} <b>{t("hero_subtitle_part2_3")}</b>.
-      </motion.p>
-
+  className="hero-subtitle improved"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+>
+  <span className="highlight">{t("hero_subtitle_core_1")}</span>
+  {t("hero_subtitle_middle")}{" "}
+  <span className="emphasis">{t("hero_subtitle_core_2")}</span>{" "}
+  {t("hero_subtitle_end")}
+</motion.p>
       <motion.div
         className="hero-buttons"
         initial={{ opacity: 0, y: 10 }}

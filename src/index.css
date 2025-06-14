@@ -121,4 +121,6 @@ section, main, div {
   width: 100%;
   max-width: 100vw; /* Убедись, что максимальная ширина не превышает viewport */
   overflow-x: hidden; /* Дополнительная мера предосторожности */
+}html {
+  scroll-behavior: smooth;
 }

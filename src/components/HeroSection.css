@@ -34,10 +34,12 @@
   animation: bgPulse 15s ease-in-out infinite alternate, bgRotate 60s linear infinite;
   z-index: 0;
 }
+
 @keyframes bgPulse {
   0% { transform: scale(1); opacity: 0.6; }
   100% { transform: scale(1.2); opacity: 1; }
 }
+
 @keyframes bgRotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -51,9 +53,11 @@
   animation: glowPulse 4s ease-in-out infinite;
   z-index: 2;
 }
+
 .hero-brand span {
   color: var(--clr-text-light);
 }
+
 @keyframes glowPulse {
   0% { text-shadow: 0 0 10px rgba(0, 210, 255, 0.2); }
   100% { text-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
@@ -82,18 +86,49 @@
   color: var(--clr-text-light);
   transition: all var(--transition-fast);
 }
+
 .hero-word:hover {
   color: var(--clr-accent-blue);
   text-shadow: 0 0 12px var(--clr-accent-blue);
 }
 
 .hero-subtitle {
-  margin-top: 2rem;
-  font-size: clamp(1rem, 2.3vw, 1.35rem);
+  margin-top: 2.5rem;
+  font-size: clamp(1rem, 2.4vw, 1.4rem);
   color: var(--clr-text-muted);
-  max-width: 700px;
-  line-height: 1.7;
+  max-width: 800px;
+  line-height: 1.75;
+  font-weight: 400;
   z-index: 2;
+  text-align: center;
+}
+
+.hero-subtitle.improved {
+  background: linear-gradient(to right, rgba(0,210,255,0.06), transparent 80%);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-subtitle .highlight {
+  color: var(--clr-accent-blue);
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+}
+
+.hero-subtitle .highlight-alt {
+  color: #ffffff;
+  background: rgba(0,210,255,0.1);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.hero-subtitle .highlight-alt:hover {
+  background: rgba(0,210,255,0.3);
+  color: #00d2ff;
 }
 
 .hero-buttons {
@@ -122,6 +157,7 @@
   color: var(--clr-accent-blue);
   border: 2px solid var(--clr-accent-blue);
 }
+
 .btn-outline:hover {
   background: var(--clr-accent-blue);
   color: #000;
@@ -133,6 +169,7 @@
   color: var(--clr-whatsapp-green);
   border: 2px solid var(--clr-whatsapp-green);
 }
+
 .btn-whatsapp:hover {
   background: var(--clr-whatsapp-green);
   color: var(--clr-text-light);
@@ -153,4 +190,17 @@
     width: 100%;
     max-width: 280px;
   }
+}
+.hero-subtitle .emphasis {
+  color: var(--clr-accent-blue);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 8px rgba(0, 210, 255, 0.2);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hero-subtitle .emphasis:hover {
+  color: #00dfff;
+  text-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
 }
