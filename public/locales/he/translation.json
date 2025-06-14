@@ -38,16 +38,11 @@
   "content_key_text": "תמונות, סרטונים, טקסט. אנחנו עושים הכל — נשאר לך רק להשיק.",
   "glitch_main_title": "MAESTROWEB",
   "glitch_subtitle": "AI, עיצוב, מהירות. אנחנו לא רק בונים אתרים — אנחנו יוצרים וואו.",
-  "hero_credit": "מאת Maestro Prod.",
-  "hero_main_title_part1": "יוצרים אתרים חזותיים עוצמתיים",
-  "hero_main_title_part2_1": "עבור",
-  "hero_main_title_part2_2": "עסקים",
-  "hero_main_title_part2_3": "בישראל",
-  "hero_main_title_part2_4": "",
-  "hero_subtitle_part1": "מינימליזם. מהירות. אסתטיקה. אנו משתמשים ב-AI ובניסיון כדי שהאתר שלך",
-  "hero_subtitle_part2_1": "יעבוד",
-  "hero_subtitle_part2_2": "ויהיה",
-  "hero_subtitle_part2_3": "בלתי נשכח",
+  "hero_main_title_part1": "אתרים שמרשימים — וגם מוכרים.",
+  "hero_subtitle_core_1": "מהקליק הראשון",
+  "hero_subtitle_middle": " ועד הצלחה ארוכת טווח — אנחנו יוצרים חוויות דיגיטליות אפקטיביות.",
+  "hero_subtitle_core_2": "בנוי להמיר",
+  "hero_subtitle_end": " — לא רק בפיקסלים.",
   "hero_whatsapp_btn": "כתוב בוואטסאפ",
   "hero_services_btn": "שירותים",
   "nav_services": "שירותים",
@@ -69,4 +64,11 @@
   "service_visual_style_desc": "תמונות, צבעים, מבנה — אנחנו מרכיבים את המותג שלך מהיסוד.",
   "service_feedback_title": "משוב",
   "service_feedback_desc": "טפסי בקשה, הזמנה ושאלות ישירות באתר. הכל עובד."
+  {
+    "hero_main_title_part1": "Создаём сайты, которые впечатляют — и продают.",
+    "hero_anim_word_1": "Впечатляют",
+    "hero_anim_word_2": "Продают",
+    "hero_anim_word_3": "Развивают",
+ 
+  
 }

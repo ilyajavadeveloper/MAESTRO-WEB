@@ -1,11 +1,25 @@
 // src/components/HeroSection.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./HeroSection.css";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+
+const animatedWords = [
+  "hero_anim_word_1",
+  "hero_anim_word_2",
+  "hero_anim_word_3"
+];
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % animatedWords.length);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="hero">
@@ -29,35 +43,33 @@ const HeroSection = () => {
         {t("hero_main_title_part1")}
       </motion.h1>
 
-      <motion.div
-        className="hero-words-line"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        {[1, 2, 3, 4].map((i) => (
+      <div className="hero-animated-line">
+        <AnimatePresence mode="wait">
           <motion.span
-            key={i}
-            className="hero-word"
-            whileHover={{ scale: 1.15, color: "#00d2ff" }}
-            transition={{ duration: 0.3 }}
+            key={index}
+            className="hero-anim-word"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
           >
-            {t(`hero_main_title_part2_${i}`)}
+            {t(animatedWords[index])}
           </motion.span>
-        ))}
-      </motion.div>
+        </AnimatePresence>
+      </div>
 
       <motion.p
-  className="hero-subtitle improved"
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
->
-  <span className="highlight">{t("hero_subtitle_core_1")}</span>
-  {t("hero_subtitle_middle")}{" "}
-  <span className="emphasis">{t("hero_subtitle_core_2")}</span>{" "}
-  {t("hero_subtitle_end")}
-</motion.p>
+        className="hero-subtitle improved"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+      >
+        <span className="highlight">{t("hero_subtitle_core_1")}</span>
+        {t("hero_subtitle_middle")}{" "}
+        <span className="emphasis">{t("hero_subtitle_core_2")}</span>{" "}
+        {t("hero_subtitle_end")}
+      </motion.p>
+
       <motion.div
         className="hero-buttons"
         initial={{ opacity: 0, y: 10 }}
