@@ -8,74 +8,85 @@ import {
   FaFacebookF,
   FaInstagram,
 } from "react-icons/fa";
-import { useTranslation } from "react-i18next"; // <-- Добавляем импорт
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { t } = useTranslation(); // <-- Инициализируем хук
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer">
       <div className="footer-container">
+        {/* Контакты */}
         <div className="footer-col">
-          <h4>{t("footer_contacts")}</h4>{" "}
-          {/* <-- Переводим заголовок колонки */}
+          <h4>{t("footer_contacts")}</h4>
           <p>
-            <FaPhone /> {t("phone_number")}
-          </p>{" "}
-          {/* <-- Переводим номер телефона */}
+            <FaPhone />{" "}
+            <a
+              href="https://wa.me/972524388967"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              +972 52 438 8967
+            </a>
+          </p>
           <p>
-            <FaMapMarkerAlt /> {t("address")}
-          </p>{" "}
-          {/* <-- Переводим адрес */}
-          <a href="https://wa.me/972524388967" className="footer-btn">
-            <FaWhatsapp /> {t("whatsapp_btn")}
-          </a>{" "}
-          {/* <-- Переводим текст кнопки WhatsApp */}
+            <FaMapMarkerAlt />{" "}
+            <a
+              href="https://www.google.com/maps?q=Herzl+St+Tel+Aviv"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("address")}
+            </a>
+          </p>
+          <div className="footer-whatsapp">
+            <a
+              href="https://wa.me/972524388967"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp /> {t("whatsapp_btn")}
+            </a>
+          </div>
         </div>
+
+        {/* Навигация */}
         <div className="footer-col">
-          <h4>{t("footer_navigation")}</h4>{" "}
-          {/* <-- Переводим заголовок колонки */}
+          <h4>{t("footer_navigation")}</h4>
           <ul>
-            <li>
-              <a href="#services">{t("footer_services")}</a>
-            </li>{" "}
-            {/* <-- Переводим ссылку */}
-            <li>
-              <a href="#about">{t("footer_about_us")}</a>
-            </li>{" "}
-            {/* <-- Переводим ссылку */}
-            <li>
-              <a href="#faq">{t("footer_faq")}</a>
-            </li>{" "}
-            {/* <-- Переводим ссылку */}
-            <li>
-              <a href="#contact">{t("footer_contacts")}</a>
-            </li>{" "}
-            {/* <-- Переводим ссылку */}
+            <li><a href="#services">{t("footer_services")}</a></li>
+            <li><a href="#about">{t("footer_about_us")}</a></li>
+            <li><a href="#faq">{t("footer_faq")}</a></li>
+            <li><a href="#contact">{t("footer_contacts")}</a></li>
           </ul>
         </div>
-        <div className="footer-col">
-          <h4>{t("footer_social_media")}</h4>{" "}
-          {/* <-- Переводим заголовок колонки */}
+
+        {/* Портфолио и соцсети */}
+        <div className="footer-col footer-portfolio">
+          <h4>{t("footer_portfolio")}</h4>
+          <a
+            href="https://portfolio-ipr9zpt9n-ilyajavadevs-projects.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("footer_view_portfolio")}
+          </a>
+          <h4>{t("footer_social_media")}</h4>
           <div className="socials">
             <a href="https://facebook.com" target="_blank" rel="noreferrer">
               <FaFacebookF />
-            </a>{" "}
-            {/* <-- Добавил target="_blank" и rel="noreferrer" */}
+            </a>
             <a href="https://instagram.com" target="_blank" rel="noreferrer">
               <FaInstagram />
             </a>
           </div>
         </div>
       </div>
+
+      {/* © */}
       <div className="footer-bottom">
-        {/*
-          Для перевода текста с переменными используем синтаксис {{year}}
-          i18next автоматически заменит его на значение
-        */}
-        <p>{t("footer_copyright", { year: currentYear })}</p>{" "}
-        {/* <-- Переводим копирайт */}
+        <p>{t("footer_copyright", { year: currentYear })}</p>
       </div>
     </footer>
   );

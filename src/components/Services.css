@@ -1,178 +1,66 @@
 :root {
+    /* Используем те же переменные */
     --clr-bg-dark: #000;
     --clr-text-light: #fff;
-    --clr-text-muted: #ddd;
     --clr-accent-blue: #00d2ff;
-    --shadow-strong-blue: 0 0 50px rgba(0, 210, 255, 0.9), 0 0 80px rgba(0, 210, 255, 0.5);
-    --shadow-card-default: 0 0 40px rgba(0, 210, 255, 0.2);
-    --shadow-card-hover:   0 0 80px rgba(0, 210, 255, 0.7), 0 0 100px rgba(160, 32, 240, 0.5);
+    --shadow-card-default: 0 0 30px rgba(0, 210, 255, 0.15);
+    --shadow-card-hover: 0 0 70px rgba(0, 210, 255, 0.6), 0 0 90px rgba(160, 32, 240, 0.4);
     --transition-fast: 0.3s ease-out;
-}
-
-.services {
+  }
+  
+  .services {
     background: var(--clr-bg-dark);
     padding: 180px 20px;
-    color: var(--clr-text-light);
     text-align: center;
-}
-
-.services-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 72px;
-    margin-bottom: 100px;
     color: var(--clr-text-light);
-    text-shadow: var(--shadow-strong-blue);
+  }
+  
+  .services-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 4.5rem;
+    margin-bottom: 4rem;
+    text-shadow: 0 0 15px var(--clr-accent-blue);
     animation: titlePulse 2.5s ease-in-out infinite;
-}
-
-@keyframes titlePulse {
-    0%,100% {
-        transform: scale(1);
-        opacity: 1;
-        text-shadow: var(--shadow-strong-blue);
-    }
-    50% {
-        transform: scale(1.08);
-        opacity: 0.9;
-        text-shadow: 0 0 65px rgba(0, 210, 255, 1), 0 0 90px rgba(0, 210, 255, 0.6);
-    }
-}
-
-.services-grid {
+  }
+  
+  .services-grid {
     display: flex;
     flex-wrap: wrap;
+    gap: 4rem;
     justify-content: center;
-    gap: 64px;
-}
-
-.service-card {
-    position: relative;
-    width: 420px;
-    border-radius: 32px;
-    overflow: hidden;
-    cursor: pointer;
+  }
+  
+  .service-card {
     background: rgba(0, 0, 0, 0.9);
-    box-shadow: var(--shadow-card-default), 0 0 20px rgba(0, 0, 0, 0.8);
-    transition: box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
-}
-
-/* Убираем стеклянный фон */
-.service-card .card-glass-background {
-    display: none;
-}
-
-.service-card .card-content {
-    position: relative;
-    z-index: 2;
-    /* Увеличен padding сверху, чтобы иконка не упиралась в рамку */
-    padding: 80px 40px 60px 40px;
-    text-align: center;
-    transition: transform var(--transition-fast);
-}
-
-.service-card:hover {
-    transform: translateY(-16px) scale(1.02);
-    box-shadow: var(--shadow-card-hover), 0 0 30px rgba(0, 0, 0, 0.9);
-    background: rgba(0, 0, 0, 1);
-}
-
-.service-card:hover .card-content {
-    transform: translateY(-12px);
-}
-
-.service-icon {
-    font-size: 80px;
-    /* Добавлен отступ сверху, чтобы иконка не упиралась */
-    margin: 20px 0 40px 0;
+    padding: 3.5rem 2.5rem; /* Увеличенный padding */
+    width: 380px;
+    border-radius: 28px;
+    box-shadow: var(--shadow-card-default);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    cursor: pointer;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  
+  .service-icon {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
     color: var(--clr-accent-blue);
-    text-shadow: 0 0 35px rgba(0, 210, 255, 0.9), 0 0 60px rgba(0, 210, 255, 0.5);
-    transition: color var(--transition-fast), text-shadow var(--transition-fast), transform var(--transition-fast);
-}
-
-.service-card:hover .service-icon {
-    color: var(--clr-text-light);
-    text-shadow: 0 0 55px rgba(255, 255, 255, 1), 0 0 90px rgba(0, 210, 255, 0.8);
-    transform: translateY(-6px) scale(1.05);
-}
-
-.service-card h3 {
-    font-size: 32px;
+  }
+  
+  .service-card h3 {
     font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    margin-bottom: 24px;
+    font-size: 2rem;
     color: var(--clr-text-light);
-    text-shadow: 0 0 20px rgba(0, 210, 255, 0.7);
-    transition: color var(--transition-fast), text-shadow var(--transition-fast);
-}
-
-.service-card:hover h3 {
-    color: var(--clr-accent-blue);
-    text-shadow: 0 0 28px rgba(0, 210, 255, 1), 0 0 45px rgba(160, 32, 240, 0.7);
-}
-
-.service-card p {
+    margin-bottom: 1rem;
+  }
+  
+  .service-card p {
     font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    color: var(--clr-text-muted);
-    line-height: 1.9;
-    transition: color var(--transition-fast), text-shadow var(--transition-fast);
-}
-
-.service-card:hover p {
     color: var(--clr-text-light);
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-/* Адаптив */
-
-@media (max-width: 768px) {
-    .services-title {
-        font-size: 60px;
-        margin-bottom: 80px;
-    }
-    .services-grid {
-        gap: 48px;
-    }
-    .service-card {
-        width: 100%;
-        max-width: 380px;
-    }
-    .service-card .card-content {
-        padding: 80px 32px 48px 32px;
-    }
-    .service-icon {
-        font-size: 72px;
-        margin: 20px 0 32px 0;
-    }
-    .service-card h3 {
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-    .service-card p {
-        font-size: 17px;
-    }
-}
-
-@media (max-width: 480px) {
-    .services {
-        padding: 140px 15px;
-    }
-    .services-title {
-        font-size: 52px;
-        margin-bottom: 60px;
-    }
-    .service-card .card-content {
-        padding: 80px 24px 40px 24px;
-    }
-    .service-icon {
-        font-size: 64px;
-        margin: 20px 0 24px 0;
-    }
-    .service-card h3 {
-        font-size: 28px;
-        margin-bottom: 16px;
-    }
-    .service-card p {
-        font-size: 16px;
-    }
-}
+    line-height: 1.7;
+  }
+  

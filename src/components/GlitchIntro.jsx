@@ -1,21 +1,19 @@
-// src/components/GlitchIntro.jsx
 import React from "react";
 import "./GlitchIntro.css";
-import { useTranslation } from "react-i18next"; // <-- Добавляем импорт useTranslation
+import { useTranslation } from "react-i18next";
 
 const GlitchIntro = () => {
-  const { t } = useTranslation(); // <-- Инициализируем хук для работы с переводами
+  const { t } = useTranslation();
 
   return (
     <section className="glitch-section">
       <div className="glitch-wrapper">
+        <p className="glitch-tagline">BY MAESTRO PROD</p>
         <h1 className="glitch-text" data-text={t("glitch_main_title")}>
-          {t("glitch_main_title")}{" "}
-          {/* Используем ключ для "MAESTROWEB" */}
+          {t("glitch_main_title")}
         </h1>
         <p className="glitch-sub">
-          {t("glitch_subtitle")}{" "}
-          {/* Используем ключ для "AI, дизайн, скорость..." */}
+          {t("glitch_subtitle")}
         </p>
       </div>
     </section>

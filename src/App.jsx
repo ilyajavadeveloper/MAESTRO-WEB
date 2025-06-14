@@ -28,13 +28,12 @@ function App() {
     <>
       <CustomCursor />
       <Navbar />
-      <GlitchIntro />
       <HeroSection/>
       <GlassCardShowcase />
       <Services/>
       <AboutUs/>
       <FAQ />
-      <ContactSection />
+
       <Footer />
  {/* Ты импортировал его, но не использовал в JSX */}
     </>

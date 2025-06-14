@@ -26,7 +26,7 @@ const HeroSection = () => {
           whileHover={{ scale: 1.03, letterSpacing: "1.5px" }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          {t("hero_main_title_part1")}{" "}
+          {t("hero_main_title_part1")}
         </motion.span>
         <br />
         <motion.span
@@ -34,28 +34,28 @@ const HeroSection = () => {
           whileHover={{ scale: 1.2, color: "#00d2ff" }}
           transition={{ duration: 0.8, ease: "anticipate" }}
         >
-          {t("hero_main_title_part2_1")}{" "}
+          {t("hero_main_title_part2_1")}
         </motion.span>
         <motion.span
           className="hero-word"
           whileHover={{ scale: 1.2, color: "#00d2ff" }}
           transition={{ duration: 0.8, ease: "anticipate" }}
         >
-          {t("hero_main_title_part2_2")}{" "}
+          {t("hero_main_title_part2_2")}
         </motion.span>
         <motion.span
           className="hero-word"
           whileHover={{ scale: 1.2, color: "#00d2ff" }}
           transition={{ duration: 0.8, ease: "anticipate" }}
         >
-          {t("hero_main_title_part2_3")}{" "}
+          {t("hero_main_title_part2_3")}
         </motion.span>
         <motion.span
           className="hero-word"
           whileHover={{ scale: 1.2, color: "#00d2ff" }}
           transition={{ duration: 0.8, ease: "anticipate" }}
         >
-          {t("hero_main_title_part2_4")}{" "}
+          {t("hero_main_title_part2_4")}
         </motion.span>
       </motion.h1>
 
@@ -65,10 +65,8 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
       >
-        {t("hero_subtitle_part1")}{" "}
-        <b>{t("hero_subtitle_part2_1")}</b>{" "}
-        {t("hero_subtitle_part2_2")}{" "}
-        <b>{t("hero_subtitle_part2_3")}</b>.{" "}
+        {t("hero_subtitle_part1")} <b>{t("hero_subtitle_part2_1")}</b>{" "}
+        {t("hero_subtitle_part2_2")} <b>{t("hero_subtitle_part2_3")}</b>.
       </motion.p>
 
       <motion.div
@@ -77,8 +75,12 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
       >
-        {/* Ключевое изменение здесь: добавлен класс "btn-whatsapp" */}
-        <a href="https://wa.me/972524388967" className="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://wa.me/972524388967"
+          className="btn btn-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t("hero_whatsapp_btn")}
         </a>
         <a href="#services" className="btn btn-outline">
