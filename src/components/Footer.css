@@ -1,28 +1,22 @@
-/* Footer.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap');
 
-/* Глобальные переменные */
 :root {
   --clr-bg-dark: #000;
   --clr-text-light: #fff;
-  --clr-text-muted: #ddd;
+  --clr-text-muted: #ccc;
   --clr-accent-blue: #00d2ff;
-  --shadow-light-blue: 0 0 10px rgba(0, 210, 255, 0.5);
+  --clr-green: #25D366;
+  --shadow-blue: 0 0 10px rgba(0, 210, 255, 0.4);
   --transition-fast: 0.3s ease-out;
 }
 
-/* Основной футер */
 .footer {
   background: var(--clr-bg-dark);
   color: var(--clr-text-light);
-  padding: 80px 20px 30px;
+  padding: 80px 20px 40px;
   font-family: 'Inter', sans-serif;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Каркас */
 .footer-container {
   display: flex;
   flex-wrap: wrap;
@@ -30,91 +24,96 @@
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* Колонки */
 .footer-col {
-  flex: 1 1 200px;
-  padding: 10px;
+  flex: 1 1 260px;
+  min-width: 240px;
 }
 
 .footer-col h4 {
   font-family: 'Anton', sans-serif;
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 20px;
   color: var(--clr-accent-blue);
-  text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-  transition: text-shadow var(--transition-fast), transform var(--transition-fast);
+  text-shadow: var(--shadow-blue);
 }
 .footer-col h4:hover {
   text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
-  transform: translateY(-2px);
 }
 
-/* Ссылки */
-.footer-col a {
-  display: inline-block;
+.footer-col a,
+.footer-col p {
   color: var(--clr-text-muted);
   text-decoration: none;
-  line-height: 1.6;
   margin-bottom: 10px;
-  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+  display: block;
+  transition: all var(--transition-fast);
 }
 .footer-col a:hover {
   color: var(--clr-accent-blue);
   text-shadow: 0 0 8px rgba(0, 210, 255, 0.7);
 }
 
-/* Кнопка WhatsApp */
 .footer-whatsapp a {
+  color: var(--clr-green);
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #25D366;
-  font-weight: 600;
-  margin-top: 10px;
 }
 .footer-whatsapp a:hover {
   color: #fff;
-  text-shadow: 0 0 8px #25D366;
-  transform: translateY(-2px);
+  text-shadow: 0 0 10px var(--clr-green);
 }
 
-/* Портфолио */
 .footer-portfolio a {
-  color: var(--clr-accent-blue);
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-text-light);
+  padding: 2px 0;
 }
 .footer-portfolio a:hover {
-  color: var(--clr-text-light);
-  text-shadow: 0 0 8px var(--clr-accent-blue);
+  color: var(--clr-accent-blue);
+  text-shadow: 0 0 12px var(--clr-accent-blue);
 }
 
-/* Нижняя строка */
+.socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+.socials a {
+  color: var(--clr-text-muted);
+  font-size: 18px;
+  transition: all var(--transition-fast);
+}
+.socials a:hover {
+  color: var(--clr-accent-blue);
+  transform: scale(1.2);
+}
+
 .footer-bottom {
   text-align: center;
   margin-top: 40px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 20px;
-  position: relative;
-  z-index: 1;
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     align-items: center;
     gap: 30px;
   }
+
   .footer-col {
-    flex: 1 1 100%;
-    max-width: 300px;
     text-align: center;
+    max-width: 300px;
   }
+
   .footer-col h4 {
     font-size: 22px;
   }

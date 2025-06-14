@@ -1,202 +1,184 @@
-/* src/components/NavBar.css (или твой файл для Navbar) */
+/* Подключаем шрифты */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* --- */
-
-/* ========= Глобальные переменные (тёмная тема) ========= */
+/* Глобальные переменные */
 :root {
-  --clr-bg-dark:          #000;          /* Чисто чёрный фон */
-  --clr-text-light:       #fff;          /* Белый текст */
-  --clr-accent:           #00d2ff;       /* Голубой акцент */
-  --clr-accent-dark:      #00a0e6;       /* Более тёмный голубой для ховера */
-  --radius-sm:            4px;           /* Малое скругление */
-  --radius-md:            8px;           /* Среднее скругление */
-  --gap-sm:               1rem;          /* Малый отступ (16px) */
-  --gap-md:               1.5rem;        /* Средний отступ (24px) */
-  --gap-lg:               2.5rem;        /* Большой отступ (40px) */
-  --transition-speed:     0.3s;          /* Базовая скорость перехода */
-  --shadow-dark:          0 4px 15px rgba(0, 0, 0, 0.4); /* Тень для навбара */
-  --shadow-accent:        0 0 15px rgba(0, 210, 255, 0.6); /* Свечение акцента */
+  --clr-bg-dark: #000;
+  --clr-text-light: #fff;
+  --clr-accent: #00d2ff;
+  --clr-accent-dark: #00a0e6;
+  --transition-fast: 0.3s ease;
+  --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.4);
+  --shadow-accent: 0 0 15px rgba(0, 210, 255, 0.6);
 }
 
-/* --- */
-
-/* Основной контейнер Navbar */
+/* Навбар */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px; /* Увеличена высота для лучшего вида */
-  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-  backdrop-filter: blur(10px); /* Эффект "стекла" */
+  height: 80px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
   color: var(--clr-text-light);
   z-index: 1000;
-  box-shadow: var(--shadow-dark); /* Более выраженная тень */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Чуть более заметная нижняя граница */
-  display: flex; /* Flexbox для центрирования содержимого */
-  align-items: center; /* Выравнивание по центру по вертикали */
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar-container {
   max-width: 1200px;
-  width: 100%; /* Убедимся, что занимает всю доступную ширину */
+  width: 100%;
   margin: 0 auto;
-  padding: 0 var(--gap-md); /* Горизонтальный padding из переменной */
+  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* --- */
-
-/* Логотип */
+/* Лого */
 .logo {
   font-family: 'Anton', sans-serif;
-  font-size: 2rem; /* Чуть крупнее */
-  letter-spacing: 2.5px; /* Увеличенный межбуквенный интервал */
+  font-size: 2rem;
+  letter-spacing: 2px;
   color: var(--clr-text-light);
-  text-decoration: none; /* Убираем подчеркивание */
-  white-space: nowrap; /* Не переносить на новую строку */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  transition: text-shadow var(--transition-fast), color var(--transition-fast);
   cursor: pointer;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Мягкое белое свечение */
-  transition: text-shadow var(--transition-speed) ease-out, color var(--transition-speed) ease-out;
 }
 
 .logo:hover {
-  color: var(--clr-accent); /* Голубое свечение при наведении */
-  text-shadow: 0 0 15px rgba(0, 210, 255, 0.8), 0 0 25px rgba(0, 210, 255, 0.4);
+  color: var(--clr-accent);
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
 }
 
-/* --- */
+/* Правая часть */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
-/* Навигационные ссылки */
+/* Ссылки */
 .nav-links {
   display: flex;
-  gap: var(--gap-lg); /* Отступы между ссылками из переменной */
+  gap: 2rem;
 }
 
 .nav-links a {
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem; /* Чуть крупнее и читабельнее */
-  text-transform: uppercase;
+  font-size: 0.95rem;
   color: var(--clr-text-light);
+  text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.8px; /* Немного уменьшил, чтобы не выглядело слишком растянуто */
-  position: relative; /* Для эффекта подчеркивания */
-  padding: 0.5rem 0; /* Небольшой вертикальный padding */
-  transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
 }
 
 .nav-links a:hover {
-  color: var(--clr-accent); /* Цвет акцента при наведении */
-  opacity: 1; /* Убираем затемнение, делаем ярче */
+  color: var(--clr-accent);
 }
 
-/* Эффект подчеркивания при наведении (более динамичный) */
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
-  height: 2px; /* Толщина подчеркивания */
+  width: 0%;
+  height: 2px;
   background-color: var(--clr-accent);
-  transition: width var(--transition-speed) ease-out;
+  transition: width var(--transition-fast);
 }
 
 .nav-links a:hover::after {
-  width: 100%; /* Расширяется при наведении */
+  width: 100%;
 }
 
-/* --- */
-
-/* Бургер-иконка */
+/* Бургер */
 .burger {
-  display: none; /* Скрыт по умолчанию на десктопе */
+  display: none;
   flex-direction: column;
-  justify-content: space-between; /* Распределяем линии равномерно */
-  width: 30px; /* Шире бургер */
-  height: 22px; /* Выше бургер */
-  background: none;
-  border: none;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
   cursor: pointer;
-  padding: 0;
-  position: relative; /* Для анимации */
-  z-index: 1001; /* Поверх меню */
+  z-index: 1100;
 }
 
 .line {
-  width: 100%;
-  height: 3px; /* Толще линии */
+  height: 3px;
   background: var(--clr-text-light);
-  border-radius: 2px; /* Мягкие концы */
-  transition: all var(--transition-speed) ease-in-out;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
 }
 
-/* Анимация бургера (открыто) */
 .burger.open .line:nth-child(1) {
-  transform: translateY(9.5px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
-
 .burger.open .line:nth-child(2) {
   opacity: 0;
 }
-
 .burger.open .line:nth-child(3) {
-  transform: translateY(-9.5px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
-/* --- */
+/* Языковый переключатель */
+.lang-switcher-desktop {
+  display: flex;
+  align-items: center;
+}
 
-/* Мобильная адаптация */
+.lang-switcher-mobile {
+  display: none;
+  justify-content: center;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* Адаптив */
 @media (max-width: 768px) {
   .navbar {
-    height: 60px; /* Чуть меньше высота на мобильных */
-  }
-
-  .navbar-container {
-    padding: 0 var(--gap-sm); /* Меньший padding на мобильных */
+    height: 60px;
   }
 
   .nav-links {
-    position: fixed; /* Используем fixed для полного перекрытия */
-    top: 60px; /* Смещаем вниз на высоту навбара */
+    position: fixed;
+    top: 60px;
     left: 0;
-    flex-direction: column;
     width: 100%;
-    height: calc(100vh - 60px); /* Занимает оставшуюся высоту */
-    background: rgba(0, 0, 0, 0.95); /* Почти черный, полупрозрачный */
-    padding: var(--gap-lg) 0; /* Увеличенный вертикальный padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex; /* Всегда flex для мобильного меню */
-    text-align: center;
-    transform: translateX(-100%); /* Скрываем за экраном */
-    transition: transform var(--transition-speed) ease-in-out; /* Плавный выезд */
-    overflow-y: auto; /* Для скролла, если меню длинное */
+    height: calc(100vh - 60px);
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform var(--transition-fast);
+    gap: 2rem;
   }
 
   .nav-links.open {
-    transform: translateX(0); /* Показываем меню */
-  }
-
-  .nav-links a {
-    font-size: 1.2rem; /* Крупнее для мобильного меню */
-    padding: 0.8rem 0; /* Увеличенный padding для кнопок */
-    font-weight: 500;
-    color: var(--clr-text-light);
-    /* Убираем нижнее подчеркивание в мобильном меню, если оно есть */
-    &::after {
-      display: none; 
-    }
-    /* Добавляем лёгкое фоновое изменение при наведении в мобильном меню */
-    &:hover {
-      background-color: rgba(0, 210, 255, 0.1); /* Легкое голубое свечение фона */
-      color: var(--clr-accent);
-      border-radius: var(--radius-sm); /* Скругление углов при наведении */
-    }
+    transform: translateX(0);
   }
 
   .burger {
-    display: flex; /* Показываем бургер на мобильных */
+    display: flex;
+  }
+
+  .lang-switcher-desktop {
+    display: none;
+  }
+
+  .lang-switcher-mobile {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 1.3rem;
+    padding: 1rem 0;
   }
 }

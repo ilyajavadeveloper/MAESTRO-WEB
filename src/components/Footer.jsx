@@ -64,14 +64,24 @@ const Footer = () => {
 
         {/* Портфолио и соцсети */}
         <div className="footer-col footer-portfolio">
-          <h4>{t("footer_portfolio")}</h4>
+          <h4>{t("portfolio_web_dev")}</h4>
           <a
-            href="https://portfolio-ipr9zpt9n-ilyajavadevs-projects.vercel.app/"
+            href="https://portfolio-ilyajavadevs-projects.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t("footer_view_portfolio")}
+            {t("portfolio_web_dev")}
           </a>
+
+          <h4>{t("portfolio_maestrostudio")}</h4>
+          <a
+            href="https://maestro-studio-phi.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("portfolio_studio_site")}
+          </a>
+
           <h4>{t("footer_social_media")}</h4>
           <div className="socials">
             <a href="https://facebook.com" target="_blank" rel="noreferrer">

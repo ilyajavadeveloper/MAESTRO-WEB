@@ -11,53 +11,41 @@ const HeroSection = () => {
     <section className="hero">
       <div className="hero-bg-overlay" />
 
-      <motion.span
-        className="hero-credit"
-        initial={{ opacity: 0, y: -50 }}
+      <motion.div
+        className="hero-brand"
+        initial={{ opacity: 0, y: -60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
+        transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
       >
-        {t("hero_credit")}
-      </motion.span>
+        MAESTRO <span>WEB</span>
+      </motion.div>
 
-      <motion.h1 className="hero-title">
-        <motion.span
-          className="hero-block"
-          whileHover={{ scale: 1.03, letterSpacing: "1.5px" }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
-          {t("hero_main_title_part1")}
-        </motion.span>
-        <br />
-        <motion.span
-          className="hero-word"
-          whileHover={{ scale: 1.2, color: "#00d2ff" }}
-          transition={{ duration: 0.8, ease: "anticipate" }}
-        >
-          {t("hero_main_title_part2_1")}
-        </motion.span>
-        <motion.span
-          className="hero-word"
-          whileHover={{ scale: 1.2, color: "#00d2ff" }}
-          transition={{ duration: 0.8, ease: "anticipate" }}
-        >
-          {t("hero_main_title_part2_2")}
-        </motion.span>
-        <motion.span
-          className="hero-word"
-          whileHover={{ scale: 1.2, color: "#00d2ff" }}
-          transition={{ duration: 0.8, ease: "anticipate" }}
-        >
-          {t("hero_main_title_part2_3")}
-        </motion.span>
-        <motion.span
-          className="hero-word"
-          whileHover={{ scale: 1.2, color: "#00d2ff" }}
-          transition={{ duration: 0.8, ease: "anticipate" }}
-        >
-          {t("hero_main_title_part2_4")}
-        </motion.span>
+      <motion.h1
+        className="hero-title"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 1.1 }}
+      >
+        {t("hero_main_title_part1")}
       </motion.h1>
+
+      <motion.div
+        className="hero-words-line"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1 }}
+      >
+        {[1, 2, 3, 4].map((i) => (
+          <motion.span
+            key={i}
+            className="hero-word"
+            whileHover={{ scale: 1.15, color: "#00d2ff" }}
+            transition={{ duration: 0.3 }}
+          >
+            {t(`hero_main_title_part2_${i}`)}
+          </motion.span>
+        ))}
+      </motion.div>
 
       <motion.p
         className="hero-subtitle"
@@ -73,7 +61,7 @@ const HeroSection = () => {
         className="hero-buttons"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
+        transition={{ duration: 1, delay: 1.8 }}
       >
         <a
           href="https://wa.me/972524388967"

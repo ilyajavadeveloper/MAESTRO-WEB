@@ -16,6 +16,7 @@ import Footer from "./components/Footer.jsx"; // Вероятно, тоже .jsx
 import HeroSection from "./components/HeroSection.jsx"; // ИСПРАВЛЕНО
 import CustomCursor from "./components/CustomCursor.jsx"; // ИСПРАВЛЕНО
 import GlitchIntro from "./components/GlitchIntro.jsx"; // ИСПРАВЛЕНО
+import AccessibilityWidget from "./components/AccessibilityWidget.jsx";
 
 function App() {
   const { i18n } = useTranslation();
@@ -35,6 +36,7 @@ function App() {
       <FAQ />
 
       <Footer />
+      <AccessibilityWidget/>
  {/* Ты импортировал его, но не использовал в JSX */}
     </>
   );

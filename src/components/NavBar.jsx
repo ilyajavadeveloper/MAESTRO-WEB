@@ -1,50 +1,49 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
-import "./NavBar.css"; // С большой буквой 'B'
-import LanguageSwitcher from "./LanguageSwitcher"; // Убедись, что путь к LanguageSwitcher правильный
-import { useTranslation } from "react-i18next"; // ОБЯЗАТЕЛЬНО ИМПОРТИРУЙ useTranslation
+import "./NavBar.css";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-  const { t } = useTranslation(); // Инициализируем хук для работы с переводами
+  const { t } = useTranslation();
 
   return (
     <header className="navbar">
       <div className="navbar-container">
+        {/* Слева логотип */}
         <div className="logo">MAESTROWEB</div>
 
-        <nav className={`nav-links ${isOpen ? "open" : ""}`}>
-          {/* Используем функцию t() с КЛЮЧАМИ из твоих JSON-файлов */}
-          <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
-          <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
-          <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
-          <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
-          <a
-            href="https://portfolio-ilyajavadevs-projects.vercel.app/?fbclid=PAZXh0bgNhZW0CMTEAAadxzrIJCGBYEp8_dqk_OeIGgHX2nPhXiP6t3W8AHudmK1E5lI-oVdAz5I4wCA_aem_SiHG7Tif43yhQIkjpLGEQA"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setIsOpen(false)}
-          >
-            {t("nav_portfolio")}
-          </a>
-          <a
-            href="https://maestro-studio-landing.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setIsOpen(false)}
-          >
-            {t("nav_maestrostudio")}
-          </a>
-          <LanguageSwitcher /> {/* Твой компонент для переключения языков */}
-        </nav>
+        {/* Справа навигация и языки */}
+        <div className="navbar-right">
+          <nav className={`nav-links ${isOpen ? "open" : ""}`}>
+            <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
+            <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
+            <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
+            <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
+          </nav>
 
-        <div className="burger" onClick={toggleMenu}>
-          <div className={`line ${isOpen ? "open" : ""}`}></div>
-          <div className={`line ${isOpen ? "open" : ""}`}></div>
-          <div className={`line ${isOpen ? "open" : ""}`}></div>
+          {/* Языки справа от ссылок (только на десктопе) */}
+          <div className="lang-switcher-desktop">
+            <LanguageSwitcher />
+          </div>
+
+          {/* Бургер */}
+          <div className="burger" onClick={toggleMenu}>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+          </div>
         </div>
       </div>
+
+      {/* Языки внутри меню (мобилка) */}
+      {isOpen && (
+        <div className="lang-switcher-mobile">
+          <LanguageSwitcher />
+        </div>
+      )}
     </header>
   );
 };
