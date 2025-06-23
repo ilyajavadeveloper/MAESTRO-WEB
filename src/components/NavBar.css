@@ -190,17 +190,32 @@
     display: flex;
   }
 
-  .lang-switcher-desktop {
-    display: none;
-  }
-
   .lang-switcher-mobile {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 0;
     position: absolute;
-    bottom: 30px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
   }
+  
+  .lang-switcher-mobile button {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    color: var(--clr-text-light);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+  
+  .lang-switcher-mobile button:hover {
+    color: var(--clr-accent-blue);
+  }
+  
 
   .nav-links a {
     font-size: 1.3rem;
