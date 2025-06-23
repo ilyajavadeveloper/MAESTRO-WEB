@@ -35,13 +35,15 @@ const Footer = () => {
                 {t("address")}
               </a>
             </p>
+                    
             <a
+            
               className="whatsapp-btn"
               href="https://wa.me/972524388967"
               target="_blank"
               rel="noreferrer"
             >
-              <FaWhatsapp /> {t("whatsapp_btn")}
+      <FaWhatsapp /> {t("whatsapp_btn")}
             </a>
           </div>
 

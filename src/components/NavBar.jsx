@@ -12,35 +12,34 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="navbar-container">
+        {/* Логотип */}
         <div className="logo">MAESTRO<span>WEB</span></div>
 
-        {/* Центр: Языки на десктопе */}
+        {/* Языки по центру (только на десктопе) */}
         <div className="lang-switcher-center">
           <LanguageSwitcher />
         </div>
 
+        {/* Ссылки и бургер */}
         <div className="navbar-right">
           <nav className={`nav-links ${isOpen ? "open" : ""}`}>
             <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
             <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
             <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
             <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
+            {/* Языки только в бургер-режиме */}
+            <div className="lang-switcher-mobile">
+              <LanguageSwitcher />
+            </div>
           </nav>
 
-          <div className="burger" onClick={toggleMenu}>
-            <div className={`line ${isOpen ? "open" : ""}`}></div>
-            <div className={`line ${isOpen ? "open" : ""}`}></div>
-            <div className={`line ${isOpen ? "open" : ""}`}></div>
+          <div className={`burger ${isOpen ? "open" : ""}`} onClick={toggleMenu}>
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
           </div>
         </div>
       </div>
-
-      {/* Языки на мобилке внизу под меню */}
-      {isOpen && (
-        <div className="lang-switcher-mobile">
-          <LanguageSwitcher />
-        </div>
-      )}
     </header>
   );
 };
