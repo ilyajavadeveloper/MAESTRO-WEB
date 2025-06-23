@@ -1,66 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Manrope:wght@400;500;700&display=swap');
+
 :root {
-    /* Используем те же переменные */
-    --clr-bg-dark: #000;
-    --clr-text-light: #fff;
-    --clr-accent-blue: #00d2ff;
-    --shadow-card-default: 0 0 30px rgba(0, 210, 255, 0.15);
-    --shadow-card-hover: 0 0 70px rgba(0, 210, 255, 0.6), 0 0 90px rgba(160, 32, 240, 0.4);
-    --transition-fast: 0.3s ease-out;
-  }
-  
+  --clr-bg-dark: #0b0b0f;
+  --clr-text-light: #ffffff;
+  --clr-text-muted: #c0c0c0;
+  --clr-accent-blue: #00d2ff;
+  --clr-accent-cyan: #00ffe0;
+  --clr-accent-violet: #6c00ff;
+  --transition-fast: 0.3s ease-out;
+  --transition-smooth: 0.5s ease-in-out;
+  --shadow-glass: 0 0 30px rgba(0, 202, 255, 0.15);
+  --shadow-glass-hover: 0 0 60px rgba(0, 202, 255, 0.4), 0 0 80px rgba(108, 0, 255, 0.3);
+  --radius-lg: 24px;
+}
+
+.services {
+  background: var(--clr-bg-dark);
+  padding: 160px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.services-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  color: var(--clr-text-light);
+  margin-bottom: 4rem;
+  text-shadow: 0 0 20px rgba(0, 202, 255, 0.4);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 3rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: linear-gradient(145deg, rgba(0,212,255,0.08), rgba(108,0,255,0.1));
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 4.2rem 2.6rem 3rem;
+  box-shadow: var(--shadow-glass);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), background var(--transition-fast), border-color var(--transition-fast);
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.035);
+  background: linear-gradient(145deg, rgba(0,212,255,0.2), rgba(108,0,255,0.2));
+  box-shadow: var(--shadow-glass-hover);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.service-icon {
+  font-size: clamp(3.6rem, 7vw, 4.6rem);
+  color: var(--clr-accent-blue);
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.4), rgba(0, 0, 0, 0.2));
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.2rem;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+  z-index: 10;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.service-card:hover .service-icon {
+  transform: translateX(-50%) translateY(-6px);
+  color: var(--clr-text-light);
+}
+
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  color: var(--clr-text-light);
+  margin-top: 4.4rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.service-card:hover h3 {
+  color: var(--clr-accent-cyan);
+}
+
+.service-card p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.service-card:hover p {
+  color: var(--clr-text-light);
+}
+
+@media (max-width: 768px) {
   .services {
-    background: var(--clr-bg-dark);
-    padding: 180px 20px;
-    text-align: center;
-    color: var(--clr-text-light);
+    padding: 120px 16px;
   }
-  
-  .services-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 4.5rem;
-    margin-bottom: 4rem;
-    text-shadow: 0 0 15px var(--clr-accent-blue);
-    animation: titlePulse 2.5s ease-in-out infinite;
-  }
-  
+
   .services-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4rem;
-    justify-content: center;
+    gap: 2rem;
+    grid-template-columns: 1fr;
   }
-  
+
   .service-card {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 3.5rem 2.5rem; /* Увеличенный padding */
-    width: 380px;
-    border-radius: 28px;
-    box-shadow: var(--shadow-card-default);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    cursor: pointer;
+    padding: 3.5rem 1.6rem 2.4rem;
   }
-  
-  .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-card-hover);
-  }
-  
+
   .service-icon {
-    font-size: 4.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--clr-accent-blue);
+    font-size: 2.8rem;
+    top: -2.6rem;
   }
-  
-  .service-card h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: 2rem;
-    color: var(--clr-text-light);
-    margin-bottom: 1rem;
-  }
-  
-  .service-card p {
-    font-family: 'Inter', sans-serif;
-    color: var(--clr-text-light);
-    line-height: 1.7;
-  }
-  
+}

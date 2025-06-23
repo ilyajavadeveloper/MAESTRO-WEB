@@ -1,30 +1,16 @@
-// src/components/AboutUs.jsx
 import React from "react";
 import "./AboutUs.css";
 import { motion } from "framer-motion";
 import { FaBullseye, FaLightbulb, FaUsers } from "react-icons/fa";
-import { useTranslation } from "react-i18next"; // <-- Добавляем импорт
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
-  const { t } = useTranslation(); // <-- Инициализируем хук
+  const { t } = useTranslation();
 
-  // Данные теперь будут определяться внутри компонента
   const items = [
-    {
-      icon: <FaBullseye />,
-      titleKey: "our_mission_title", // Ключ для заголовка
-      textKey: "our_mission_text",   // Ключ для текста
-    },
-    {
-      icon: <FaLightbulb />,
-      titleKey: "our_approach_title",
-      textKey: "our_approach_text",
-    },
-    {
-      icon: <FaUsers />,
-      titleKey: "our_team_title",
-      textKey: "our_team_text",
-    },
+    { icon: <FaBullseye />, titleKey: "our_mission_title", textKey: "our_mission_text" },
+    { icon: <FaLightbulb />, titleKey: "our_approach_title", textKey: "our_approach_text" },
+    { icon: <FaUsers />, titleKey: "our_team_title", textKey: "our_team_text" },
   ];
 
   const handleMouseMove = (e, i) => {
@@ -47,13 +33,15 @@ const AboutUs = () => {
       <motion.h2
         className="about-title"
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {t("about_us")} {/* <-- Переводим заголовок секции "О нас" */}
+        {t("about_us")}
       </motion.h2>
+
       <div className="about-grid">
-        {items.map((it, i) => (
+        {items.map((item, i) => (
           <motion.div
             key={i}
             className="about-card"
@@ -64,9 +52,9 @@ const AboutUs = () => {
             onMouseMove={(e) => handleMouseMove(e, i)}
             onMouseLeave={() => reset(i)}
           >
-            <div className="about-icon">{it.icon}</div>
-            <h3>{t(it.titleKey)}</h3> {/* <-- Переводим заголовок карточки */}
-            <p>{t(it.textKey)}</p>     {/* <-- Переводим текст карточки */}
+            <div className="about-icon">{item.icon}</div>
+            <h3>{t(item.titleKey)}</h3>
+            <p>{t(item.textKey)}</p>
           </motion.div>
         ))}
       </div>

@@ -1,37 +1,35 @@
-/* Подключаем шрифты */
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Manrope:wght@400;500;700&display=swap');
 
-/* Глобальные переменные */
 :root {
-  --clr-bg-dark: #000;
-  --clr-text-light: #fff;
-  --clr-accent: #00d2ff;
-  --clr-accent-dark: #00a0e6;
+  --clr-bg-dark: #0b0b0f;
+  --clr-text-light: #f5f5f5;
+  --clr-text-muted: #bcbcbc;
+  --clr-accent-blue: #00caff;
+  --clr-accent-purple: #9b59b6;
   --transition-fast: 0.3s ease;
-  --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.4);
-  --shadow-accent: 0 0 15px rgba(0, 210, 255, 0.6);
+  --shadow-navbar: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 12px rgba(0, 202, 255, 0.3);
 }
 
-/* Навбар */
+/* === Навбар === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-navbar);
   color: var(--clr-text-light);
   z-index: 1000;
   display: flex;
   align-items: center;
-  box-shadow: var(--shadow-dark);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar-container {
-  max-width: 1200px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -40,58 +38,59 @@
   align-items: center;
 }
 
-/* Лого */
+/* === Логотип === */
 .logo {
-  font-family: 'Anton', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 2px;
-  color: var(--clr-text-light);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-  transition: text-shadow var(--transition-fast), color var(--transition-fast);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--clr-accent-blue);
+  text-shadow: var(--shadow-glow);
   cursor: pointer;
+  transition: text-shadow var(--transition-fast), color var(--transition-fast);
 }
 
 .logo:hover {
-  color: var(--clr-accent);
-  text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+  color: var(--clr-text-light);
+  text-shadow: 0 0 15px rgba(0, 202, 255, 0.5);
 }
 
-/* Правая часть */
+/* === Навигация === */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-/* Ссылки */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.95rem;
+  font-weight: 500;
   color: var(--clr-text-light);
   text-transform: uppercase;
   text-decoration: none;
-  position: relative;
   padding: 0.5rem 0;
+  position: relative;
   transition: color var(--transition-fast);
 }
 
 .nav-links a:hover {
-  color: var(--clr-accent);
+  color: var(--clr-accent-blue);
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: var(--clr-accent);
+  background-color: var(--clr-accent-blue);
   transition: width var(--transition-fast);
 }
 
@@ -99,13 +98,13 @@
   width: 100%;
 }
 
-/* Бургер */
+/* === Бургер === */
 .burger {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 20px;
+  width: 26px;
+  height: 18px;
   cursor: pointer;
   z-index: 1100;
 }
@@ -118,16 +117,16 @@
 }
 
 .burger.open .line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 .burger.open .line:nth-child(2) {
   opacity: 0;
 }
 .burger.open .line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Языковый переключатель */
+/* === Языки === */
 .lang-switcher-desktop {
   display: flex;
   align-items: center;
@@ -140,7 +139,7 @@
   background: rgba(0, 0, 0, 0.95);
 }
 
-/* Адаптив */
+/* === Адаптив === */
 @media (max-width: 768px) {
   .navbar {
     height: 60px;
@@ -181,4 +180,8 @@
     font-size: 1.3rem;
     padding: 1rem 0;
   }
+}
+.logo span {
+  color: var(--clr-text-light);
+  font-style: italic;
 }

@@ -1,84 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Manrope:wght@400;600&display=swap');
+
 :root {
-    --clr-bg-dark: #000;
-    --clr-text-light: #fff;
-    --clr-text-muted: #ddd;
-    --clr-accent-blue: #00d2ff;
-    --shadow-light-blue: 0 0 30px rgba(0, 210, 255, 0.7);
-    --shadow-card-default: 0 0 30px rgba(0, 210, 255, 0.15);
-    --shadow-card-hover: 0 0 70px rgba(0, 210, 255, 0.6), 0 0 90px rgba(160, 32, 240, 0.4);
-    --transition-fast: 0.3s ease-out;
-  }
-  
+  --clr-bg-dark: #0b0b0f;
+  --clr-text-light: #ffffff;
+  --clr-text-muted: #c0c0c0;
+  --clr-accent-blue: #00d2ff;
+  --clr-accent-purple: #6c00ff;
+  --transition-fast: 0.3s ease-out;
+  --shadow-default: 0 0 30px rgba(0, 210, 255, 0.15);
+  --shadow-hover: 0 0 60px rgba(0, 210, 255, 0.4), 0 0 80px rgba(108, 0, 255, 0.3);
+  --radius-lg: 24px;
+  --padding-section: 160px 20px;
+}
+
+.aboutus {
+  background: var(--clr-bg-dark);
+  padding: var(--padding-section);
+  text-align: center;
+  overflow: hidden;
+}
+
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  color: var(--clr-text-light);
+  margin-bottom: 4rem;
+  text-shadow: 0 0 20px rgba(0, 202, 255, 0.4);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 3rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: linear-gradient(145deg, rgba(0,212,255,0.08), rgba(108,0,255,0.1));
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 4rem 2.4rem 3rem;
+  box-shadow: var(--shadow-default);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.about-card:hover {
+  transform: translateY(-10px) scale(1.035);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(145deg, rgba(0,212,255,0.2), rgba(108,0,255,0.2));
+}
+
+.about-icon {
+  font-size: clamp(3.4rem, 6vw, 4.4rem);
+  color: var(--clr-accent-blue);
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.4), rgba(0, 0, 0, 0.2));
+  padding: 1.2rem;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  margin: 0 auto;
+  margin-top: -3.2rem;
+  margin-bottom: 1.6rem;
+  width: fit-content;
+}
+
+.about-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--clr-text-light);
+  margin-bottom: 1rem;
+}
+
+.about-card p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--clr-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .aboutus {
-    background: var(--clr-bg-dark);
-    padding: 180px 20px;
-    color: var(--clr-text-light);
-    text-align: center;
+    padding: 120px 16px;
   }
-  
-  .about-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 4rem;
-    margin-bottom: 4rem;
-    color: var(--clr-text-light);
-    text-shadow: 0 0 15px var(--clr-accent-blue); /* Ослабленный glow */
-    animation: titlePulse 2.5s ease-in-out infinite;
-  }
-  
-  @keyframes titlePulse {
-    0%, 100% {
-      text-shadow: 0 0 15px var(--clr-accent-blue);
-      transform: scale(1);
-    }
-    50% {
-      text-shadow: 0 0 25px var(--clr-accent-blue);
-      transform: scale(1.03);
-    }
-  }
-  
+
   .about-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  
+
   .about-card {
-    width: 360px;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 3.5rem 2.5rem; /* Увеличенный padding */
-    border-radius: 28px;
-    box-shadow: var(--shadow-card-default);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    cursor: pointer;
+    padding: 3rem 1.6rem 2.5rem;
   }
-  
-  .about-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-card-hover);
-  }
-  
+
   .about-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    color: var(--clr-accent-blue);
-    transition: transform var(--transition-fast), color var(--transition-fast);
+    font-size: 2.6rem;
   }
-  
-  .about-card:hover .about-icon {
-    transform: translateY(-4px);
-  }
-  
-  .about-card h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: 1.8rem;
-    color: var(--clr-text-light);
-    margin-bottom: 1rem;
-  }
-  
-  .about-card p {
-    font-family: 'Inter', sans-serif;
-    color: var(--clr-text-muted);
-    line-height: 1.6;
-  }
-  
+}

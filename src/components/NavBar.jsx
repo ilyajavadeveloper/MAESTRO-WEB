@@ -13,7 +13,8 @@ const Navbar = () => {
     <header className="navbar">
       <div className="navbar-container">
         {/* Слева логотип */}
-        <div className="logo">MAESTROWEB</div>
+        <div className="logo">MAESTRO<span>WEB</span></div>
+
 
         {/* Справа навигация и языки */}
         <div className="navbar-right">
