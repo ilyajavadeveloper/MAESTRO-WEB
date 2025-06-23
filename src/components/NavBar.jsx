@@ -27,6 +27,15 @@ const Navbar = () => {
             <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
             <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
             <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
+            <a
+              href="https://maestro-studio-phi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+            >
+              MAESTROSTUDIO
+            </a>
+
             {/* Языки только в бургер-режиме */}
             <div className="lang-switcher-mobile">
               <LanguageSwitcher />
