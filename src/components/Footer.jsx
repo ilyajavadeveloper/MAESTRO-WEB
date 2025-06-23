@@ -14,7 +14,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="footer">
+    <footer className="footer" id="contact">
       <div className="footer-wrapper">
         <div className="footer-grid">
           <div className="footer-col">
