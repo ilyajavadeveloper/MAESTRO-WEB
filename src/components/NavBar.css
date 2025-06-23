@@ -3,15 +3,12 @@
 :root {
   --clr-bg-dark: #0b0b0f;
   --clr-text-light: #f5f5f5;
-  --clr-text-muted: #bcbcbc;
   --clr-accent-blue: #00caff;
-  --clr-accent-purple: #9b59b6;
   --transition-fast: 0.3s ease;
   --shadow-navbar: 0 4px 12px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 12px rgba(0, 202, 255, 0.3);
 }
 
-/* === Navbar === */
 .navbar {
   position: fixed;
   top: 0;
@@ -24,21 +21,22 @@
   color: var(--clr-text-light);
   z-index: 1000;
   display: flex;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar-container {
-  max-width: 1280px;
   width: 100%;
-  margin: 0 auto;
+  max-width: 1280px;
   padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
-/* === Logo === */
+/* Логотип */
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.9rem;
@@ -60,13 +58,7 @@
   font-style: italic;
 }
 
-/* === Navigation === */
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
+/* Навигация */
 .nav-links {
   display: flex;
   gap: 2.5rem;
@@ -77,8 +69,8 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--clr-text-light);
-  text-transform: uppercase;
   text-decoration: none;
+  text-transform: uppercase;
   padding: 0.5rem 0;
   position: relative;
   transition: color var(--transition-fast);
@@ -89,7 +81,7 @@
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -103,7 +95,27 @@
   width: 100%;
 }
 
-/* === Burger Menu === */
+/* Языки на десктопе */
+.lang-switcher-desktop {
+  display: flex;
+  gap: 1rem;
+}
+
+.lang-switcher-desktop button {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  background: none;
+  border: none;
+  color: var(--clr-text-light);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.lang-switcher-desktop button:hover {
+  color: var(--clr-accent-blue);
+}
+
+/* Бургер */
 .burger {
   display: none;
   flex-direction: column;
@@ -111,7 +123,7 @@
   width: 26px;
   height: 18px;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 1101;
 }
 
 .line {
@@ -131,36 +143,12 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* === Language Switchers === */
-.lang-switcher-desktop {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.lang-switcher-mobile {
+/* Языки внизу (только мобилка) */
+.navbar-language-bottom {
   display: none;
-  flex-direction: row;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.4rem 0 0.5rem;
 }
 
-.lang-switcher-mobile button {
-  font-family: 'Manrope', sans-serif;
-  font-size: 1rem;
-  color: var(--clr-text-light);
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.lang-switcher-mobile button:hover {
-  color: var(--clr-accent-blue);
-}
-
-/* === Responsive === */
+/* ============ Мобилка ============ */
 @media (max-width: 768px) {
   .navbar {
     height: 60px;
@@ -179,7 +167,6 @@
     transform: translateX(-100%);
     transition: transform var(--transition-fast);
     gap: 2.5rem;
-    padding-bottom: 90px;
   }
 
   .nav-links.open {
@@ -190,35 +177,34 @@
     display: flex;
   }
 
-  .lang-switcher-mobile {
+  .lang-switcher-desktop {
+    display: none;
+  }
+
+  .navbar-language-bottom {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1.2rem 0;
     position: absolute;
-    bottom: 24px;
+    bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
+    gap: 1.2rem;
   }
-  
-  .lang-switcher-mobile button {
+
+  .navbar-language-bottom button {
     font-family: 'Manrope', sans-serif;
-    font-size: 1rem;
+    font-size: 0.85rem;
     background: none;
     border: none;
     color: var(--clr-text-light);
     cursor: pointer;
     transition: color var(--transition-fast);
   }
-  
-  .lang-switcher-mobile button:hover {
+
+  .navbar-language-bottom button:hover {
     color: var(--clr-accent-blue);
   }
-  
 
   .nav-links a {
     font-size: 1.3rem;
-    padding: 1rem 0;
   }
 }
