@@ -12,11 +12,13 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* Слева логотип */}
         <div className="logo">MAESTRO<span>WEB</span></div>
 
+        {/* Центр: Языки на десктопе */}
+        <div className="lang-switcher-center">
+          <LanguageSwitcher />
+        </div>
 
-        {/* Справа навигация и языки */}
         <div className="navbar-right">
           <nav className={`nav-links ${isOpen ? "open" : ""}`}>
             <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
@@ -25,12 +27,6 @@ const Navbar = () => {
             <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
           </nav>
 
-          {/* Языки справа от ссылок (только на десктопе) */}
-          <div className="lang-switcher-desktop">
-            <LanguageSwitcher />
-          </div>
-
-          {/* Бургер */}
           <div className="burger" onClick={toggleMenu}>
             <div className={`line ${isOpen ? "open" : ""}`}></div>
             <div className={`line ${isOpen ? "open" : ""}`}></div>
@@ -39,7 +35,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Языки внутри меню (мобилка) */}
+      {/* Языки на мобилке внизу под меню */}
       {isOpen && (
         <div className="lang-switcher-mobile">
           <LanguageSwitcher />
