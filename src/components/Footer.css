@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Anton&display=swap');
 
 :root {
-  --clr-bg-footer: rgba(0, 0, 0, 0.6);
+  --clr-bg-footer: rgba(0, 0, 0, 0.7);
   --clr-border: rgba(255, 255, 255, 0.1);
-  --clr-text: #f5f5f5;
+  --clr-text: #ffffff;
   --clr-muted: #b0b0b0;
   --clr-accent: #00d2ff;
   --clr-green: #25D366;
@@ -12,7 +12,7 @@
 
 .footer {
   background: var(--clr-bg-footer);
-  padding: 80px 20px 40px;
+  padding: 100px 20px 60px;
   color: var(--clr-text);
   font-family: 'Inter', sans-serif;
   backdrop-filter: blur(24px);
@@ -20,31 +20,39 @@
 }
 
 .footer-wrapper {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 60px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .footer-col h4 {
   font-family: 'Anton', sans-serif;
-  font-size: 20px;
+  font-size: 1.4rem;
   color: var(--clr-accent);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.footer-col p,
-.footer-col a {
-  font-size: 0.95rem;
+.footer-col a,
+.footer-col p {
+  font-size: 1.05rem;
   color: var(--clr-muted);
   text-decoration: none;
-  margin-bottom: 10px;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: color var(--transition);
 }
 
@@ -52,23 +60,24 @@
   color: var(--clr-accent);
 }
 
-ul {
+.footer-list {
   padding: 0;
-  margin: 0;
   list-style: none;
+  margin: 0;
 }
 
-ul li {
-  margin-bottom: 8px;
+.footer-list li {
+  margin-bottom: 10px;
 }
 
 .whatsapp-btn {
   color: var(--clr-green);
+  font-weight: 600;
+  font-size: 1.05rem;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
-  margin-top: 12px;
+  margin-top: 14px;
   transition: color var(--transition);
 }
 .whatsapp-btn:hover {
@@ -77,13 +86,14 @@ ul li {
 
 .socials {
   display: flex;
-  gap: 16px;
-  margin-top: 10px;
+  gap: 24px;
+  margin-top: 12px;
+  justify-content: start;
 }
 
 .socials a {
   color: var(--clr-muted);
-  font-size: 20px;
+  font-size: 1.5rem;
   transition: transform var(--transition), color var(--transition);
 }
 .socials a:hover {
@@ -93,28 +103,43 @@ ul li {
 
 .footer-bottom {
   text-align: center;
-  margin-top: 50px;
-  font-size: 0.85rem;
+  margin-top: 60px;
+  font-size: 0.9rem;
   color: #888;
   border-top: 1px solid var(--clr-border);
   padding-top: 20px;
 }
 
-/* 📱 Mobile */
+/* 📱 Адаптация */
 @media (max-width: 768px) {
-  .footer-col {
-    text-align: center;
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
   }
 
-  .footer-col h4 {
-    font-size: 18px;
+  .footer-col {
+    align-items: center;
+    text-align: center;
   }
 
   .socials {
     justify-content: center;
   }
 
-  .footer-grid {
-    gap: 32px;
+  .footer-col h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-list li {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,3 +1,4 @@
+// ✅ Footer.jsx (симметрично выровненные иконки + улучшенный стиль)
 import React from "react"
 import "./Footer.css"
 import {
@@ -19,37 +20,23 @@ const Footer = () => {
         <div className="footer-grid">
           <div className="footer-col">
             <h4>{t("footer_contacts")}</h4>
-            <p>
-              <FaPhone />{" "}
-              <a href="https://wa.me/972524388967" target="_blank" rel="noreferrer">
-                +972 52 438 8967
-              </a>
-            </p>
-            <p>
-              <FaMapMarkerAlt />{" "}
-              <a
-                href="https://www.google.com/maps?q=Herzl+St+Tel+Aviv"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t("address")}
-              </a>
-            </p>
-                    
+            <ul className="footer-list">
+              <li><FaPhone /><a href="https://wa.me/972524388967" target="_blank" rel="noreferrer">+972 52 438 8967</a></li>
+              <li><FaMapMarkerAlt /><a href="https://www.google.com/maps?q=Herzl+St+Tel+Aviv" target="_blank" rel="noreferrer">{t("address")}</a></li>
+            </ul>
             <a
-            
               className="whatsapp-btn"
               href="https://wa.me/972524388967"
               target="_blank"
               rel="noreferrer"
             >
-      <FaWhatsapp /> {t("whatsapp_btn")}
+              <FaWhatsapp /> {t("whatsapp_btn")}
             </a>
           </div>
 
           <div className="footer-col">
             <h4>{t("footer_navigation")}</h4>
-            <ul>
+            <ul className="footer-list">
               <li><a href="#services">{t("footer_services")}</a></li>
               <li><a href="#about">{t("footer_about_us")}</a></li>
               <li><a href="#faq">{t("footer_faq")}</a></li>
@@ -59,17 +46,13 @@ const Footer = () => {
 
           <div className="footer-col">
             <h4>{t("portfolio_web_dev")}</h4>
-            <a href="https://portfolio-ilyajavadevs-projects.vercel.app/" target="_blank" rel="noreferrer">
-              {t("portfolio_web_dev")}
-            </a>
+            <a href="https://portfolio-ilyajavadevs-projects.vercel.app/" target="_blank" rel="noreferrer">{t("portfolio_web_dev")}</a>
             <h4>{t("portfolio_maestrostudio")}</h4>
-            <a href="https://maestro-studio-phi.vercel.app/" target="_blank" rel="noreferrer">
-              {t("portfolio_studio_site")}
-            </a>
+            <a href="https://maestro-studio-phi.vercel.app/" target="_blank" rel="noreferrer">{t("portfolio_studio_site")}</a>
             <h4>{t("footer_social_media")}</h4>
             <div className="socials">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer"><FaFacebookF /></a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer"><FaInstagram /></a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
             </div>
           </div>
         </div>
