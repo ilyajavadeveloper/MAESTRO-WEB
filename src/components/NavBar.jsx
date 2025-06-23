@@ -1,56 +1,51 @@
+// src/components/Navbar.jsx
 import React, { useState } from "react";
+import "./NavBar.css";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
-import "./Navbar.css";
 
 const Navbar = () => {
-  const { t, i18n } = useTranslation();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const { t } = useTranslation();
 
   return (
-    <nav className="navbar">
+    <header className="navbar">
       <div className="navbar-container">
-        {/* Логотип */}
-        <div className="logo" onClick={() => window.scrollTo(0, 0)}>
-          HUDZ<span>AHAV</span>
-        </div>
+        {/* Слева логотип */}
+        <div className="logo">MAESTRO<span>WEB</span></div>
 
-        {/* Навигация */}
-        <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <a href="#about">{t("nav_about")}</a>
-          <a href="#services">{t("nav_services")}</a>
-          <a href="#gallery">{t("nav_gallery")}</a>
-          <a href="#faq">{t("nav_faq")}</a>
-          <a href="#contact">{t("nav_contact")}</a>
-        </div>
 
-        {/* Языки на десктопе */}
-        <div className="lang-switcher-desktop">
-          <button onClick={() => changeLanguage("en")}>EN</button>
-          <button onClick={() => changeLanguage("ru")}>RU</button>
-          <button onClick={() => changeLanguage("he")}>HE</button>
-        </div>
+        {/* Справа навигация и языки */}
+        <div className="navbar-right">
+          <nav className={`nav-links ${isOpen ? "open" : ""}`}>
+            <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
+            <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
+            <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
+            <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
+          </nav>
 
-        {/* Бургер */}
-        <div className={`burger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
-          <div className="line" />
-          <div className="line" />
-          <div className="line" />
+          {/* Языки справа от ссылок (только на десктопе) */}
+          <div className="lang-switcher-desktop">
+            <LanguageSwitcher />
+          </div>
+
+          {/* Бургер */}
+          <div className="burger" onClick={toggleMenu}>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+            <div className={`line ${isOpen ? "open" : ""}`}></div>
+          </div>
         </div>
       </div>
 
-      {/* Языки снизу navbar на мобилке */}
-      <div className="navbar-language-bottom">
-        <button onClick={() => changeLanguage("en")}>EN</button>
-        <button onClick={() => changeLanguage("ru")}>RU</button>
-        <button onClick={() => changeLanguage("he")}>HE</button>
-      </div>
-    </nav>
+      {/* Языки внутри меню (мобилка) */}
+      {isOpen && (
+        <div className="lang-switcher-mobile">
+          <LanguageSwitcher />
+        </div>
+      )}
+    </header>
   );
 };
 
