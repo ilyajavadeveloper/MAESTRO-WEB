@@ -11,7 +11,7 @@
   --shadow-glow: 0 0 12px rgba(0, 202, 255, 0.3);
 }
 
-/* === Навбар === */
+/* === Navbar === */
 .navbar {
   position: fixed;
   top: 0;
@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-/* === Логотип === */
+/* === Logo === */
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.9rem;
@@ -55,7 +55,12 @@
   text-shadow: 0 0 15px rgba(0, 202, 255, 0.5);
 }
 
-/* === Навигация === */
+.logo span {
+  color: var(--clr-text-light);
+  font-style: italic;
+}
+
+/* === Navigation === */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -98,7 +103,7 @@
   width: 100%;
 }
 
-/* === Бургер === */
+/* === Burger Menu === */
 .burger {
   display: none;
   flex-direction: column;
@@ -126,20 +131,36 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* === Языки === */
+/* === Language Switchers === */
 .lang-switcher-desktop {
   display: flex;
   align-items: center;
+  gap: 0.8rem;
 }
 
 .lang-switcher-mobile {
   display: none;
+  flex-direction: row;
   justify-content: center;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.95);
+  gap: 1rem;
+  padding: 1.4rem 0 0.5rem;
 }
 
-/* === Адаптив === */
+.lang-switcher-mobile button {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  color: var(--clr-text-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.lang-switcher-mobile button:hover {
+  color: var(--clr-accent-blue);
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .navbar {
     height: 60px;
@@ -157,7 +178,8 @@
     justify-content: center;
     transform: translateX(-100%);
     transition: transform var(--transition-fast);
-    gap: 2rem;
+    gap: 2.5rem;
+    padding-bottom: 90px;
   }
 
   .nav-links.open {
@@ -174,14 +196,14 @@
 
   .lang-switcher-mobile {
     display: flex;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-links a {
     font-size: 1.3rem;
     padding: 1rem 0;
   }
-}
-.logo span {
-  color: var(--clr-text-light);
-  font-style: italic;
 }
