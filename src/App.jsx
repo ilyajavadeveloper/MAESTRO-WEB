@@ -36,7 +36,7 @@ function App() {
       <FAQ />
 
       <Footer />
-      <AccessibilityWidget/>
+
  {/* Ты импортировал его, но не использовал в JSX */}
     </>
   );
