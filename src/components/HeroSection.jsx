@@ -1,18 +1,17 @@
-
-// src/components/HeroSection.jsx
-import React from "react"
-import "./HeroSection.css"
-import { motion } from "framer-motion"
-import { useTranslation } from "react-i18next"
+import React from "react";
+import "./HeroSection.css";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const HeroSection = () => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
 
     return (
         <section className="hero" id="hero">
             <video className="hero-video" autoPlay muted loop playsInline>
                 <source src="/bghero1.mp4" type="video/mp4" />
             </video>
+
             <div className="hero-overlay" />
 
             <motion.h1
@@ -57,19 +56,18 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{
-                        scale: 1.05,
-                        boxShadow: "0px 0px 25px rgba(37, 211, 102, 0.6)",
-                        textShadow: "0px 0px 8px rgba(255, 255, 255, 0.6)"
+                        scale: 1.04,
+                        boxShadow:
+                            "0px 0px 28px rgba(0, 202, 255, 0.75), 0px 0px 64px rgba(0, 202, 255, 0.32)"
                     }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
-                    <span className="btn-glow" />
                     {t("hero_whatsapp_btn")}
                 </motion.a>
             </motion.div>
         </section>
-    )
-}
+    );
+};
 
-export default HeroSection
+export default HeroSection;

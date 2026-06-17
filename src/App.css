@@ -1,42 +1,111 @@
+/* App.css — чистый глобальный слой без чёрных квадратов вокруг кнопок */
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #0b0b0f;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
 }
 
-.card {
-  padding: 2em;
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.read-the-docs {
-  color: #888;
+a {
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ВАЖНО:
+   этот блок специально гасит глобальные стили,
+   которые могли создавать чёрный квадрат вокруг hero-кнопки.
+*/
+
+.hero .btn,
+.hero .btn:hover,
+.hero .btn:focus,
+.hero .btn:focus-visible,
+.hero .btn:active {
+  outline: none !important;
+  text-decoration: none !important;
+  background-clip: padding-box !important;
+}
+
+/* Если в старом App.css были глобальные a::before / a::after / .btn::after —
+   вот тут мы их убиваем только внутри hero, не ломая весь сайт. */
+.hero .btn::after,
+.hero .btn-whatsapp::after,
+.hero-buttons .btn::after,
+.hero-buttons a::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* На всякий случай убираем старый чёрный фон с вложенных элементов кнопки */
+.hero .btn span,
+.hero .btn-whatsapp span {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Убирает возможный браузерный/глобальный фокус-квадрат */
+.hero a:focus,
+.hero a:focus-visible,
+.hero button:focus,
+.hero button:focus-visible {
+  outline: none !important;
+}
+
+/* Не даём глобальным стилям превращать ссылку в квадратный блок */
+.hero-buttons a {
+  border-radius: 999px !important;
+  background-color: transparent;
+}
+
+/* Общий контейнер приложения, если где-то используешь .App */
+.App {
+  min-height: 100vh;
+  background: #0b0b0f;
+  color: #ffffff;
 }
