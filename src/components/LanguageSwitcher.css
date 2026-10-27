@@ -1,28 +1,32 @@
-/* src/components/LanguageSwitcher.css */
 .lang-switcher {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .lang-switcher button {
-    background: none;
-    border: 1px solid #fff;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s, color 0.2s;
-  }
-  
-  .lang-switcher button:hover {
-    background: #fff;
-    color: #000;
-  }
-  
-  .lang-switcher button.active {
-    background: #fff;
-    color: #000;
-  }
-  
+  display: inline-flex;
+  gap: 0.4rem;
+  padding: 4px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+}
+
+.lang-switcher button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 5px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Manrope', 'Rubik', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.lang-switcher button:hover {
+  color: #ffffff;
+  background: rgba(0, 210, 255, 0.15);
+}
+
+.lang-switcher button.active {
+  background: #00d2ff;
+  color: #0b0b0f;
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
+}

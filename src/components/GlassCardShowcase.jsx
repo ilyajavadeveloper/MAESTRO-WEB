@@ -1,12 +1,11 @@
-// src/components/GlassCardShowcase.jsx
-import React from "react"
-import "./GlassCardShowcase.css"
-import { motion } from "framer-motion"
-import { FaRobot, FaPenNib, FaImages } from "react-icons/fa"
-import { useTranslation } from "react-i18next"
+import React from "react";
+import "./GlassCardShowcase.css";
+import { motion } from "framer-motion";
+import { FaRobot, FaPenNib, FaImages } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const GlassCardShowcase = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const data = [
     {
@@ -24,22 +23,21 @@ const GlassCardShowcase = () => {
       textKey: "content_key_text",
       icon: <FaImages />,
     },
-  ]
+  ];
 
-  const handleMouseMove = (e, i) => {
-    const card = document.querySelectorAll(".glass-card")[i]
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const rx = ((y / rect.height - 0.5) * -8).toFixed(2)
-    const ry = ((x / rect.width - 0.5) * 8).toFixed(2)
-    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`
-  }
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rx = ((y / rect.height - 0.5) * -8).toFixed(2);
+    const ry = ((x / rect.width - 0.5) * 8).toFixed(2);
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+  };
 
-  const reset = (i) => {
-    const card = document.querySelectorAll(".glass-card")[i]
-    card.style.transform = "rotateX(0) rotateY(0) scale(1)"
-  }
+  const reset = (e) => {
+    e.currentTarget.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+  };
 
   return (
     <section className="glass-section" id="why">
@@ -56,14 +54,14 @@ const GlassCardShowcase = () => {
       <div className="glass-grid">
         {data.map((item, i) => (
           <motion.div
-            key={i}
+            key={item.titleKey}
             className="glass-card"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.2, duration: 0.6 }}
+            transition={{ delay: i * 0.15, duration: 0.6 }}
             viewport={{ once: true }}
-            onMouseMove={(e) => handleMouseMove(e, i)}
-            onMouseLeave={() => reset(i)}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={reset}
           >
             <div className="icon-box">{item.icon}</div>
             <h3>{t(item.titleKey)}</h3>
@@ -72,7 +70,7 @@ const GlassCardShowcase = () => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default GlassCardShowcase
+export default GlassCardShowcase;

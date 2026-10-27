@@ -1,43 +1,41 @@
-// src/App.jsx
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import './i18n'; // Импортируй свою конфигурацию i18n
-
+import "./i18n";
 import "./index.css";
-import Navbar from "./components/NavBar";
-import Services from "./components/Services.jsx"; // ИСПРАВЛЕНО
-import GlassCardShowcase from "./components/GlassCardShowcase.jsx"; // ИСПРАВЛЕНО
-import FAQ from "./components/FAQ.jsx"; // ИСПРАВЛЕНО
-import ContactSection from "./components/ContactSection.jsx"; // ИСПРАВЛЕНО
-import AboutUs from "./components/AboutUs.jsx"; // ИСПРАВЛЕНО
-import AccessibilityButton from "./components/AccessibilityButton.jsx"; // ИСПРАВЛЕНО
-import Footer from "./components/Footer.jsx"; // Вероятно, тоже .jsx
-import HeroSection from "./components/HeroSection.jsx"; // ИСПРАВЛЕНО
-import CustomCursor from "./components/CustomCursor.jsx"; // ИСПРАВЛЕНО
-import GlitchIntro from "./components/GlitchIntro.jsx"; // ИСПРАВЛЕНО
-import AccessibilityWidget from "./components/AccessibilityWidget.jsx";
+
+import Navbar from "./components/NavBar.jsx";
+import HeroSection from "./components/HeroSection.jsx";
+import GlassCardShowcase from "./components/GlassCardShowcase.jsx";
+import Services from "./components/Services.jsx";
+import AboutUs from "./components/AboutUs.jsx";
+import FAQ from "./components/FAQ.jsx";
+import ContactSection from "./components/ContactSection.jsx";
+import Footer from "./components/Footer.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
 
 function App() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    document.documentElement.dir = i18n.dir(i18n.language);
-  }, [i18n.language, i18n]); // Добавляем i18n в зависимости, если еще не добавлено
+    const lang = i18n.resolvedLanguage || i18n.language || "en";
+    document.documentElement.dir = i18n.dir(lang);
+    document.documentElement.lang = lang;
+  }, [i18n.language, i18n.resolvedLanguage, i18n]);
 
   return (
     <>
       <CustomCursor />
       <Navbar />
-      <HeroSection/>
-      <GlassCardShowcase />
-      <Services/>
-      <AboutUs/>
-      <FAQ />
-
+      <main>
+        <HeroSection />
+        <GlassCardShowcase />
+        <Services />
+        <AboutUs />
+        <FAQ />
+        <ContactSection />
+      </main>
       <Footer />
-
- {/* Ты импортировал его, но не использовал в JSX */}
     </>
   );
 }

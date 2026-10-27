@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState } from "react";
 import "./NavBar.css";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -6,47 +5,54 @@ import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const closeMenu = () => setIsOpen(false);
   const { t } = useTranslation();
 
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* Логотип */}
-        <div className="logo">MAESTRO<span>WEB</span></div>
+        <a href="#hero" className="logo" onClick={closeMenu}>
+          MAESTRO<span>WEB</span>
+        </a>
 
-        {/* Языки по центру (только на десктопе) */}
         <div className="lang-switcher-center">
           <LanguageSwitcher />
         </div>
 
-        {/* Ссылки и бургер */}
         <div className="navbar-right">
-          <nav className={`nav-links ${isOpen ? "open" : ""}`}>
-            <a href="#services" onClick={() => setIsOpen(false)}>{t("nav_services")}</a>
-            <a href="#about" onClick={() => setIsOpen(false)}>{t("nav_about")}</a>
-            <a href="#faq" onClick={() => setIsOpen(false)}>{t("nav_faq")}</a>
-            <a href="#contact" onClick={() => setIsOpen(false)}>{t("nav_contacts")}</a>
+          <nav className={`nav-links ${isOpen ? "open" : ""}`} aria-label="Main Navigation">
+            <a href="#why" onClick={closeMenu}>{t("nav_why")}</a>
+            <a href="#services" onClick={closeMenu}>{t("nav_services")}</a>
+            <a href="#about" onClick={closeMenu}>{t("nav_about")}</a>
+            <a href="#faq" onClick={closeMenu}>{t("nav_faq")}</a>
+            <a href="#contact" onClick={closeMenu}>{t("nav_contacts")}</a>
             <a
               href="https://maestro-studio-phi.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setIsOpen(false)}
+              className="nav-external"
+              onClick={closeMenu}
             >
-              MAESTROSTUDIO
+              {t("nav_maestrostudio")}
             </a>
 
-            {/* Языки только в бургер-режиме */}
             <div className="lang-switcher-mobile">
               <LanguageSwitcher />
             </div>
           </nav>
 
-          <div className={`burger ${isOpen ? "open" : ""}`} onClick={toggleMenu}>
-            <div className="line"></div>
-            <div className="line"></div>
-            <div className="line"></div>
-          </div>
+          <button
+            type="button"
+            className={`burger ${isOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+          >
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </button>
         </div>
       </div>
     </header>

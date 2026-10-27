@@ -1,6 +1,6 @@
-import React from "react"
-import "./Services.css"
-import { motion } from "framer-motion"
+import React from "react";
+import "./Services.css";
+import { motion } from "framer-motion";
 import {
   FaLaptopCode,
   FaCameraRetro,
@@ -8,11 +8,11 @@ import {
   FaAddressCard,
   FaPalette,
   FaCommentDots,
-} from "react-icons/fa"
-import { useTranslation } from "react-i18next"
+} from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Services = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const servicesData = [
     {
@@ -45,22 +45,21 @@ const Services = () => {
       titleKey: "service_feedback_title",
       descKey: "service_feedback_desc",
     },
-  ]
+  ];
 
-  const handleMouseMove = (e, i) => {
-    const card = document.querySelectorAll(".service-card")[i]
-    const { left, top, width, height } = card.getBoundingClientRect()
-    const x = e.clientX - left
-    const y = e.clientY - top
-    const rotateX = ((y / height - 0.5) * -10).toFixed(2)
-    const rotateY = ((x / width - 0.5) * 10).toFixed(2)
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-  }
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const { left, top, width, height } = card.getBoundingClientRect();
+    const x = e.clientX - left;
+    const y = e.clientY - top;
+    const rotateX = ((y / height - 0.5) * -10).toFixed(2);
+    const rotateY = ((x / width - 0.5) * 10).toFixed(2);
+    card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+  };
 
-  const reset = (i) => {
-    const card = document.querySelectorAll(".service-card")[i]
-    card.style.transform = "rotateX(0) rotateY(0) scale(1)"
-  }
+  const reset = (e) => {
+    e.currentTarget.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+  };
 
   return (
     <section className="services" id="services">
@@ -77,14 +76,14 @@ const Services = () => {
       <div className="services-grid">
         {servicesData.map((s, i) => (
           <motion.div
-            key={i}
+            key={s.titleKey}
             className="service-card"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
+            transition={{ delay: i * 0.12, duration: 0.6 }}
             viewport={{ once: true }}
-            onMouseMove={(e) => handleMouseMove(e, i)}
-            onMouseLeave={() => reset(i)}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={reset}
           >
             <div className="service-icon">{s.icon}</div>
             <h3>{t(s.titleKey)}</h3>
@@ -93,7 +92,7 @@ const Services = () => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;

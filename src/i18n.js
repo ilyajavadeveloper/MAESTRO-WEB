@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -9,25 +8,22 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en', // Изменил на 'en' - лучше иметь 'en' как запасной, если 'ru' не нужен как основной
-    debug: true,
+    fallbackLng: 'en',
+    debug: false,
     interpolation: {
       escapeValue: false,
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',
     },
-    // i18next автоматически определяет dir для известных RTL языков (например, 'he', 'ar')
-    // Но если хочешь быть уверенным, можно явно указать языки, для которых есть RTL:
-    supportedLngs: ['en', 'ru', 'he'], // Добавь все поддерживаемые языки
+    supportedLngs: ['en', 'ru', 'he'],
     detection: {
-      order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
     },
     react: {
-        useSuspense: false, // Отключи, если не используешь React.Suspense
+      useSuspense: false,
     },
-    lng: 'en', // Начальный язык
   });
 
 export default i18n;
