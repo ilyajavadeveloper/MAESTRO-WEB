@@ -1,32 +1,72 @@
 .lang-switcher {
   display: inline-flex;
-  gap: 0.4rem;
-  padding: 4px;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 210, 255, 0.2);
+  align-items: center;
+  user-select: none;
 }
 
-.lang-switcher button {
+.lang-switcher-track {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 202, 255, 0.25);
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  gap: 2px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lang-switcher-track:hover {
+  border-color: rgba(0, 202, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 202, 255, 0.25);
+}
+
+.lang-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.75);
-  padding: 5px 12px;
-  border-radius: 50px;
+  outline: none;
+  color: rgba(255, 255, 255, 0.7);
+  width: 38px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
   cursor: pointer;
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.25s ease;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0;
+  margin: 0;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.lang-switcher button:hover {
+.lang-btn:hover:not(.active) {
   color: #ffffff;
-  background: rgba(0, 210, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.lang-switcher button.active {
-  background: #00d2ff;
+.lang-btn.active {
   color: #0b0b0f;
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
+  background: #00d2ff;
+  box-shadow: 0 0 14px rgba(0, 210, 255, 0.65);
+  font-weight: 800;
+}
+
+/* Mobile specific styling inside drawer */
+.lang-switcher-mobile .lang-switcher-track {
+  padding: 4px;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 202, 255, 0.35);
+}
+
+.lang-switcher-mobile .lang-btn {
+  width: 48px;
+  height: 36px;
+  font-size: 0.95rem;
 }

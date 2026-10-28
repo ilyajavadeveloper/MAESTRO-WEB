@@ -1,8 +1,9 @@
 :root {
   --clr-bg-dark: #0b0b0f;
   --clr-text-light: #f5f5f5;
-  --clr-text-muted: #c2c2c2;
+  --clr-text-muted: #b8c0cc;
   --clr-accent-blue: #00caff;
+  --clr-accent-cyan: #00ffd5;
   --clr-green: #25D366;
   --shadow-glow: 0 0 25px rgba(0, 202, 255, 0.35);
 }
@@ -10,7 +11,9 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  padding: 150px 20px 110px;
+  min-height: 100svh;
+  width: 100%;
+  padding: calc(78px + 3rem) 1.5rem 3.5rem;
   background: var(--clr-bg-dark);
   display: flex;
   flex-direction: column;
@@ -18,6 +21,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  box-sizing: border-box;
   z-index: 1;
 }
 
@@ -28,8 +32,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.32) blur(2px);
+  filter: brightness(0.28) blur(1.5px);
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-overlay {
@@ -38,60 +43,104 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(0, 202, 255, 0.08), transparent 70%);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 11, 15, 0.7) 0%,
+    rgba(11, 11, 15, 0.35) 45%,
+    rgba(11, 11, 15, 0.88) 85%,
+    #0b0b0f 100%
+  );
   z-index: 1;
+  pointer-events: none;
 }
 
-.hero-overlay::after {
-  content: "";
+.hero-radial-glow {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 45%;
-  width: 100%;
-  background: linear-gradient(to top, var(--clr-bg-dark), transparent);
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(1000px, 90vw);
+  height: 480px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 202, 255, 0.12) 0%,
+    rgba(0, 104, 255, 0.05) 45%,
+    transparent 70%
+  );
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(40px);
 }
 
-.hero-badge {
+.hero-content {
+  position: relative;
   z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Badge with stable width to prevent cycling word jitter */
+.hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 1.2rem;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.4rem;
   margin-bottom: 1.5rem;
   border-radius: 50px;
   background: rgba(0, 202, 255, 0.08);
-  border: 1px solid rgba(0, 202, 255, 0.28);
+  border: 1px solid rgba(0, 202, 255, 0.3);
   box-shadow: 0 0 20px rgba(0, 202, 255, 0.15);
-  min-width: 140px;
-  justify-content: center;
+  min-width: 185px;
+  height: 36px;
+  box-sizing: border-box;
 }
 
 .hero-badge-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--clr-accent-blue);
-  box-shadow: 0 0 10px var(--clr-accent-blue);
+  background: var(--clr-accent-cyan);
+  box-shadow: 0 0 10px var(--clr-accent-cyan);
+  flex-shrink: 0;
 }
 
 .hero-badge-word {
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--clr-accent-blue);
+  letter-spacing: 0.1em;
+  color: var(--clr-accent-cyan);
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
 }
 
+[dir="rtl"] .hero-badge-word {
+  letter-spacing: 0.03em;
+}
+
+/* Brand Name */
 .hero-brand {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 6.5vw, 4.5rem);
+  font-size: clamp(2.6rem, 6.5vw, 4.5rem);
   font-weight: 700;
+  line-height: 1.1;
   color: var(--clr-accent-blue);
-  margin: 0;
-  z-index: 2;
+  margin: 0 0 0.8rem;
   text-shadow: var(--shadow-glow);
+  letter-spacing: 0.5px;
+}
+
+[dir="rtl"] .hero-brand {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 .hero-brand span {
@@ -99,25 +148,37 @@
   font-style: italic;
 }
 
+/* Main Hero Title */
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4.8vw, 3.2rem);
-  font-weight: 600;
+  font-size: clamp(1.85rem, 4.4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.25;
   color: var(--clr-text-light);
-  margin: 1.2rem 0 0;
-  max-width: 900px;
-  z-index: 2;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.1);
+  margin: 0 0 1.2rem;
+  max-width: 860px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
+[dir="rtl"] .hero-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Subtitle */
 .hero-subtitle {
-  margin: 1.8rem 0 0;
+  margin: 0 0 2.4rem;
   max-width: 780px;
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(1.02rem, 2vw, 1.2rem);
   line-height: 1.75;
   color: var(--clr-text-muted);
-  z-index: 2;
+}
+
+[dir="rtl"] .hero-subtitle {
+  font-family: 'Rubik', sans-serif;
+  line-height: 1.8;
 }
 
 .hero-subtitle .highlight {
@@ -126,36 +187,72 @@
 }
 
 .hero-subtitle .emphasis {
-  color: var(--clr-accent-blue);
+  color: var(--clr-accent-cyan);
   font-style: italic;
   font-weight: 700;
   text-shadow: 0 0 10px rgba(0, 202, 255, 0.25);
 }
 
+[dir="rtl"] .hero-subtitle .emphasis {
+  font-style: normal;
+}
+
+/* Buttons */
 .hero-buttons {
-  margin-top: 2.8rem;
   display: flex;
-  gap: 1.25rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
   justify-content: center;
-  z-index: 2;
+  align-items: center;
+  width: 100%;
 }
 
 .btn {
-  padding: 1rem 2.2rem;
+  position: relative;
+  overflow: hidden;
+  padding: 0.95rem 2.2rem;
   font-family: 'Manrope', 'Rubik', sans-serif;
   font-weight: 700;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   border-radius: 50px;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+[dir="rtl"] .btn {
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 140%;
 }
 
 .btn-icon {
@@ -163,14 +260,14 @@
 }
 
 .btn-icon-sm {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .btn-whatsapp {
   background: var(--clr-green);
   color: #ffffff;
   border: 2px solid var(--clr-green);
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
 }
 
 .btn-whatsapp:hover {
@@ -183,6 +280,7 @@
   color: var(--clr-text-light);
   border: 2px solid rgba(0, 202, 255, 0.45);
   backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary:hover {
@@ -191,20 +289,92 @@
   color: #ffffff;
 }
 
+/* Scroll Mouse Cue */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 2;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hero-scroll-indicator:hover {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(3px);
+}
+
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid rgba(0, 202, 255, 0.55);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  box-shadow: 0 0 12px rgba(0, 202, 255, 0.2);
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 7px;
+  background-color: var(--clr-accent-cyan);
+  border-radius: 2px;
+  animation: scrollWheelAnim 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnim {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .hero {
-    padding: 120px 16px 80px;
+    padding: calc(64px + 1.8rem) 1.2rem 3rem;
+  }
+
+  .hero-badge {
+    padding: 0.4rem 1.1rem;
+    margin-bottom: 1.2rem;
+    min-width: 165px;
+    height: 34px;
+  }
+
+  .hero-badge-word {
+    font-size: 0.78rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 2rem;
+    line-height: 1.65;
   }
 
   .btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 310px;
+    padding: 0.85rem 1.6rem;
+    font-size: 0.92rem;
   }
 
   .hero-buttons {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 1rem;
+    gap: 0.9rem;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
   }
 }
