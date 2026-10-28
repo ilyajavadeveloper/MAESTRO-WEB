@@ -37,10 +37,6 @@ const Navbar = () => {
           MAESTRO<span>WEB</span>
         </a>
 
-        <div className="lang-switcher-center">
-          <LanguageSwitcher />
-        </div>
-
         <div className="navbar-right">
           <nav className={`nav-links ${isOpen ? "open" : ""}`} aria-label="Main Navigation">
             <a href="#why" onClick={closeMenu}>{t("nav_why")}</a>
@@ -62,6 +58,10 @@ const Navbar = () => {
               <LanguageSwitcher />
             </div>
           </nav>
+
+          <div className="lang-switcher-desktop">
+            <LanguageSwitcher />
+          </div>
 
           <button
             type="button"
