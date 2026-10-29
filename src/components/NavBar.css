@@ -45,17 +45,19 @@
 
 /* === Logo === */
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: var(--clr-accent-blue);
-  text-shadow: var(--shadow-glow);
+  font-family: 'Syne', 'Manrope', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--clr-text-light);
   text-decoration: none;
   cursor: pointer;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   transition: all var(--transition-fast);
   white-space: nowrap;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
 }
 
 [dir="rtl"] .logo {
@@ -65,14 +67,16 @@
 }
 
 .logo:hover {
-  color: var(--clr-text-light);
-  text-shadow: 0 0 18px rgba(0, 202, 255, 0.6);
+  text-shadow: 0 0 18px rgba(0, 202, 255, 0.55);
 }
 
 .logo span {
-  color: var(--clr-text-light);
+  font-family: 'Playfair Display', serif;
+  color: var(--clr-accent-blue);
   font-style: italic;
-  margin-left: 2px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: var(--shadow-glow);
 }
 
 /* Right side container */

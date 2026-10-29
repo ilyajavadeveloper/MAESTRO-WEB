@@ -1,18 +1,19 @@
 /* === Global Design Tokens & Resets === */
 :root {
-  --clr-bg-dark: #0b0b0f;
+  --clr-bg-dark: #07070b;
+  --clr-bg-elevated: #0d0f18;
   --clr-text-light: #ffffff;
-  --clr-text-muted: #c2c2c2;
+  --clr-text-muted: #b4bcd0;
   --clr-accent-blue: #00d2ff;
   --clr-accent-cyan: #00ffe0;
   --clr-accent-violet: #6c00ff;
   --clr-whatsapp-green: #25D366;
-  --transition-fast: 0.3s ease-out;
-  --transition-smooth: 0.5s ease-in-out;
-  --shadow-glass: 0 0 30px rgba(0, 202, 255, 0.15);
-  --shadow-glass-hover: 0 0 60px rgba(0, 202, 255, 0.4), 0 0 80px rgba(108, 0, 255, 0.3);
-  --padding-section: 140px 20px;
-  --section-padding: 140px 20px;
+  --transition-fast: 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-glass: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 202, 255, 0.08);
+  --shadow-glass-hover: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(0, 210, 255, 0.25), 0 0 70px rgba(108, 0, 255, 0.2);
+  --padding-section: 130px 20px;
+  --section-padding: 130px 20px;
   --radius-lg: 24px;
 }
 
@@ -20,9 +21,32 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background: rgba(0, 210, 255, 0.28);
+  color: #ffffff;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060609;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0, 210, 255, 0.45), rgba(108, 0, 255, 0.45));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 224, 0.75), rgba(108, 0, 255, 0.75));
+}
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 78px;
 }
 
 html, body {
@@ -33,6 +57,7 @@ html, body {
   color: var(--clr-text-light);
   font-family: 'Manrope', 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -41,11 +66,51 @@ html, body {
   overflow-x: hidden;
 }
 
+/* === Shared Section Header Styles === */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.38rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.28);
+  font-family: 'JetBrains Mono', 'Manrope', monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--clr-accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.12);
+}
+
+.section-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clr-accent-cyan);
+  box-shadow: 0 0 8px var(--clr-accent-cyan);
+}
+
 /* === RTL (Hebrew) Typography & Layout Adjustments === */
 [dir="rtl"] body {
   font-family: 'Rubik', 'Assistant', sans-serif;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
   line-height: 1.75;
+}
+
+[dir="rtl"] .section-badge {
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 0.04em;
 }
 
 [dir="rtl"] .hero-title,

@@ -16,14 +16,18 @@ const ContactSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
+        <div className="contact-glow-orb" />
+
+        <div className="section-badge contact-badge">
+          <span className="section-badge-dot" />
+          <span>{t("contact_badge")}</span>
+        </div>
+
         <h2 className="contact-title">{t("contact_title")}</h2>
         <p className="contact-subtitle">{t("contact_subtitle")}</p>
 
         <div className="contact-details">
-          <a
-            href="tel:+972524388967"
-            className="contact-chip"
-          >
+          <a href="tel:+972524388967" className="contact-chip">
             <FaPhoneAlt className="contact-chip-icon" />
             <span dir="ltr">{t("phone_number")}</span>
           </a>

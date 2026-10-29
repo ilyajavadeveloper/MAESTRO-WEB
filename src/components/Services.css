@@ -1,76 +1,106 @@
 .services {
+  position: relative;
   background: var(--clr-bg-dark);
   padding: var(--section-padding);
   text-align: center;
   overflow: hidden;
 }
 
+.services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(860px, 90%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.35), transparent);
+}
+
 .services-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--clr-text-light);
-  margin: 0 0 5rem;
-  text-shadow: 0 0 20px rgba(0, 202, 255, 0.4);
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 20%, #9beeff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3.8rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.2rem;
   max-width: 1280px;
   margin: 0 auto;
 }
 
 .service-card {
-  background: linear-gradient(145deg, rgba(0, 212, 255, 0.08), rgba(108, 0, 255, 0.1));
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  --mx: 50%;
+  --my: 50%;
+  background: linear-gradient(155deg, rgba(18, 22, 36, 0.78) 0%, rgba(10, 12, 20, 0.9) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.16);
   border-radius: var(--radius-lg);
-  padding: 4rem 2.2rem 2.8rem;
+  padding: 2.4rem 2.2rem;
   box-shadow: var(--shadow-glass);
-  transition: transform 0.25s ease-out, box-shadow var(--transition-smooth), background var(--transition-fast), border-color var(--transition-fast);
-  text-align: center;
+  transition:
+    transform 0.25s ease-out,
+    box-shadow var(--transition-smooth),
+    border-color var(--transition-fast);
+  text-align: start;
   position: relative;
   cursor: pointer;
-  overflow: visible;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.service-card:hover .card-spotlight {
+  opacity: 1;
 }
 
 .service-card:hover {
-  background: linear-gradient(145deg, rgba(0, 212, 255, 0.18), rgba(108, 0, 255, 0.18));
   box-shadow: var(--shadow-glass-hover);
-  border-color: rgba(0, 212, 255, 0.35);
+  border-color: rgba(0, 255, 224, 0.42);
 }
 
 .service-icon {
-  width: 78px;
-  height: 78px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
-  color: var(--clr-accent-blue);
-  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.35), rgba(11, 11, 15, 0.92));
-  position: absolute;
-  top: -39px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  border: 2px solid rgba(0, 212, 255, 0.35);
-  box-shadow: 0 0 28px rgba(0, 212, 255, 0.4);
-  z-index: 10;
-  transition: transform var(--transition-fast), color var(--transition-fast);
+  font-size: 1.65rem;
+  color: var(--clr-accent-cyan);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(108, 0, 255, 0.18));
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.32);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.18);
+  transition: transform var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .service-card:hover .service-icon {
-  transform: translateX(-50%) translateY(-5px);
-  color: var(--clr-text-light);
+  transform: scale(1.08) rotate(-3deg);
+  color: #ffffff;
+  border-color: var(--clr-accent-cyan);
+}
+
+.service-card:hover .card-index {
+  color: var(--clr-accent-blue);
 }
 
 .service-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+  position: relative;
+  z-index: 2;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
   color: var(--clr-text-light);
-  margin: 1.4rem 0 1rem;
-  font-weight: 600;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   transition: color var(--transition-fast);
 }
 
@@ -79,8 +109,10 @@
 }
 
 .service-card p {
+  position: relative;
+  z-index: 2;
   font-family: 'Manrope', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.7;
   color: var(--clr-text-muted);
   margin: 0;
@@ -93,19 +125,15 @@
 
 @media (max-width: 768px) {
   .services {
-    padding: 100px 16px;
-  }
-
-  .services-title {
-    margin-bottom: 4rem;
+    padding: 90px 16px;
   }
 
   .services-grid {
-    gap: 3.5rem;
+    gap: 1.5rem;
     grid-template-columns: 1fr;
   }
 
   .service-card {
-    padding: 3.4rem 1.6rem 2.2rem;
+    padding: 1.9rem 1.6rem;
   }
 }

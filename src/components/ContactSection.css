@@ -1,111 +1,153 @@
 .contact {
+  position: relative;
   background: var(--clr-bg-dark);
-  padding: 120px 20px 140px;
+  padding: 110px 20px 140px;
   color: var(--clr-text-light);
   text-align: center;
-  position: relative;
   overflow: hidden;
 }
 
+.contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(860px, 90%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.35), transparent);
+}
+
 .contact-container {
-  max-width: 880px;
+  max-width: 920px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  background: linear-gradient(145deg, rgba(0, 212, 255, 0.1), rgba(108, 0, 255, 0.12));
-  border: 1px solid rgba(0, 210, 255, 0.3);
+  background: linear-gradient(155deg, rgba(19, 23, 39, 0.85) 0%, rgba(10, 12, 22, 0.94) 100%);
+  border: 1px solid rgba(0, 210, 255, 0.28);
   border-radius: 28px;
-  box-shadow: 0 0 45px rgba(0, 202, 255, 0.2);
-  padding: 64px 36px;
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.65), 0 0 45px rgba(0, 202, 255, 0.14);
+  padding: 68px 40px;
   text-align: center;
+  overflow: hidden;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.contact-glow-orb {
+  position: absolute;
+  top: -35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.22), rgba(108, 0, 255, 0.18), transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-badge {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  position: relative;
+  z-index: 1;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
   margin: 0 0 1rem;
-  color: var(--clr-text-light);
-  text-shadow: 0 0 20px rgba(0, 202, 255, 0.4);
+  background: linear-gradient(135deg, #ffffff 20%, #9beeff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-subtitle {
+  position: relative;
+  z-index: 1;
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(1.02rem, 1.8vw, 1.16rem);
   color: var(--clr-text-muted);
-  max-width: 640px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 2.4rem;
+  line-height: 1.72;
 }
 
 .contact-details {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.2rem;
-  margin-bottom: 2.5rem;
+  gap: 1.1rem;
+  margin-bottom: 2.4rem;
 }
 
 .contact-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 50px;
-  background: rgba(11, 11, 15, 0.7);
-  border: 1px solid rgba(0, 210, 255, 0.25);
+  padding: 0.78rem 1.45rem;
+  border-radius: 999px;
+  background: rgba(9, 11, 18, 0.75);
+  border: 1px solid rgba(0, 210, 255, 0.24);
   color: var(--clr-text-light);
   text-decoration: none;
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: 0.98rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 0.96rem;
+  font-weight: 600;
+  transition: all 0.28s ease;
 }
 
 .contact-chip:hover {
-  border-color: var(--clr-accent-blue);
+  border-color: var(--clr-accent-cyan);
   background: rgba(0, 210, 255, 0.12);
-  box-shadow: 0 0 18px rgba(0, 210, 255, 0.3);
+  box-shadow: 0 0 22px rgba(0, 210, 255, 0.28);
   transform: translateY(-2px);
 }
 
 .contact-chip-icon {
-  color: var(--clr-accent-blue);
-  font-size: 1.05rem;
+  color: var(--clr-accent-cyan);
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
 .contact-btn {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 16px 34px;
+  padding: 16px 36px;
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: 1rem;
+  font-size: 0.96rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 2px solid var(--clr-whatsapp-green);
-  border-radius: 50px;
-  background: var(--clr-whatsapp-green);
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #25D366 0%, #16a34a 100%);
   color: #ffffff;
   cursor: pointer;
-  position: relative;
   overflow: hidden;
-  box-shadow: 0 0 25px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.42);
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .contact-btn .whatsapp-icon {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
 }
 
 .contact-btn:hover {
-  background: #1ebc59;
-  border-color: #1ebc59;
-  box-shadow: 0 0 40px rgba(37, 211, 102, 0.75);
-  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(37, 211, 102, 0.68);
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.06);
 }
 
 @media (max-width: 768px) {
@@ -130,6 +172,6 @@
 
   .contact-btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
   }
 }

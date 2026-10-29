@@ -19,15 +19,28 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="faq-section">
-      <motion.h2
-        className="faq-title"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        {t("faq_title")}
-      </motion.h2>
+      <div className="section-header">
+        <motion.div
+          className="section-badge"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="section-badge-dot" />
+          <span>{t("faq_badge")}</span>
+        </motion.div>
+
+        <motion.h2
+          className="faq-title"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          {t("faq_title")}
+        </motion.h2>
+      </div>
 
       <div className="faq-list">
         {questionsData.map((item, i) => {
@@ -48,7 +61,9 @@ const FAQ = () => {
                 aria-expanded={isOpen}
               >
                 <span>{t(item.qKey)}</span>
-                <FaChevronDown className={`faq-chevron ${isOpen ? "rotated" : ""}`} />
+                <span className={`faq-chevron-wrap ${isOpen ? "rotated" : ""}`}>
+                  <FaChevronDown className="faq-chevron" />
+                </span>
               </button>
 
               <AnimatePresence initial={false}>

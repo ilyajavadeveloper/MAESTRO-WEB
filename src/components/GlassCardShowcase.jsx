@@ -9,16 +9,19 @@ const GlassCardShowcase = () => {
 
   const data = [
     {
+      num: "01",
       titleKey: "ai_code_title",
       textKey: "ai_code_text",
       icon: <FaRobot />,
     },
     {
+      num: "02",
       titleKey: "design_sells_title",
       textKey: "design_sells_text",
       icon: <FaPenNib />,
     },
     {
+      num: "03",
       titleKey: "content_key_title",
       textKey: "content_key_text",
       icon: <FaImages />,
@@ -30,40 +33,62 @@ const GlassCardShowcase = () => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const rx = ((y / rect.height - 0.5) * -8).toFixed(2);
-    const ry = ((x / rect.width - 0.5) * 8).toFixed(2);
-    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+    const rx = ((y / rect.height - 0.5) * -7).toFixed(2);
+    const ry = ((x / rect.width - 0.5) * 7).toFixed(2);
+    card.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    card.style.setProperty("--mx", `${x}px`);
+    card.style.setProperty("--my", `${y}px`);
   };
 
   const reset = (e) => {
-    e.currentTarget.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+    e.currentTarget.style.transform =
+      "perspective(950px) rotateX(0deg) rotateY(0deg) translateY(0px)";
   };
 
   return (
     <section className="glass-section" id="why">
-      <motion.h2
-        className="glass-title"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {t("why_maestroweb_title")}
-      </motion.h2>
+      <div className="section-header">
+        <motion.div
+          className="section-badge"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="section-badge-dot" />
+          <span>{t("why_badge")}</span>
+        </motion.div>
+
+        <motion.h2
+          className="glass-title"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {t("why_maestroweb_title")}
+        </motion.h2>
+      </div>
 
       <div className="glass-grid">
         {data.map((item, i) => (
           <motion.div
             key={item.titleKey}
             className="glass-card"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
+            transition={{ delay: i * 0.14, duration: 0.6 }}
             viewport={{ once: true }}
             onMouseMove={handleMouseMove}
             onMouseLeave={reset}
           >
-            <div className="icon-box">{item.icon}</div>
+            <div className="card-spotlight" />
+            <div className="card-top-row">
+              <div className="icon-box">{item.icon}</div>
+              <span className="card-index" dir="ltr">
+                {item.num}
+              </span>
+            </div>
             <h3>{t(item.titleKey)}</h3>
             <p>{t(item.textKey)}</p>
           </motion.div>
