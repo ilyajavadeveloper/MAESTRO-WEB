@@ -1,6 +1,6 @@
 .glass-section {
   position: relative;
-  background: var(--clr-bg-dark);
+  background: transparent;
   padding: var(--section-padding);
   text-align: center;
   overflow: hidden;
@@ -12,40 +12,65 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(860px, 90%);
+  width: min(920px, 92%);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.38), rgba(108, 0, 255, 0.38), transparent);
+}
+
+.section-orb {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(95px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.section-orb-left {
+  top: 15%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.25), transparent 70%);
+}
+
+.section-orb-right {
+  bottom: 10%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(108, 0, 255, 0.28), transparent 70%);
 }
 
 .glass-title {
   font-family: 'Manrope', 'Inter', sans-serif;
   font-size: clamp(2.2rem, 4.8vw, 3.5rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--clr-text-light);
   margin: 0;
-  background: linear-gradient(135deg, #ffffff 20%, #9beeff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 45%, #8be9ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glass-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 2.2rem;
   max-width: 1280px;
   margin: 0 auto;
 }
 
-/* === Glass Card === */
+/* === Glass Card (Unified Hero Stage Surface) === */
 .glass-card {
   --mx: 50%;
   --my: 50%;
-  background: linear-gradient(155deg, rgba(18, 22, 36, 0.78) 0%, rgba(10, 12, 20, 0.9) 100%);
-  border: 1px solid rgba(0, 212, 255, 0.16);
+  background: linear-gradient(155deg, rgba(19, 22, 36, 0.86) 0%, rgba(10, 11, 18, 0.94) 100%);
+  border: 1px solid rgba(0, 210, 255, 0.22);
   border-radius: var(--radius-lg);
-  padding: 2.4rem 2.2rem;
+  padding: 2.3rem 2.15rem;
   box-shadow: var(--shadow-glass);
   transition:
     transform 0.25s ease-out,
@@ -55,16 +80,18 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .card-spotlight {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    360px circle at var(--mx) var(--my),
-    rgba(0, 210, 255, 0.13),
+    380px circle at var(--mx) var(--my),
+    rgba(0, 255, 224, 0.12),
     transparent 65%
   );
   opacity: 0;
@@ -78,32 +105,43 @@
 
 .glass-card:hover {
   box-shadow: var(--shadow-glass-hover);
-  border-color: rgba(0, 255, 224, 0.42);
+  border-color: rgba(0, 255, 224, 0.45);
 }
 
 .card-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.6rem;
+  gap: 0.75rem;
+  margin-bottom: 1.65rem;
   position: relative;
   z-index: 2;
 }
 
 /* === Icon === */
 .icon-box {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.65rem;
-  color: var(--clr-accent-cyan);
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(108, 0, 255, 0.18));
+  font-size: 1.55rem;
   border-radius: 16px;
-  border: 1px solid rgba(0, 212, 255, 0.32);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.18);
-  transition: transform var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  transition: transform var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.icon-box.cyan {
+  color: var(--clr-accent-cyan);
+  background: rgba(0, 210, 255, 0.14);
+  border: 1px solid rgba(0, 210, 255, 0.34);
+  box-shadow: 0 8px 24px rgba(0, 210, 255, 0.16);
+}
+
+.icon-box.violet {
+  color: #c4a1ff;
+  background: rgba(108, 0, 255, 0.2);
+  border: 1px solid rgba(108, 0, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(108, 0, 255, 0.22);
 }
 
 .glass-card:hover .icon-box {
@@ -112,17 +150,9 @@
   border-color: var(--clr-accent-cyan);
 }
 
-.card-index {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.22);
-  letter-spacing: 0.08em;
-  transition: color var(--transition-fast);
-}
-
 .glass-card:hover .card-index {
-  color: var(--clr-accent-blue);
+  color: var(--clr-accent-cyan);
+  border-color: rgba(0, 255, 224, 0.35);
 }
 
 /* === Heading === */
@@ -130,11 +160,11 @@
   position: relative;
   z-index: 2;
   font-family: 'Manrope', 'Inter', sans-serif;
-  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.62rem);
   color: var(--clr-text-light);
   margin: 0 0 0.75rem;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   transition: color var(--transition-fast);
 }
 
@@ -147,15 +177,47 @@
   position: relative;
   z-index: 2;
   font-family: 'Manrope', sans-serif;
-  font-size: 1.02rem;
-  line-height: 1.7;
+  font-size: 1.01rem;
+  line-height: 1.72;
   color: var(--clr-text-muted);
-  margin: 0;
+  margin: 0 0 1.6rem;
+  flex-grow: 1;
   transition: color var(--transition-fast);
 }
 
 .glass-card:hover p {
   color: var(--clr-text-light);
+}
+
+/* === Bottom Telemetry Gauge Bar (Hero Stage Style) === */
+.card-gauge-bar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.card-gauge-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: filter 0.3s ease;
+}
+
+.card-gauge-fill.cyan {
+  background: linear-gradient(90deg, var(--clr-accent-blue), var(--clr-accent-cyan));
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.45);
+}
+
+.card-gauge-fill.violet {
+  background: linear-gradient(90deg, var(--clr-accent-violet), var(--clr-accent-blue));
+  box-shadow: 0 0 12px rgba(108, 0, 255, 0.45);
+}
+
+.glass-card:hover .card-gauge-fill {
+  filter: brightness(1.2);
 }
 
 /* === Responsive === */

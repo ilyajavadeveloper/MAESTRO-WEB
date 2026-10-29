@@ -8,6 +8,7 @@ import {
   FaAddressCard,
   FaPalette,
   FaCommentDots,
+  FaArrowRight,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -17,39 +18,51 @@ const Services = () => {
   const servicesData = [
     {
       num: "01",
+      tagKey: "service_selling_site_tag",
       icon: <FaLaptopCode />,
       titleKey: "service_selling_site_title",
       descKey: "service_selling_site_desc",
+      accent: "cyan",
     },
     {
       num: "02",
+      tagKey: "service_portfolio_tag",
       icon: <FaCameraRetro />,
       titleKey: "service_portfolio_title",
       descKey: "service_portfolio_desc",
+      accent: "violet",
     },
     {
       num: "03",
+      tagKey: "service_qr_price_tag",
       icon: <FaQrcode />,
       titleKey: "service_qr_price_title",
       descKey: "service_qr_price_desc",
+      accent: "cyan",
     },
     {
       num: "04",
+      tagKey: "service_business_card_tag",
       icon: <FaAddressCard />,
       titleKey: "service_business_card_title",
       descKey: "service_business_card_desc",
+      accent: "violet",
     },
     {
       num: "05",
+      tagKey: "service_visual_style_tag",
       icon: <FaPalette />,
       titleKey: "service_visual_style_title",
       descKey: "service_visual_style_desc",
+      accent: "cyan",
     },
     {
       num: "06",
+      tagKey: "service_feedback_tag",
       icon: <FaCommentDots />,
       titleKey: "service_feedback_title",
       descKey: "service_feedback_desc",
+      accent: "violet",
     },
   ];
 
@@ -72,6 +85,9 @@ const Services = () => {
 
   return (
     <section className="services" id="services">
+      <div className="section-orb section-orb-right" />
+      <div className="section-orb section-orb-left" />
+
       <div className="section-header">
         <motion.div
           className="section-badge"
@@ -108,14 +124,33 @@ const Services = () => {
             onMouseLeave={reset}
           >
             <div className="card-spotlight" />
+
             <div className="card-top-row">
-              <div className="service-icon">{s.icon}</div>
-              <span className="card-index" dir="ltr">
-                {s.num}
-              </span>
+              <div className={`service-icon ${s.accent}`}>{s.icon}</div>
+              <div className="card-meta-group">
+                <span className="card-telemetry-pill" dir="ltr">
+                  {t(s.tagKey)}
+                </span>
+                <span className="card-index" dir="ltr">
+                  {s.num}
+                </span>
+              </div>
             </div>
+
             <h3>{t(s.titleKey)}</h3>
             <p>{t(s.descKey)}</p>
+
+            <div className="service-card-footer">
+              <a
+                href="https://wa.me/972524388967"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="service-action-link"
+              >
+                <span>{t("service_cta")}</span>
+                <FaArrowRight className="service-action-arrow" />
+              </a>
+            </div>
           </motion.div>
         ))}
       </div>

@@ -17,20 +17,39 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-wrapper">
+        {/* Top Studio Identity Bar */}
+        <div className="footer-brand-bar">
+          <div className="footer-brand-info">
+            <a href="#hero" className="footer-logo" aria-label="MAESTRO WEB">
+              MAESTRO<span>WEB</span>
+            </a>
+            <p className="footer-tagline">{t("footer_tagline")}</p>
+          </div>
+
+          <div className="footer-status-pill" dir="ltr">
+            <span className="status-ping" />
+            <span>{t("footer_status")}</span>
+          </div>
+        </div>
+
         <div className="footer-grid">
           <div className="footer-col">
             <h4>{t("footer_contacts")}</h4>
 
             <ul className="footer-list">
               <li>
-                <FaPhone className="footer-icon" />
+                <span className="footer-icon-box">
+                  <FaPhone className="footer-icon" />
+                </span>
                 <a href="tel:+972524388967" dir="ltr">
                   +972 52 438 8967
                 </a>
               </li>
 
               <li>
-                <FaMapMarkerAlt className="footer-icon" />
+                <span className="footer-icon-box">
+                  <FaMapMarkerAlt className="footer-icon" />
+                </span>
                 <a
                   href="https://www.google.com/maps?q=Sderot+Yerushalayim+18+Ashdod"
                   target="_blank"
@@ -77,27 +96,27 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t("portfolio_web_dev")}</h4>
 
-            <a
-              className="footer-project-link"
-              href="https://portfolio-ilyajavadevs-projects.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>{t("portfolio_web_dev")}</span>
-              <FaExternalLinkAlt />
-            </a>
+            <div className="footer-projects-group">
+              <a
+                className="footer-project-card"
+                href="https://portfolio-ilyajavadevs-projects.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{t("portfolio_web_dev")}</span>
+                <FaExternalLinkAlt />
+              </a>
 
-            <h4 className="footer-subtitle">{t("portfolio_maestrostudio")}</h4>
-
-            <a
-              className="footer-project-link"
-              href="https://maestro-studio-phi.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>{t("portfolio_studio_site")}</span>
-              <FaExternalLinkAlt />
-            </a>
+              <a
+                className="footer-project-card"
+                href="https://maestro-studio-phi.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{t("portfolio_maestrostudio")} — {t("portfolio_studio_site")}</span>
+                <FaExternalLinkAlt />
+              </a>
+            </div>
 
             <h4 className="footer-subtitle">{t("footer_social_media")}</h4>
 

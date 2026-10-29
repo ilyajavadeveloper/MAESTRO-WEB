@@ -1,4 +1,4 @@
-/* === Global Design Tokens & Resets === */
+/* === Global Design Tokens & Unified Architectural System === */
 :root {
   --clr-bg-dark: #07070b;
   --clr-bg-elevated: #0d0f18;
@@ -10,8 +10,15 @@
   --clr-whatsapp-green: #25D366;
   --transition-fast: 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-smooth: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  --shadow-glass: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 202, 255, 0.08);
-  --shadow-glass-hover: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(0, 210, 255, 0.25), 0 0 70px rgba(108, 0, 255, 0.2);
+  --shadow-glass:
+    0 20px 50px rgba(0, 0, 0, 0.55),
+    0 0 30px rgba(0, 202, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --shadow-glass-hover:
+    0 28px 65px rgba(0, 0, 0, 0.72),
+    0 0 50px rgba(0, 210, 255, 0.24),
+    0 0 70px rgba(108, 0, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   --padding-section: 130px 20px;
   --section-padding: 130px 20px;
   --radius-lg: 24px;
@@ -46,7 +53,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 78px;
+  scroll-padding-top: 84px;
 }
 
 html, body {
@@ -60,14 +67,33 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Continuous Ambient Architectural Grid & Glow Across Entire Site */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0, 210, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 210, 255, 0.028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, #000 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, #000 20%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 #root {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
-/* === Shared Section Header Styles === */
+/* === Shared Section Header Styles (Unified with Hero Pill) === */
 .section-header {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,27 +104,77 @@ html, body {
 .section-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.38rem 1rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  padding: 0.42rem 1.15rem;
+  margin-bottom: 1.15rem;
   border-radius: 999px;
-  background: rgba(0, 210, 255, 0.08);
+  background: rgba(14, 16, 26, 0.78);
   border: 1px solid rgba(0, 210, 255, 0.28);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), inset 0 0 16px rgba(0, 210, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: 'JetBrains Mono', 'Manrope', monospace;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--clr-accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.12);
 }
 
 .section-badge-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--clr-accent-cyan);
-  box-shadow: 0 0 8px var(--clr-accent-cyan);
+  box-shadow: 0 0 10px var(--clr-accent-cyan);
+  animation: globalPulseDot 2s infinite ease-in-out;
+}
+
+@keyframes globalPulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.65;
+  }
+}
+
+/* Shared Telemetry Tag & Index Chip inside Cards */
+.card-telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.22);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--clr-accent-cyan);
+  text-transform: uppercase;
+}
+
+.card-meta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.card-index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.24rem 0.55rem;
+  border-radius: 8px;
+  letter-spacing: 0.06em;
+  transition: all var(--transition-fast);
 }
 
 /* === RTL (Hebrew) Typography & Layout Adjustments === */
@@ -108,9 +184,10 @@ html, body {
   line-height: 1.75;
 }
 
-[dir="rtl"] .section-badge {
+[dir="rtl"] .section-badge,
+[dir="rtl"] .card-telemetry-pill {
   font-family: 'Rubik', sans-serif;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 [dir="rtl"] .hero-title,

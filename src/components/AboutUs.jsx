@@ -10,21 +10,30 @@ const AboutUs = () => {
   const items = [
     {
       num: "01",
+      tagKey: "our_mission_tag",
       icon: <FaBullseye />,
       titleKey: "our_mission_title",
       textKey: "our_mission_text",
+      accent: "cyan",
+      fill: "96%",
     },
     {
       num: "02",
+      tagKey: "our_approach_tag",
       icon: <FaLightbulb />,
       titleKey: "our_approach_title",
       textKey: "our_approach_text",
+      accent: "violet",
+      fill: "95%",
     },
     {
       num: "03",
+      tagKey: "our_team_tag",
       icon: <FaUsers />,
       titleKey: "our_team_title",
       textKey: "our_team_text",
+      accent: "cyan",
+      fill: "100%",
     },
   ];
 
@@ -47,6 +56,9 @@ const AboutUs = () => {
 
   return (
     <section id="about" className="aboutus">
+      <div className="section-orb section-orb-left" />
+      <div className="section-orb section-orb-right" />
+
       <div className="section-header">
         <motion.div
           className="section-badge"
@@ -83,14 +95,26 @@ const AboutUs = () => {
             onMouseLeave={reset}
           >
             <div className="card-spotlight" />
+
             <div className="card-top-row">
-              <div className="about-icon">{item.icon}</div>
-              <span className="card-index" dir="ltr">
-                {item.num}
-              </span>
+              <div className={`about-icon ${item.accent}`}>{item.icon}</div>
+              <div className="card-meta-group">
+                <span className="card-telemetry-pill">{t(item.tagKey)}</span>
+                <span className="card-index" dir="ltr">
+                  {item.num}
+                </span>
+              </div>
             </div>
+
             <h3>{t(item.titleKey)}</h3>
             <p>{t(item.textKey)}</p>
+
+            <div className="card-gauge-bar">
+              <div
+                className={`card-gauge-fill ${item.accent}`}
+                style={{ width: item.fill }}
+              />
+            </div>
           </motion.div>
         ))}
       </div>

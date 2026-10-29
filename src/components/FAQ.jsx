@@ -9,16 +9,18 @@ const FAQ = () => {
   const { t } = useTranslation();
 
   const questionsData = [
-    { qKey: "price_q", aKey: "price_a" },
-    { qKey: "time_q", aKey: "time_a" },
-    { qKey: "client_needs_q", aKey: "client_needs_a" },
-    { qKey: "support_q", aKey: "support_a" },
+    { num: "01", qKey: "price_q", aKey: "price_a" },
+    { num: "02", qKey: "time_q", aKey: "time_a" },
+    { num: "03", qKey: "client_needs_q", aKey: "client_needs_a" },
+    { num: "04", qKey: "support_q", aKey: "support_a" },
   ];
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
   return (
     <section id="faq" className="faq-section">
+      <div className="section-orb section-orb-right" />
+
       <div className="section-header">
         <motion.div
           className="section-badge"
@@ -60,7 +62,12 @@ const FAQ = () => {
                 onClick={() => toggle(i)}
                 aria-expanded={isOpen}
               >
-                <span>{t(item.qKey)}</span>
+                <span className="faq-question-left">
+                  <span className="faq-num" dir="ltr">
+                    {item.num}
+                  </span>
+                  <span className="faq-question-text">{t(item.qKey)}</span>
+                </span>
                 <span className={`faq-chevron-wrap ${isOpen ? "rotated" : ""}`}>
                   <FaChevronDown className="faq-chevron" />
                 </span>

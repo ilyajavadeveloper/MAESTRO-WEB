@@ -10,21 +10,30 @@ const GlassCardShowcase = () => {
   const data = [
     {
       num: "01",
+      tagKey: "ai_code_tag",
       titleKey: "ai_code_title",
       textKey: "ai_code_text",
       icon: <FaRobot />,
+      fill: "94%",
+      accent: "cyan",
     },
     {
       num: "02",
+      tagKey: "design_sells_tag",
       titleKey: "design_sells_title",
       textKey: "design_sells_text",
       icon: <FaPenNib />,
+      fill: "98%",
+      accent: "violet",
     },
     {
       num: "03",
+      tagKey: "content_key_tag",
       titleKey: "content_key_title",
       textKey: "content_key_text",
       icon: <FaImages />,
+      fill: "100%",
+      accent: "cyan",
     },
   ];
 
@@ -47,6 +56,9 @@ const GlassCardShowcase = () => {
 
   return (
     <section className="glass-section" id="why">
+      <div className="section-orb section-orb-left" />
+      <div className="section-orb section-orb-right" />
+
       <div className="section-header">
         <motion.div
           className="section-badge"
@@ -83,14 +95,26 @@ const GlassCardShowcase = () => {
             onMouseLeave={reset}
           >
             <div className="card-spotlight" />
+
             <div className="card-top-row">
-              <div className="icon-box">{item.icon}</div>
-              <span className="card-index" dir="ltr">
-                {item.num}
-              </span>
+              <div className={`icon-box ${item.accent}`}>{item.icon}</div>
+              <div className="card-meta-group">
+                <span className="card-telemetry-pill">{t(item.tagKey)}</span>
+                <span className="card-index" dir="ltr">
+                  {item.num}
+                </span>
+              </div>
             </div>
+
             <h3>{t(item.titleKey)}</h3>
             <p>{t(item.textKey)}</p>
+
+            <div className="card-gauge-bar">
+              <div
+                className={`card-gauge-fill ${item.accent}`}
+                style={{ width: item.fill }}
+              />
+            </div>
           </motion.div>
         ))}
       </div>
