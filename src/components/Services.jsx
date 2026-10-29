@@ -9,6 +9,7 @@ import {
   FaPalette,
   FaCommentDots,
   FaArrowRight,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -22,6 +23,7 @@ const Services = () => {
       icon: <FaLaptopCode />,
       titleKey: "service_selling_site_title",
       descKey: "service_selling_site_desc",
+      chipsKey: "service_selling_site_chips",
       accent: "cyan",
     },
     {
@@ -30,6 +32,7 @@ const Services = () => {
       icon: <FaCameraRetro />,
       titleKey: "service_portfolio_title",
       descKey: "service_portfolio_desc",
+      chipsKey: "service_portfolio_chips",
       accent: "violet",
     },
     {
@@ -38,6 +41,7 @@ const Services = () => {
       icon: <FaQrcode />,
       titleKey: "service_qr_price_title",
       descKey: "service_qr_price_desc",
+      chipsKey: "service_qr_price_chips",
       accent: "cyan",
     },
     {
@@ -46,6 +50,7 @@ const Services = () => {
       icon: <FaAddressCard />,
       titleKey: "service_business_card_title",
       descKey: "service_business_card_desc",
+      chipsKey: "service_business_card_chips",
       accent: "violet",
     },
     {
@@ -54,6 +59,7 @@ const Services = () => {
       icon: <FaPalette />,
       titleKey: "service_visual_style_title",
       descKey: "service_visual_style_desc",
+      chipsKey: "service_visual_style_chips",
       accent: "cyan",
     },
     {
@@ -62,6 +68,7 @@ const Services = () => {
       icon: <FaCommentDots />,
       titleKey: "service_feedback_title",
       descKey: "service_feedback_desc",
+      chipsKey: "service_feedback_chips",
       accent: "violet",
     },
   ];
@@ -109,50 +116,87 @@ const Services = () => {
         >
           {t("services_title")}
         </motion.h2>
+
+        <motion.p
+          className="section-subtitle"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.18 }}
+        >
+          {t("services_subtitle")}
+        </motion.p>
       </div>
 
       <div className="services-grid">
-        {servicesData.map((s, i) => (
-          <motion.div
-            key={s.titleKey}
-            className="service-card"
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.6 }}
-            viewport={{ once: true }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={reset}
-          >
-            <div className="card-spotlight" />
+        {servicesData.map((s, i) => {
+          const chips = t(s.chipsKey)
+            .split("•")
+            .map((c) => c.trim())
+            .filter(Boolean);
+          const serviceName = t(s.titleKey);
+          const waUrl = `https://wa.me/972524388967?text=${encodeURIComponent(
+            `${t("contact_whatsapp_prefill")}: ${serviceName}`
+          )}`;
 
-            <div className="card-top-row">
-              <div className={`service-icon ${s.accent}`}>{s.icon}</div>
-              <div className="card-meta-group">
-                <span className="card-telemetry-pill" dir="ltr">
-                  {t(s.tagKey)}
-                </span>
-                <span className="card-index" dir="ltr">
-                  {s.num}
-                </span>
+          return (
+            <motion.div
+              key={s.titleKey}
+              className="service-card"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={reset}
+            >
+              <div className="card-spotlight" />
+
+              {/* Studio OS Window Bar */}
+              <div className="studio-card-topbar" dir="ltr">
+                <div className="studio-card-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="card-meta-group">
+                  <span className="card-telemetry-pill">{t(s.tagKey)}</span>
+                  <span className="card-index">MOD // {s.num}</span>
+                </div>
               </div>
-            </div>
 
-            <h3>{t(s.titleKey)}</h3>
-            <p>{t(s.descKey)}</p>
+              <div className="service-icon-row">
+                <div className={`service-icon ${s.accent}`}>{s.icon}</div>
+              </div>
 
-            <div className="service-card-footer">
-              <a
-                href="https://wa.me/972524388967"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="service-action-link"
-              >
-                <span>{t("service_cta")}</span>
-                <FaArrowRight className="service-action-arrow" />
-              </a>
-            </div>
-          </motion.div>
-        ))}
+              <h3>{serviceName}</h3>
+              <p>{t(s.descKey)}</p>
+
+              {/* Hero Stage Style Capability Chips */}
+              <div className="service-chips">
+                {chips.map((chip) => (
+                  <span className="service-chip" key={chip}>
+                    <FaCheckCircle className="service-chip-check" />
+                    <span>{chip}</span>
+                  </span>
+                ))}
+              </div>
+
+              <div className="service-card-footer">
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="service-action-link"
+                >
+                  <span>{t("service_cta")}</span>
+                  <FaArrowRight className="service-action-arrow" />
+                </a>
+                <span className="service-ready-dot" title="Turnkey Ready" />
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

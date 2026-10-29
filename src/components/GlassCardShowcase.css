@@ -57,7 +57,7 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.2rem;
   max-width: 1280px;
   margin: 0 auto;
@@ -67,10 +67,10 @@
 .glass-card {
   --mx: 50%;
   --my: 50%;
-  background: linear-gradient(155deg, rgba(19, 22, 36, 0.86) 0%, rgba(10, 11, 18, 0.94) 100%);
-  border: 1px solid rgba(0, 210, 255, 0.22);
+  background: var(--clr-surface-glass);
+  border: 1px solid rgba(0, 210, 255, 0.24);
   border-radius: var(--radius-lg);
-  padding: 2.3rem 2.15rem;
+  padding: 1.85rem 2.1rem 2.15rem;
   box-shadow: var(--shadow-glass);
   transition:
     transform 0.25s ease-out,
@@ -91,7 +91,7 @@
   inset: 0;
   background: radial-gradient(
     380px circle at var(--mx) var(--my),
-    rgba(0, 255, 224, 0.12),
+    rgba(0, 255, 224, 0.13),
     transparent 65%
   );
   opacity: 0;
@@ -105,17 +105,13 @@
 
 .glass-card:hover {
   box-shadow: var(--shadow-glass-hover);
-  border-color: rgba(0, 255, 224, 0.45);
+  border-color: rgba(0, 255, 224, 0.48);
 }
 
-.card-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 1.65rem;
+.card-icon-row {
   position: relative;
   z-index: 2;
+  margin-bottom: 1.25rem;
 }
 
 /* === Icon === */
@@ -189,33 +185,6 @@
   color: var(--clr-text-light);
 }
 
-/* === Bottom Telemetry Gauge Bar (Hero Stage Style) === */
-.card-gauge-bar {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  overflow: hidden;
-}
-
-.card-gauge-fill {
-  height: 100%;
-  border-radius: 999px;
-  transition: filter 0.3s ease;
-}
-
-.card-gauge-fill.cyan {
-  background: linear-gradient(90deg, var(--clr-accent-blue), var(--clr-accent-cyan));
-  box-shadow: 0 0 12px rgba(0, 255, 224, 0.45);
-}
-
-.card-gauge-fill.violet {
-  background: linear-gradient(90deg, var(--clr-accent-violet), var(--clr-accent-blue));
-  box-shadow: 0 0 12px rgba(108, 0, 255, 0.45);
-}
-
 .glass-card:hover .card-gauge-fill {
   filter: brightness(1.2);
 }
@@ -232,6 +201,6 @@
   }
 
   .glass-card {
-    padding: 1.9rem 1.6rem;
+    padding: 1.6rem 1.5rem 1.85rem;
   }
 }

@@ -9,10 +9,15 @@ const FAQ = () => {
   const { t } = useTranslation();
 
   const questionsData = [
-    { num: "01", qKey: "price_q", aKey: "price_a" },
-    { num: "02", qKey: "time_q", aKey: "time_a" },
-    { num: "03", qKey: "client_needs_q", aKey: "client_needs_a" },
-    { num: "04", qKey: "support_q", aKey: "support_a" },
+    { num: "01", tagKey: "price_tag", qKey: "price_q", aKey: "price_a" },
+    { num: "02", tagKey: "time_tag", qKey: "time_q", aKey: "time_a" },
+    {
+      num: "03",
+      tagKey: "client_needs_tag",
+      qKey: "client_needs_q",
+      aKey: "client_needs_a",
+    },
+    { num: "04", tagKey: "support_tag", qKey: "support_q", aKey: "support_a" },
   ];
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
@@ -42,6 +47,16 @@ const FAQ = () => {
         >
           {t("faq_title")}
         </motion.h2>
+
+        <motion.p
+          className="section-subtitle"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.18 }}
+        >
+          {t("faq_subtitle")}
+        </motion.p>
       </div>
 
       <div className="faq-list">
@@ -68,8 +83,16 @@ const FAQ = () => {
                   </span>
                   <span className="faq-question-text">{t(item.qKey)}</span>
                 </span>
-                <span className={`faq-chevron-wrap ${isOpen ? "rotated" : ""}`}>
-                  <FaChevronDown className="faq-chevron" />
+
+                <span className="faq-question-right">
+                  <span className="card-telemetry-pill faq-tag">
+                    {t(item.tagKey)}
+                  </span>
+                  <span
+                    className={`faq-chevron-wrap ${isOpen ? "rotated" : ""}`}
+                  >
+                    <FaChevronDown className="faq-chevron" />
+                  </span>
                 </span>
               </button>
 

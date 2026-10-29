@@ -11,6 +11,7 @@ const GlassCardShowcase = () => {
     {
       num: "01",
       tagKey: "ai_code_tag",
+      statKey: "ai_code_stat",
       titleKey: "ai_code_title",
       textKey: "ai_code_text",
       icon: <FaRobot />,
@@ -20,6 +21,7 @@ const GlassCardShowcase = () => {
     {
       num: "02",
       tagKey: "design_sells_tag",
+      statKey: "design_sells_stat",
       titleKey: "design_sells_title",
       textKey: "design_sells_text",
       icon: <FaPenNib />,
@@ -29,6 +31,7 @@ const GlassCardShowcase = () => {
     {
       num: "03",
       tagKey: "content_key_tag",
+      statKey: "content_key_stat",
       titleKey: "content_key_title",
       textKey: "content_key_text",
       icon: <FaImages />,
@@ -80,6 +83,16 @@ const GlassCardShowcase = () => {
         >
           {t("why_maestroweb_title")}
         </motion.h2>
+
+        <motion.p
+          className="section-subtitle"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.18 }}
+        >
+          {t("why_subtitle")}
+        </motion.p>
       </div>
 
       <div className="glass-grid">
@@ -96,24 +109,37 @@ const GlassCardShowcase = () => {
           >
             <div className="card-spotlight" />
 
-            <div className="card-top-row">
-              <div className={`icon-box ${item.accent}`}>{item.icon}</div>
+            {/* Studio OS Window Bar */}
+            <div className="studio-card-topbar" dir="ltr">
+              <div className="studio-card-dots">
+                <span />
+                <span />
+                <span />
+              </div>
               <div className="card-meta-group">
                 <span className="card-telemetry-pill">{t(item.tagKey)}</span>
-                <span className="card-index" dir="ltr">
-                  {item.num}
-                </span>
+                <span className="card-index">SYS // {item.num}</span>
               </div>
+            </div>
+
+            <div className="card-icon-row">
+              <div className={`icon-box ${item.accent}`}>{item.icon}</div>
             </div>
 
             <h3>{t(item.titleKey)}</h3>
             <p>{t(item.textKey)}</p>
 
-            <div className="card-gauge-bar">
-              <div
-                className={`card-gauge-fill ${item.accent}`}
-                style={{ width: item.fill }}
-              />
+            <div className="card-telemetry-footer">
+              <div className="card-telemetry-meta" dir="ltr">
+                <span>BENCHMARK // ACTIVE</span>
+                <span className="card-telemetry-val">{t(item.statKey)}</span>
+              </div>
+              <div className="card-gauge-bar">
+                <div
+                  className={`card-gauge-fill ${item.accent}`}
+                  style={{ width: item.fill }}
+                />
+              </div>
             </div>
           </motion.div>
         ))}

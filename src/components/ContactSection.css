@@ -19,11 +19,13 @@
 }
 
 .contact-container {
-  max-width: 940px;
+  --mx: 50%;
+  --my: 50%;
+  max-width: 960px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  background: linear-gradient(155deg, rgba(19, 22, 36, 0.88) 0%, rgba(10, 11, 18, 0.96) 100%);
+  background: var(--clr-surface-glass);
   border: 1px solid rgba(0, 210, 255, 0.28);
   border-radius: 28px;
   box-shadow:
@@ -34,6 +36,30 @@
   overflow: hidden;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-container:hover {
+  border-color: rgba(0, 255, 224, 0.45);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+.contact-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    520px circle at var(--mx) var(--my),
+    rgba(0, 255, 224, 0.1),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-container:hover .contact-spotlight {
+  opacity: 1;
 }
 
 /* Studio Topbar (Matches Hero 3D Stage) */
@@ -72,7 +98,7 @@
 .contact-url {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.52);
   background: rgba(0, 0, 0, 0.35);
   padding: 0.25rem 0.85rem;
   border-radius: 6px;
@@ -93,7 +119,7 @@
 .contact-body {
   position: relative;
   z-index: 2;
-  padding: 56px 40px 60px;
+  padding: 52px 40px 56px;
 }
 
 .contact-glow-orb {
@@ -121,7 +147,7 @@
   font-size: clamp(2.1rem, 4.6vw, 3.3rem);
   font-weight: 800;
   letter-spacing: -0.025em;
-  margin: 0 0 1rem;
+  margin: 0 0 0.9rem;
   background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 45%, #8be9ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -132,11 +158,76 @@
   position: relative;
   z-index: 1;
   font-family: 'Manrope', 'Rubik', sans-serif;
-  font-size: clamp(1.02rem, 1.8vw, 1.16rem);
+  font-size: clamp(1rem, 1.7vw, 1.14rem);
   color: var(--clr-text-muted);
-  max-width: 620px;
-  margin: 0 auto 2.4rem;
+  max-width: 640px;
+  margin: 0 auto 2rem;
   line-height: 1.72;
+}
+
+/* Interactive Project Configurator */
+.contact-configurator {
+  position: relative;
+  z-index: 1;
+  max-width: 740px;
+  margin: 0 auto 2.2rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 18px;
+  background: rgba(8, 10, 18, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.configurator-label {
+  font-family: 'JetBrains Mono', 'Manrope', 'Rubik', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.configurator-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.configurator-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 210, 255, 0.22);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: 'Manrope', 'Rubik', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.configurator-chip:hover {
+  border-color: var(--clr-accent-cyan);
+  background: rgba(0, 210, 255, 0.12);
+  color: #ffffff;
+}
+
+.configurator-chip.selected {
+  background: linear-gradient(135deg, var(--clr-accent-blue), var(--clr-accent-cyan));
+  border-color: transparent;
+  color: #07070b;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(0, 255, 224, 0.45);
+}
+
+.chip-check-icon {
+  font-size: 0.72rem;
 }
 
 .contact-details {
@@ -146,7 +237,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.1rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.3rem;
 }
 
 .contact-chip {
@@ -244,7 +335,11 @@
   }
 
   .contact-body {
-    padding: 40px 20px 44px;
+    padding: 36px 18px 42px;
+  }
+
+  .contact-configurator {
+    padding: 1rem;
   }
 
   .contact-details {

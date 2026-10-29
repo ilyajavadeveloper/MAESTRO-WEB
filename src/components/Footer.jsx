@@ -7,6 +7,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaExternalLinkAlt,
+  FaArrowUp,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +21,13 @@ const Footer = () => {
         {/* Top Studio Identity Bar */}
         <div className="footer-brand-bar">
           <div className="footer-brand-info">
-            <a href="#hero" className="footer-logo" aria-label="MAESTRO WEB">
+            <a
+              href="#hero"
+              className="footer-logo"
+              aria-label="MAESTRO WEB"
+              dir="ltr"
+            >
+              <span className="logo-dot" />
               MAESTRO<span>WEB</span>
             </a>
             <p className="footer-tagline">{t("footer_tagline")}</p>
@@ -113,7 +120,9 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span>{t("portfolio_maestrostudio")} — {t("portfolio_studio_site")}</span>
+                <span>
+                  {t("portfolio_maestrostudio")} — {t("portfolio_studio_site")}
+                </span>
                 <FaExternalLinkAlt />
               </a>
             </div>
@@ -144,6 +153,10 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>{t("footer_copyright", { year: currentYear })}</p>
+          <a href="#hero" className="footer-top-btn">
+            <span>{t("footer_back_to_top")}</span>
+            <FaArrowUp />
+          </a>
         </div>
       </div>
     </footer>
